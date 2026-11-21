@@ -33,9 +33,12 @@ if [ -z "$B" ]; then   # WebView text not in the accessibility tree: the button'
   WH=$(adb shell wm size | tail -n 1 | grep -o '[0-9]*x[0-9]*'); W=${WH%x*}; H=${WH#*x}; [ "$W" -lt "$H" ] && { t=$W; W=$H; H=$t; }
   B="$((W*527/1000)) $((H*805/1000))"; echo "konumla dokunuluyor: $B"; fi
 if [ -n "$B" ]; then note "reklam bildirimi göründü; 'Yalnız kişiselleştirilmemiş' seçildi"; adb shell input tap $B; else err "reklam bildirimi bulunamadı (ekran: 1-acilis.png)"; fi
+sleep 4; adb exec-out screencap -p > "$OUT/2-dokunduktan-sonra.png"
 for i in $(seq 1 30); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
-adb exec-out screencap -p > "$OUT/2-menu.png"
+adb exec-out screencap -p > "$OUT/3-sonra.png"
+PID2=$(adb shell pidof -s "$PKG" | tr -d '\r'); [ -n "$PID2" ] || err "dokunduktan sonra uygulama kapandı"
 adb logcat -d > "$OUT/logcat.txt"; adb logcat -d -b crash > "$OUT/crash.txt"
+grep -a -i "AndroidRuntime\|FATAL\|$PKG\|Capacitor\|Ads \|UserMessaging\|ActivityManager.*ayyildiz\|ActivityTaskManager.*ayyildiz\|lowmemory\|am_kill" "$OUT/logcat.txt" | grep -v "Registering plugin" | tail -n 400 > "$OUT/kayit.txt"
 grep -a "AyYildiz\]" "$OUT/logcat.txt" | sed 's/.*\[AyYildiz\]/[AyYildiz]/' | head -n 20 > "$OUT/oyun.txt"
 grep -q "AdMob başladı" "$OUT/oyun.txt" && note "AdMob başladı (deneme reklamları)" || err "AdMob başlamadı: $(grep -a 'AdMob\|reklam' "$OUT/logcat.txt" | tail -n 3 | tr '\n' ' ' | cut -c1-400)"
 grep -q "reklam hazır: rew" "$OUT/oyun.txt" && note "ödüllü deneme reklamı yüklendi" || err "ödüllü reklam yüklenmedi"

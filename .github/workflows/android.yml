@@ -97,7 +97,7 @@ jobs:
         run: |
           V=$(tr -d ' \r\nV' < VERSION); APK=$(find paket -name '*.apk' | head -n 1); [ -n "$APK" ] || exit 0
           F="AyYildiz-${V}.apk"; cp "$APK" "$F"; A=("$F"); for p in emu/*.png; do [ -f "$p" ] && cp "$p" "emulator-$(basename "$p")" && A+=("emulator-$(basename "$p")"); done
-          [ -f emu/oyun.txt ] && cp emu/oyun.txt emulator-oyun.txt && A+=(emulator-oyun.txt)
+          for t in oyun kayit; do [ -f emu/$t.txt ] && cp emu/$t.txt emulator-$t.txt && A+=(emulator-$t.txt); done
           N="Android uygulaması $V. Telefona doğrudan kurulabilir; kalıcı imzalı, eski sürümün üstüne kurulur. Reklamlar DENEME reklamıdır. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/android/$F"
           gh release delete android --cleanup-tag -y 2>/dev/null || true
           gh release create android "${A[@]}" --prerelease --title "Android uygulaması ($V)" --notes "$N"
