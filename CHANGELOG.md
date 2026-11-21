@@ -1,6 +1,13 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.61 — 2026-11-21 · Mağaza altyapısı
+- Gelir yolunun ilk adımı: ana menüde **Mağaza**. İçinde Reklamsız, üç kaplama paketi (Kış Harekâtı, Mavi Vatan, Tarihî; her biri bütün uçaklarda kullanılan 3 kaplama) ve Destekçi paketi var. Henüz gerçek ödeme yok; satın alma Google Play ile V2.63'te gelecek.
+- Hangarda paket kaplamaları 🛒 işaretiyle görünür; birine basınca mağaza o paketle açılır.
+- Satın alınan ürünler hesaba bağlı: her cihazda giriş yapınca gelir, internet yokken de kaplama kalır. Oyuncu kendine ürün tanımlayamaz; yalnız sunucu (ve deneme için yönetici) tanımlar.
+- Para güç satın almaz: uçaklar ve silahlar oynadıkça açılmaya devam eder.
+- Yol haritasına gelir planı ve V2.61–V2.73 sürümleri eklendi. Gizlilik sayfasına mağaza ürünleri eklendi.
+
 ## V2.60 — 2026-11-21 · Toparlama
 - Toparlama: özellik listesindeki eski notlar güncellendi. Silahlı bütün uçaklar gerçek Türk mühimmatına sahip (ANKA silahsız keşif İHA'sı); Android uygulaması kalıcı imzayla çalışıyor; Google Play'de kalan adımlar yazıldı.
 - Eski deneme paketi indirme sayfasından kaldırıldı; geçerli paket "Android uygulaması" sayfasında.

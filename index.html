@@ -3,7 +3,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="game-version" content="V2.60">
+<meta name="game-version" content="V2.61">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Ay Yıldız: Hedef Kızıl Elma</title>
 <meta name="theme-color" content="#a10d1c">
@@ -1145,8 +1145,18 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 #boot .boottip{ margin:18px auto 0; max-width:min(420px,88vw); min-height:3.2em; font-size:13px; line-height:1.45; color:#c7cfda; opacity:0; transform:translateY(4px); transition:opacity .45s, transform .45s; }
 #boot .boottip.in{ opacity:1; transform:none; } #boot .boottip b{ display:block; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#ff8a8a; margin-bottom:2px; }
 @media (max-height:420px){ #boot .bootay{ width:84px; height:84px; margin-bottom:8px; } #boot small{ margin-bottom:12px; } #boot .boottip{ margin-top:10px; font-size:12px; } }
+/* V2.61 store */
+.magcard{ max-width:640px; } .magbody{ display:flex; flex-direction:column; gap:10px; }
+.mgc{ border:1px solid rgba(184,236,255,.18); border-radius:12px; padding:12px 14px; background:rgba(8,15,28,.55); }
+.mgc.fx{ border-color:#ffb25a; box-shadow:0 0 0 1px rgba(255,178,90,.35); } .mgc.own{ border-color:rgba(125,255,176,.45); }
+.mgh{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; } .mgh b{ font-size:15px; color:#eaf3f8; } .mgh small{ opacity:.65; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+.mgc p{ margin:6px 0 8px; font-size:13px; line-height:1.45; opacity:.85; }
+.mgsw{ display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; } .mgsw i{ width:26px; height:26px; border-radius:50%; border:1px solid rgba(255,255,255,.35); overflow:hidden; }
+.mga{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; } .mga .btn[disabled]{ opacity:.6; cursor:default; } .mgok{ color:#7dffb0; font-weight:700; }
+.mgn{ font-size:12px; opacity:.6; line-height:1.45; }
+.pchips button.buy{ border-style:dashed; }
 </style>
-<link rel="preload" href="oyun.js?v=V2.60" as="script">
+<link rel="preload" href="oyun.js?v=V2.61" as="script">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1715,6 +1725,6 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>window.THREE||document.write('<script src="vendor/three-r128/three.min.js"><\/script>')</script>
-<script src="oyun.js?v=V2.60"></script>
+<script src="oyun.js?v=V2.61"></script>
 </body>
 </html>

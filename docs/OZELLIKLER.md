@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 68 özellik · ✅ iyi 63 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 2 · testi olmayan: 0
+**Özet:** 69 özellik · ✅ iyi 63 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 3 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -14,7 +14,8 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 2. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
 3. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
 4. **Google Play paketi** (🔧 iyileştirilmeli) — Paket, kalıcı imza ve doğrulama dosyası hazır (V2.59). Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün); Play App Signing anahtarının parmak izi doğrulama dosyasına eklenecek.
-5. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
+5. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.63 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
+6. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
 
 ## Uçuş
 
@@ -140,6 +141,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Model bulut yedeği** | Model Kütüphanesi'nde içe aktarılan modeller giriş yapan oyuncu için buluta da yedeklenir; tarayıcı verisi silinse ya da başka cihazdan girilse bile girişten sonra kendiliğinden geri gelir. Yalnız cihazda olan modeller ilk girişte buluta çıkar. | Model Kütüphanesi · giriş | — | V2.53 | v253 | ✅ iyi |
 | **Hesabımı sil** | Giriş yapmış oyuncu hesabını (giriş bilgisi dahil), profilini, bulut kaydını ve buluttaki modellerini oyunun içinden kalıcı olarak siler (iki kez basılır; V2.57'de tam silme). Google Play şartı; web sayfası: gizlilik → Hesap silme. | Profil → Hesap | — | V2.52 | v252 | ✅ iyi |
 | **Google Play paketi** | Android uygulaması (TWA) GitHub Actions'ta imzalı .aab ve .apk olarak üretilir; mağaza metinleri, görseller ve adım adım yükleme rehberi docs/PLAY-STORE.md'de. | GitHub → Actions → Android paketi | — | V2.52 | setup | 🔧 iyileştirilmeli |
+| **Mağaza** | Ana menüde Mağaza: Reklamsız, üç kaplama paketi (Kış Harekâtı, Mavi Vatan, Tarihî; her biri 3 kaplama) ve Destekçi paketi. Sahip olunan ürünler hesaba bağlı (bulut tablosu entitlements, cihazda önbellek). Hangarda paket kaplamaları 🛒 ile görünür, seçince mağaza açılır. Para güç satın almaz. | Ana menü → Mağaza · Hangar → Boya | — | V2.61 | v261 | 🔧 iyileştirilmeli |
 | **Hesap ve profil** | Misafir ya da bulut hesabı, oyuncu kartı, birden çok profil, bulut eşitleme. | Ana menü → sağ üstteki profil | — | V1.66 | account, pcard | ✅ iyi |
 | **Kayıt ve yedek** | Bütün ilerleme tek kayıtta, her oturum yedekleniyor; grafik ayarları cihaza özel. | Kendiliğinden | — | V2.26 | depo | ✅ iyi |
 | **Uygulama olarak yükleme** | Ana ekrana ekleme, kısayollar, Android (Play Store) hazırlığı. | Ana menü → Uygulamayı yükle | — | V2.01 | install | ✅ iyi |
