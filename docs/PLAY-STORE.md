@@ -11,7 +11,7 @@ Hazır olanlar:
 | Android paketi üreten iş akışı | GitHub → Actions → **Android paketi (Play Store)** (`.github/workflows/android.yml`) |
 | Uygulama ayarları (paket adı, yatay tam ekran, simgeler, kısayollar) | `twa-manifest.json` |
 | Mağaza görselleri | `docs/play-store/` (öne çıkan görsel 1024×500, 5 ekran görüntüsü 1600×900) |
-| Gizlilik politikası | https://astakyon.github.io/Turkiye_Hava_Simulasyonu/privacy.html |
+| Gizlilik politikası | https://ayyildiz-kizilelma-game.github.io/privacy.html |
 | Hesap silme (Play şartı) | Oyunda Profil → Hesap → **Hesabımı sil** · web: `privacy.html#hesap-silme` · sunucu: `supabase/hesap_silme.sql` |
 
 Senin yapman gerekenler aşağıda. Geliştirici hesabını açmak, ödeme, kimlik doğrulama ve Play Console'daki gönderimler
@@ -109,12 +109,10 @@ Bu adım yapılmazsa uygulama yine çalışır, ama üstte ince bir tarayıcı a
    anahtarı sertifikası** altındaki **SHA-256** değerini kopyala.
 2. `assetlinks-yukleme-anahtari.json` dosyasını aç; `sha256_cert_fingerprints` listesine bu değeri de ekle
    (listede iki değer olsun: yükleme anahtarı ve Google'ın anahtarı).
-3. Dosya alan adının **köküne** konmalı: `https://astakyon.github.io/.well-known/assetlinks.json`. Oyun bir *proje sayfası*
-   olduğu için bu kök başka bir depodur:
-   - GitHub'da **`astakyon.github.io`** adlı yeni, herkese açık bir depo aç.
-   - İçine `.well-known/assetlinks.json` (adım 2'deki dosya) ve boş bir **`.nojekyll`** dosyası koy. `.nojekyll`
-     olmazsa GitHub Pages noktayla başlayan klasörü yayınlamaz.
-   - Depo ayarlarında Pages'i aç (main dalı, kök klasör).
+3. Dosya alan adının **köküne** konmalı: `https://ayyildiz-kizilelma-game.github.io/.well-known/assetlinks.json`.
+   V2.55'ten beri oyun kendi kuruluşunun kök adresinde yayında, bu yüzden dosya doğrudan oyunun deposuna konur:
+   depoda `.well-known/assetlinks.json` olarak kaydet (bana gönderirsen ben eklerim). Yayın GitHub Actions ile yapıldığı
+   için ayrıca `.nojekyll` gerekmez.
 4. Birkaç dakika sonra adresi tarayıcıda açıp dosyanın göründüğünü kontrol et. Uygulamayı telefonda kapatıp açınca adres
    çubuğu kaybolur.
 
@@ -122,7 +120,7 @@ Bu adım yapılmazsa uygulama yine çalışır, ama üstte ince bir tarayıcı a
 
 Play Console → **Politika → Uygulama içeriği**:
 
-- **Gizlilik politikası:** `https://astakyon.github.io/Turkiye_Hava_Simulasyonu/privacy.html`
+- **Gizlilik politikası:** `https://ayyildiz-kizilelma-game.github.io/privacy.html`
 - **Reklamlar:** Hayır, reklam içermiyor.
 - **Uygulama erişimi:** Bütün işlevler kısıtlamasız (hesap isteğe bağlı, misafir olarak oynanır).
 - **İçerik derecelendirmesi (IARC anketi):** kategori *Oyun*. Şiddet: gerçekçi olmayan askerî araç çatışması, insan
@@ -142,7 +140,7 @@ Play Console → **Politika → Uygulama içeriği**:
     *geçici olarak işleniyor* seçeneğini işaretle.
   - Üçüncü taraflarla paylaşım: **Yok**. Veriler Supabase (barındırma hizmeti) üzerinde tutulur. Barındırma hizmeti
     sağlayıcısı "paylaşım" sayılmaz.
-- **Hesap silme:** web bağlantısı `https://astakyon.github.io/Turkiye_Hava_Simulasyonu/privacy.html#hesap-silme`.
+- **Hesap silme:** web bağlantısı `https://ayyildiz-kizilelma-game.github.io/privacy.html#hesap-silme`.
   Oyun içi silme oyunun bütün verisini siler; giriş hesabı Saha Takip ile ortak Supabase projesinde olduğu için yerinde kalır
   (V2.54). Formda "kullanıcı verilerinin silinmesini isteyebilir" ve "hesap silme web bağlantısı" seçenekleri bununla karşılanır.
   İleride oyun ayrı bir Supabase projesine taşınırsa giriş hesabı da silinebilir.

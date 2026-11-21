@@ -168,6 +168,7 @@ Açık teknik borç:
 - **Derleme çıktıları** (V2.51): `tools/build.py` üç dosya yazar — `index.html` (sayfa, `oyun.js?v=SÜRÜM` önceden yüklenir), `oyun.js` (oyun kodu, tek IIFE; tarayıcının kod önbelleği ikinci açılışı hızlandırır), `tek-dosya.html` (her şey tek dosyada: claude.ai, indirme, başsız testler ve tarayıcı denetimi bunu okur). `sw.js` çekirdek listesi sürümlü `oyun.js` ile güncellenir.
 - **Google Play** (V2.52): `.github/workflows/android.yml` (Bubblewrap ile TWA; sürüm `VERSION`'dan, imza GitHub Secrets'tan, yoksa deneme anahtarı), `twa-manifest.json` (minSdk 24), `docs/PLAY-STORE.md` ve `docs/play-store/` görselleri; `ag/hesap-silme` (oyun içi hesap silme, `supabase/hesap_silme.sql` → `delete_my_account()`).
 - **Model bulut yedeği** (V2.53): `ag/model-bulut` (`mcSync` girişten sonra iki yönlü eşitler, `libPersist` sonrası `mcUpload`, `libRemoveSkin` sonrası `mcRemove`), özel `models` deposu `supabase/model_yedek.sql`; `.github/workflows/supabase-uyanik.yml` sunucuyu üç günde bir yoklar.
+- **Kendi adres** (V2.55): oyun `Ayyildiz-kizilelma-game/ayyildiz-kizilelma-game.github.io` deposunda, kök adreste. Eski adresteki küçük depo `tools/eski-adres` sayfasını yayınlar (yönlendirme, `#tasi=` ile kayıt taşıma, eski önbelleği silme); `cekirdek/depo` `depoImportLink` bağlantıdaki kaydı yalnız burada kayıt yoksa alır.
 - **Belgeler:** tek yol haritası `ROADMAP.md` (eski planlar `docs/arsiv/`). Sürüm geçmişi `tools/surumler.py` → `docs/SURUM-GECMISI.md`.
 
 ## Android (planlı)

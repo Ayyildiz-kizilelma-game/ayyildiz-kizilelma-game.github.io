@@ -13,17 +13,17 @@ yeniden yüklemek gerekmez.
 1. Bilgisayara Node.js 18+ ve JDK 17 kur.
 2. `npm i -g @bubblewrap/cli`
 3. Depodaki hazır ayar dosyasını kullan: boş bir klasöre `twa-manifest.json` dosyasını kopyala ve orada
-   `bubblewrap update` çalıştır (ya da sıfırdan: `bubblewrap init --manifest https://astakyon.github.io/Turkiye_Hava_Simulasyonu/manifest.webmanifest`).
+   `bubblewrap update` çalıştır (ya da sıfırdan: `bubblewrap init --manifest https://ayyildiz-kizilelma-game.github.io/manifest.webmanifest`).
    - Paket adı `tr.ayyildiz.hedefkizilelma`, yön yatay, tam ekran, kısayollar (Hızlı Oyun · Harekât · Görevler) ve
      uyarlanabilir / tek renkli simgeler dosyada hazır.
    - İlk derlemede sorulan imza anahtarını (`android.keystore`) oluştur ve **yedekle** (kaybolursa Play'de güncelleme yapılamaz).
 4. `bubblewrap build` → `app-release-signed.apk` ve `app-release-bundle.aab` oluşur.
 5. **Digital Asset Links:** adres çubuğunun gizlenmesi için alan adının kökünde
-   `/.well-known/assetlinks.json` gerekir. Proje sayfası (`astakyon.github.io/Turkiye_Hava_Simulasyonu`) kök değildir;
-   bu dosya `astakyon.github.io` adlı **kullanıcı sitesi deposunun** köküne konur (ya da kendi alan adına geçilir).
+   `/.well-known/assetlinks.json` gerekir. V2.55'ten beri oyun kendi kök adresinde
+   (`ayyildiz-kizilelma-game.github.io`) yayında; dosya doğrudan oyunun deposunda `.well-known/` altına konur.
    İçeriği `bubblewrap fingerprint` komutu üretir.
 6. Play Console'da yeni uygulama → `.aab` dosyasını yükle → içerik derecelendirmesi, ekran görüntüleri ve
-   gizlilik politikası adresi: `https://astakyon.github.io/Turkiye_Hava_Simulasyonu/privacy.html`.
+   gizlilik politikası adresi: `https://ayyildiz-kizilelma-game.github.io/privacy.html`.
 
 ## 2. Capacitor — çevrimdışı tam paket
 

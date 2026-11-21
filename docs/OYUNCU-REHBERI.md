@@ -122,6 +122,7 @@ Bu rehber `python3 tools/ozellikler.py` ile oyundaki **Rehber** ekranıyla aynı
 
 ## Hesap ve kayıt
 
+- **Kendi adresi:** Oyun V2.55'ten beri kendi adresinde (ayyildiz-kizilelma-game.github.io); tarayıcı kaydı aynı GitHub hesabındaki başka uygulamalarla ortak değil, biri temizlenince öteki silinmiyor. Eski adres yeni adrese yönlendiriyor ve cihazdaki kaydı da taşıyor. *Nereden:* Eski adres → yeni adres.
 - **Model bulut yedeği:** Model Kütüphanesi'nde içe aktarılan modeller giriş yapan oyuncu için buluta da yedeklenir; tarayıcı verisi silinse ya da başka cihazdan girilse bile girişten sonra kendiliğinden geri gelir. Yalnız cihazda olan modeller ilk girişte buluta çıkar. *Nereden:* Model Kütüphanesi · giriş.
 - **Hesabımı sil:** Giriş yapmış oyuncu oyun profilini, bulut kaydını ve buluttaki modellerini oyunun içinden kalıcı olarak siler (iki kez basılır); giriş hesabı ortak olduğu için kalır (V2.54). Google Play şartı; web sayfası: gizlilik → Hesap silme. *Nereden:* Profil → Hesap.
 - **Google Play paketi:** Android uygulaması (TWA) GitHub Actions'ta imzalı .aab ve .apk olarak üretilir; mağaza metinleri, görseller ve adım adım yükleme rehberi docs/PLAY-STORE.md'de. *Nereden:* GitHub → Actions → Android paketi.

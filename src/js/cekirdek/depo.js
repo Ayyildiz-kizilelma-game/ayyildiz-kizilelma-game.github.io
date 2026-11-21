@@ -13,6 +13,17 @@ const DEPO={key:'ayy-kayit', bak:'ayy-kayit-yedek', bad:'ayy-kayit-bozuk', v:1, 
   legacy:/^(ayy-|kaan-|ayyildiz|kaan_)/i};
 function depoLS(){ try{ return (typeof localStorage!=='undefined'&&localStorage)?localStorage:null; }catch(e){ return null; } }
 function depoParse(txt){ if(!txt) return null; try{ const o=JSON.parse(txt); if(o&&typeof o==='object'&&o.d&&typeof o.d==='object'&&o.v>=1){ const d={}; Object.keys(o.d).forEach(function(k){ if(typeof o.d[k]==='string') d[k]=o.d[k]; }); return d; } }catch(e){} return null; }
+/* V2.55: the game moved to its own address (ayyildiz-kizilelma-game.github.io), so the browser keeps its save separately
+   from other apps under astakyon.github.io. The page left at the old address sends this device's save along in the link
+   (#tasi=…). It is taken only when this address has no save yet, so a link from someone else can never overwrite a save. */
+function depoB64(s){ s=s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='='; return decodeURIComponent(escape(atob(s))); }
+function depoImportLink(){ let h=''; try{ h=location.hash||''; }catch(e){ return; } const m=/[#&]tasi=([A-Za-z0-9_\-]+)/.exec(h); if(!m) return;
+  try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+  const ls=depoLS(); if(!ls) return; let txt=null; try{ txt=depoB64(m[1]); }catch(e){ DEPO.link='bozuk'; return; }
+  if(!depoParse(txt)){ DEPO.link='bozuk'; return; }
+  let have=null; try{ have=ls.getItem(DEPO.key); }catch(e){}
+  if(have&&depoParse(have)&&Object.keys(depoParse(have)).length){ DEPO.link='atlandı'; return; }
+  try{ ls.setItem(DEPO.key,txt); DEPO.link='alındı'; }catch(e){ DEPO.link='yazılamadı'; } }
 function depoText(){ return JSON.stringify({v:DEPO.v, t:Date.now(), d:DEPO.d}); }
 function depoLoad(){ const ls=depoLS(); DEPO.d={}; if(!ls) { DEPO.from='bellek'; return; }
   let main=null, bak=null; try{ main=ls.getItem(DEPO.key); bak=ls.getItem(DEPO.bak); }catch(e){}
@@ -34,6 +45,8 @@ function stSet(k,v){ const s=String(v); if(DEPO.d[k]===s) return; DEPO.d[k]=s; d
 function stDel(k){ if(!Object.prototype.hasOwnProperty.call(DEPO.d,k)) return; delete DEPO.d[k]; depoDirty(); }
 function stKeys(){ return Object.keys(DEPO.d); }
 function depoFlush(){ if(DEPO.dirty) depoWrite(); }
+depoImportLink();
 depoLoad();
 try{ window.addEventListener('pagehide',depoFlush); document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') depoFlush(); }); }catch(e){}
+if(DEPO.link==='alındı') try{ setTimeout(function(){ if(typeof toast==='function') toast('Oyun yeni adresine taşındı — kaydın da geldi','#7dffb0'); },2500); }catch(e){}
 if(DEPO.from==='yedek'||DEPO.from==='bozuk') try{ setTimeout(function(){ if(typeof toast==='function') toast(DEPO.from==='yedek'?'Kayıt okunamadı — son yedekten geri yüklendi':'Kayıt okunamadı — oyun yeni kayıtla açıldı (eskisi ayrı saklandı)','#ffc24a'); },3000); }catch(e){}

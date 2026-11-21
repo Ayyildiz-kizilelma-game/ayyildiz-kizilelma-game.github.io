@@ -30,6 +30,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.52 | Play Store hazırlığı: Android paketi (GitHub Actions), oyun içi hesap silme, mağaza metinleri ve görselleri, yükleme rehberi (Play Console adımları oyuncuda) | ✅ |
 | V2.53 | İçe aktarılan modellerin bulut yedeği ve bulut sunucusunun uyumaması (oyuncu isteği: tarayıcı verisi silinince modeller ve giriş kayboldu) | ✅ |
 | V2.54 | Sunucu kurulumu (model yedeği, hesap silme) ve hesap silmenin yalnız oyun verisini silmesi: Supabase projesi Saha Takip ile ortak | ✅ |
+| V2.55 | Oyun kendi adresine taşındı (ayyildiz-kizilelma-game.github.io): Saha Takip ile tarayıcı verisi ve sunucu tamamen ayrı; eski adres kaydı taşıyarak yönlendiriyor | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.

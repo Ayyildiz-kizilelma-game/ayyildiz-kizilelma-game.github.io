@@ -1,6 +1,14 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.55 — 2026-11-21 · Kendi adres
+- Oyun kendi adresine taşındı: ayyildiz-kizilelma-game.github.io. Artık Saha Takip ile ne sunucu ne de tarayıcı verisi ortak; birinin verisi temizlenince ötekininki silinmiyor.
+- Eski adres yeni adrese yönlendiriyor: açtığın sayfa ve kısayol aynen korunuyor, bu cihazdaki kaydın (ayarlar, profiller, rütbe, boyalar) bağlantıyla yeni adrese taşınıyor. Kayıt yalnız yeni adreste henüz kayıt yoksa alınıyor; başkasının bağlantısı kaydının üstüne yazamıyor.
+- Eski adresteki eski çevrimdışı önbellek siliniyor, eski sürüm bir daha açılmıyor.
+- Hesapla girenlerin kaydı ve içe aktarılan modeller buluttan geliyor.
+- Oyunun Supabase projesinde Saha Takip'in ilk kurulumundan kalan boş tablolar yedeklenip kaldırıldı; proje artık yalnız oyuna ait.
+- Android uygulama ayarı, gizlilik sayfası, Play Store rehberi ve belgeler yeni adrese göre güncellendi. Play Store doğrulama dosyası artık doğrudan oyunun deposuna konabiliyor.
+
 ## V2.54 — 2026-11-21 · Sunucu kurulumu ve güvenli hesap silme
 - Model bulut yedeği ve "Hesabımı sil" sunucuda kuruldu; ikisi de artık çalışıyor.
 - Hesabımı sil güvenli hâle getirildi: bulut sunucusu Saha Takip uygulamasıyla ortak olduğu için, giriş hesabının silinmesi o uygulamanın bütün verisini de zincirleme silecekti. Artık düğme yalnız oyunun verisini (profil, bulut kaydı, buluttaki modeller) siliyor; giriş bilgin yerinde kalıyor.

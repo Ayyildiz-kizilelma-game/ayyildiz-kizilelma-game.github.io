@@ -19,7 +19,7 @@ Proje olmadan da oyun çalışır; bu durumda oyuncular **misafir** olarak oynar
    - Google Cloud Console'da OAuth istemcisi oluştur.
    - Yönlendirme adresi olarak Supabase'in gösterdiği adresi kullan.
 3. **Authentication → URL Configuration**:
-   - Site URL: `https://astakyon.github.io/Turkiye_Hava_Simulasyonu/`
+   - Site URL: `https://ayyildiz-kizilelma-game.github.io/`
    - Redirect URLs: aynı adresi ekle.
 
 ## 3. Anahtarları oyuna ver

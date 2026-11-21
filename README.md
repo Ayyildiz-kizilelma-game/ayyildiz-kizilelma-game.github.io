@@ -17,7 +17,7 @@ Gruplar: **Hilal Kanatlar** (hava sistemleri) · **Mavi Kanatlar** (deniz) · **
 Bütün özelliklerin listesi: [docs/OZELLIKLER.md](docs/OZELLIKLER.md) · oyuncu rehberi: [docs/OYUNCU-REHBERI.md](docs/OYUNCU-REHBERI.md)
 
 ## Oynamak
-- Çevrimiçi adres: https://astakyon.github.io/Turkiye_Hava_Simulasyonu/
+- Çevrimiçi adres: https://ayyildiz-kizilelma-game.github.io/
 - Yerelde: `index.html` dosyasını tarayıcıda aç ya da `python3 -m http.server 8000` → http://localhost:8000. three.js internetten yüklenemezse `vendor/` klasöründeki kopya kullanılır.
 
 **Çevrimiçi oynama:**
@@ -49,7 +49,7 @@ tools/release.sh V2.xx "başlık" notlar.md "commit mesajı"   # sürüm, notlar
 - [ROADMAP.md](ROADMAP.md): tek yol haritası
 
 ## GitHub Pages ile yayınlama
-1. Depo: `astakyon/Turkiye_Hava_Simulasyonu`, dal: `main`; `index.html` kökte.
+1. Depo: `Ayyildiz-kizilelma-game/ayyildiz-kizilelma-game.github.io`, dal: `main`; `index.html` kökte.
 2. **Settings → Pages → Source: GitHub Actions.** `.github/workflows/pages.yml` her `main` push'unda testleri çalıştırıp yayınlar. Actions istemezsen *Deploy from a branch → main / (root)* de çalışır; `.nojekyll` hazır.
 3. `VERSION` değişip `main`'e gönderilince **Releases** kaydı otomatik açılır (`.github/workflows/release.yml`); notlar CHANGELOG'dan alınır.
 
