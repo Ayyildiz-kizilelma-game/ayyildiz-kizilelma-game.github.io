@@ -1,0 +1,16 @@
+{
+  "appId": "tr.ayyildiz.hedefkizilelma",
+  "appName": "Ay Yıldız",
+  "webDir": "www",
+  "backgroundColor": "#0a1220",
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": false,
+    "webContentsDebuggingEnabled": false
+  },
+  "server": {
+    "androidScheme": "https",
+    "hostname": "localhost"
+  },
+  "loggingBehavior": "production"
+}

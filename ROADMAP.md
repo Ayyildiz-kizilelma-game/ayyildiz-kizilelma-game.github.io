@@ -56,7 +56,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 ## Gelir planı (oyuncu kararı, 21 Kasım)
 
 - **Oyun ücretsiz kalır, para güç satın almaz.** Uçak, silah ya da güç satılmaz; uçaklar ilerledikçe açılır. Oyun içi para birimi yok, ürünler doğrudan satılır.
-- **Ödüllü reklam (asıl gelir, isteğe bağlı):** 2× TP, 2× günlük ödül, Harekât'ta kaldığın yerden devam, kaplamayı 24 saat deneme.
+- **Ödüllü reklam (asıl gelir, isteğe bağlı):** 2× TP, 2× günlük ödül, Harekât'ta kaldığın yerden devam, kaplamayı 24 saat deneme. V2.62'de 2× TP ve 24 saat kaplama denemesi geldi; 2× günlük ödül ve Harekât devamı sezon sürümüyle (V2.69).
 - **Ara reklam (az):** yalnız görev aralarında, en çok 5 dakikada bir, ilk oturumda hiç. Afiş (banner) reklam yok.
 - **Satın alımlar:** Reklamsız, kaplama paketleri, birlik/pilot görünümleri, Harekât Kartı (sezon), görev paketleri (ör. Gece Görev Paketi), Destekçi paketi.
 - **Tahmin:** Türkiye'de ödüllü reklam eCPM ≈ $1,5–2,5 → günde 1000 aktif oyuncu ≈ ayda $135–225 reklam geliri; satın alımlar bunun üstüne.

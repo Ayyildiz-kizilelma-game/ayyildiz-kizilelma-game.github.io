@@ -1,58 +1,60 @@
-# Android paketi
+# Android uygulaması
 
-> **V2.52:** Google Play'e yükleme için adım adım rehber, mağaza metinleri ve görseller: [PLAY-STORE.md](PLAY-STORE.md). İmzalı paket artık GitHub Actions'ta **Android paketi (Play Store)** iş akışıyla üretiliyor; bilgisayara Android araçları kurmak gerekmiyor.
+> Google Play'e yükleme rehberi, mağaza metinleri, formlar ve AdMob hesabı: [PLAY-STORE.md](PLAY-STORE.md).
 
-Oyun zaten bir **PWA** (çevrimdışı çalışan web uygulaması): `manifest.webmanifest` + `sw.js`. Telefonda Chrome ile
-GitHub Pages adresini açıp **⋮ → Ana ekrana ekle** dersen tam ekran, yatay ve çevrimdışı çalışır. Google Play için iki yol var:
+## V2.62'den beri: Capacitor
 
-## 1. TWA (Trusted Web Activity) — önerilen, en hafif yol
+Uygulama bir **Capacitor** uygulamasıdır: oyun dosyaları APK'nın içindedir ve sistemin WebView'ında çalışır (V2.52–V2.61
+arasında Chrome'u açan bir TWA kabuğuydu). Geçişin nedeni gelir yolu: AdMob reklamları (V2.62) ve Google Play satın
+alımları (V2.63) yerel eklenti ister. Alan adı gerekmez.
 
-Uygulama, Pages'teki oyunu tam ekran Chrome motoruyla açan küçük bir Android kabuğudur; oyun güncellenince uygulamayı
-yeniden yüklemek gerekmez.
+| Parça | Nerede |
+|---|---|
+| Capacitor ve eklenti sürümleri (`@capacitor/*` 8.x, `@capacitor-community/admob`) | `android-app/package.json`, `package-lock.json` |
+| Uygulama ayarı (paket adı `tr.ayyildiz.hedefkizilelma`, `https://localhost`, konsol kaydı) | `android-app/capacitor.config.json` |
+| Web dosyalarını kopyalama ve yerel projeyi düzenleme | `tools/android-hazirla.py` (`www`, `yerel`) |
+| Derleme, emülatör denemesi, indirme sayfası | `.github/workflows/android.yml`, `tools/android-emulator-test.sh` |
+| Oyun tarafı | `src/js/ag/uygulama.js` (geri tuşu, Google ile giriş), `src/js/ag/reklam.js` (reklamlar, izin) |
 
-1. Bilgisayara Node.js 18+ ve JDK 17 kur.
-2. `npm i -g @bubblewrap/cli`
-3. Depodaki hazır ayar dosyasını kullan: boş bir klasöre `twa-manifest.json` dosyasını kopyala ve orada
-   `bubblewrap update` çalıştır (ya da sıfırdan: `bubblewrap init --manifest https://ayyildiz-kizilelma-game.github.io/manifest.webmanifest`).
-   - Paket adı `tr.ayyildiz.hedefkizilelma`, yön yatay, tam ekran, kısayollar (Hızlı Oyun · Harekât · Görevler) ve
-     uyarlanabilir / tek renkli simgeler dosyada hazır.
-   - İlk derlemede sorulan imza anahtarını (`android.keystore`) oluştur ve **yedekle** (kaybolursa Play'de güncelleme yapılamaz).
-4. `bubblewrap build` → `app-release-signed.apk` ve `app-release-bundle.aab` oluşur.
-5. **Digital Asset Links:** adres çubuğunun gizlenmesi için alan adının kökünde
-   `/.well-known/assetlinks.json` gerekir. V2.55'ten beri oyun kendi kök adresinde
-   (`ayyildiz-kizilelma-game.github.io`) yayında; dosya doğrudan oyunun deposunda `.well-known/` altına konur.
-   İçeriği `bubblewrap fingerprint` komutu üretir.
-6. Play Console'da yeni uygulama → `.aab` dosyasını yükle → içerik derecelendirmesi, ekran görüntüleri ve
-   gizlilik politikası adresi: `https://ayyildiz-kizilelma-game.github.io/privacy.html`.
+Android projesi (`android-app/android/`) depoda tutulmaz: iş akışı her seferinde `npx cap add android` ile sıfırdan kurar
+ve `android-hazirla.py yerel` ile şunları yapar:
 
-## 2. Capacitor — çevrimdışı tam paket
+- sürüm adı/kodu `VERSION`'dan (V2.62 → 262), imza GitHub Secrets'tan;
+- yatay ekran (`sensorLandscape`), sistem çubukları gizli tam ekran, ekran açık kalır, çentik altına çizim;
+- Google ile giriş dönüş bağlantısı `tr.ayyildiz.hedefkizilelma://giris`;
+- AdMob uygulama kimliği (şimdilik Google'ın deneme kimliği; gerçeği `ADMOB_APP_ID` ile);
+- simgeler (`icons/icon-maskable-512.png` uyarlanabilir simge, `icon-512.png` eski simge) ve koyu açılış ekranı.
 
-Oyunun `index.html` dosyası uygulamanın içine gömülür (internet olmadan da açılır, ama her sürümde yeni APK gerekir).
+Bilgisayarda denemek için (Android Studio ve SDK gerekir):
 
 ```bash
-npm init -y && npm i @capacitor/core @capacitor/cli @capacitor/android
-npx cap init "Ay Yıldız" tr.ayyildiz.hedefkizilelma --web-dir=www
-mkdir www && cp index.html manifest.webmanifest icon-*.png sw.js www/ && cp -r vendor www/
-npx cap add android && npx cap open android   # Android Studio'da Build → Generate Signed Bundle
+cd android-app && npm ci && cd ..
+python3 tools/android-hazirla.py www
+(cd android-app && npx cap add android)
+python3 tools/android-hazirla.py yerel V2.62
+(cd android-app && npx cap open android)
 ```
 
-`android/app/src/main/AndroidManifest.xml` içinde `android:screenOrientation="sensorLandscape"` ve
-`android:configChanges` satırına `orientation|screenSize` eklenmeli.
+### Google ile giriş
+
+Google, WebView içinde girişe izin vermez. Uygulama girişi tarayıcı sekmesinde (Custom Tab) açar; Supabase oyunun web
+adresine `?uyg=giris` ile döner, o sayfa anahtarları yalnız bu paketin alabildiği bir `intent://` bağlantısıyla uygulamaya
+verir, uygulama oturumu açar. Supabase ayarlarında ek bir adres gerekmez (oyunun adresi zaten izinli). E-posta ile giriş
+doğrudan çalışır.
+
+### Reklamlar (V2.62)
+
+Kurallar ROADMAP → Gelir planı'nda. Teknik olarak: ilk açılışta oyunun kendi bildirimi (kişiselleştirilmiş ya da değil),
+sonra Google UMP izin formu (yalnız gereken ülkelerde), sonra AdMob. V2.62 yalnız **deneme reklam birimlerini** kullanır
+(`ADS.test`). Tarayıcıda akışı denemek için adrese `?reklam=dene` eklenir: reklam yerine 3 saniyelik bir perde çıkar.
 
 ## Telefon özellikleri (V1.90)
 
-- **Eğerek uç:** Ayarlar → Kontroller → *Eğerek uç*; *Sıfırla* düğmesi o anki tutuşu düz uçuş kabul eder. iPhone ilk açılışta
-  hareket sensörü izni ister.
-- **Titreşim:** Ayarlar → Erişilebilirlik → *Kumanda titreşimi* (Android; iPhone tarayıcıları titreşim API'sini desteklemez).
-- **Kayıt yedeği:** Ayarlar → Kontroller → *Kayıt yedeği*. Dosyaya indir ya da kodu kopyala; diğer cihazda *Dosyadan yükle* /
-  *Kodu yükle*. Hesap açanların ilerlemesi zaten bulutta saklanır. İçe aktarılan 3B modeller (cihazdaki model kütüphanesi)
-  yedeğe dahil değildir; onları model kütüphanesinden `.glb` olarak indir.
+- **Eğerek uç:** Ayarlar → Kontroller → *Eğerek uç*; *Sıfırla* düğmesi o anki tutuşu düz uçuş kabul eder.
+- **Titreşim:** Ayarlar → Erişilebilirlik → *Kumanda titreşimi*.
+- **Kayıt yedeği:** Ayarlar → Kontroller → *Kayıt yedeği*. Hesap açanların ilerlemesi zaten bulutta saklanır.
 
-## Simge ve kısayollar (V2.01)
+## Web uygulaması (PWA)
 
-- `icon.svg` kaynak çizimden üretilir: `icon-192.png`, `icon-512.png` (her yerde), `icons/icon-maskable-*.png`
-  (Android'in yuvarlak / damla / kare maskeleri için güvenli alanda çizim), `icons/icon-mono-512.png` (Android 13+ temalı
-  simge), `icons/icon-48…384.png`.
-- Ana ekran simgesine uzun basınca: **Hızlı Oyun**, **Harekât**, **Görevler** kısayolları.
-- Oyun tarayıcıda açıkken ana menüdeki ⬇ düğmesi uygulamayı yükler (Android Chrome, bilgisayarda Chrome / Edge). iPhone'da
-  Paylaş → Ana Ekrana Ekle yolunu gösterir.
+Oyun tarayıcıda da bir PWA'dır (`manifest.webmanifest` + `sw.js`): Chrome'da **⋮ → Ana ekrana ekle** ile tam ekran ve
+çevrimdışı çalışır. Simgeler `icon.svg`'den üretilir (`icon-*.png`, `icons/`).

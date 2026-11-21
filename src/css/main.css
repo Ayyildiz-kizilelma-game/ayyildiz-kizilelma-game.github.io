@@ -1137,3 +1137,10 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .mga{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; } .mga .btn[disabled]{ opacity:.6; cursor:default; } .mgok{ color:#7dffb0; font-weight:700; }
 .mgn{ font-size:12px; opacity:.6; line-height:1.45; }
 .pchips button.buy{ border-style:dashed; }
+/* V2.62 app shell and ads */
+#appBridge{ position:fixed; inset:0; z-index:100000; display:flex; align-items:center; justify-content:center; background:#0a1220; color:#eaf3f8; text-align:center; font-family:"Chakra Petch",system-ui,sans-serif; }
+#appBridge b{ display:block; font-size:22px; margin-bottom:6px; } #appBridge p{ opacity:.75; margin:0 0 16px; } #appBridge a{ display:inline-block; text-decoration:none; padding:12px 22px; }
+.adsim{ position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.92); color:#fff; text-align:center; }
+.adsim small{ display:block; letter-spacing:.2em; opacity:.6; } .adsim b{ display:block; font-size:24px; margin:6px 0; } .adsim p{ font-size:42px; margin:10px 0 16px; }
+.adscard{ max-width:520px; } .adscard p{ font-size:13.5px; line-height:1.5; opacity:.88; } .adscard .stack{ margin-top:12px; }
+.btn.adx{ width:100%; margin:8px 0 4px; border-color:#ffc24a; color:#ffd27a; }

@@ -1,97 +1,103 @@
-name: Android paketi (Play Store)
-# V2.52: Google Play için imzalı .aab (yüklenecek paket) ve telefonda denemek için .apk üretir — Bubblewrap ile TWA.
-# Çalıştırma: GitHub → Actions → "Android paketi (Play Store)" → Run workflow. Sonuç: işin altında "Artifacts" → android-paket.
-# İmza anahtarı GitHub Secrets'ta durur (docs/PLAY-STORE.md, adım 2):
-#   ANDROID_KEYSTORE_B64      android.keystore dosyasının base64 hâli
-#   ANDROID_KEYSTORE_PASSWORD anahtar deposu şifresi
-#   ANDROID_KEY_PASSWORD      anahtar şifresi (çoğu zaman aynı)
-# Secrets yoksa geçici bir DENEME anahtarı üretilir: .apk telefonda denenebilir ama Play'e YÜKLENMEZ.
+name: Android uygulaması
+# V2.62: Capacitor uygulaması (önceden Bubblewrap/TWA). Oyun dosyaları APK'nın içinde; AdMob reklamları ve Google Play
+# satın alımları için gerekli. Her sürümde (VERSION değişince) ve elle (Run workflow) çalışır:
+#   1) Android projesini sıfırdan kurar (npx cap add android + tools/android-hazirla.py), imzalı .apk ve .aab derler;
+#   2) APK'yı emülatörde açar: reklam bildirimi, deneme reklamlarının yüklenmesi, çökme ve ekran görüntüleri
+#      (tools/android-emulator-test.sh);
+#   3) APK'yı ve ekran görüntülerini "android" indirme sayfasına koyar.
+# İmza anahtarı GitHub Secrets'ta (docs/PLAY-STORE.md, adım 2): ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_PASSWORD.
+# Aynı anahtar ve paket adı: yeni APK telefondaki eski uygulamanın üstüne kurulur.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [VERSION]
 permissions:
-  contents: write   # deneme .apk'sını "android-deneme" sürüm sayfasına koymak için
+  contents: write
+concurrency: { group: android, cancel-in-progress: true }
 jobs:
-  aab:
-    runs-on: ubuntu-24.04   # Android SDK hazır kurulu
+  apk:
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v5
-        with: { distribution: temurin, java-version: '17' }
+        with: { distribution: temurin, java-version: '21' }
       - uses: actions/setup-node@v5
         with: { node-version: '22' }
-      - name: Android SDK lisansları
+      - name: Araçlar
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"; ls "$ANDROID_HOME" || true
-          SM=$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager | head -n 1); echo "sdkmanager: $SM"
+          pip install --quiet pillow
+          SM=$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager | head -n 1)
           yes | "$SM" --licenses > /dev/null || true
-          "$SM" "build-tools;34.0.0" "platforms;android-35" > /dev/null || true
-      - name: Bubblewrap kur
+      - name: Android projesi
         run: |
-          npm i -g @bubblewrap/cli@1
-          mkdir -p ~/.bubblewrap
-          # Bubblewrap SDK içinde eski "tools/bin/sdkmanager" yolunu arar: hazır SDK'nın bağlantılarından bir kopya klasör kur
-          SDK=$HOME/android-sdk; mkdir -p "$SDK"; for f in "$ANDROID_HOME"/*; do ln -sfn "$f" "$SDK/$(basename "$f")"; done
-          L=$(ls -d "$ANDROID_HOME"/cmdline-tools/latest 2>/dev/null || ls -d "$ANDROID_HOME"/cmdline-tools/* | tail -n 1); rm -rf "$SDK/tools"; ln -sfn "$L" "$SDK/tools"
-          ls -la "$SDK" "$SDK/tools/bin" | head -n 30
-          printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$SDK" > ~/.bubblewrap/config.json
-      - name: Sürüm ve imza anahtarı
+          cd android-app && npm ci --no-audit --no-fund && cd ..
+          python3 tools/android-hazirla.py www
+          cd android-app && npx cap add android && cd ..
+          python3 tools/android-hazirla.py yerel "$(cat VERSION)"
+      - name: İmza anahtarı
         env:
           KS_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
           KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          mkdir -p twa && cd twa
-          V=$(tr -d ' \r\nV' < ../VERSION)                     # V2.52 → 2.52
-          CODE=$(echo "$V" | awk -F. '{ printf "%d", $1*100+$2 }')   # 2.52 → 252
-          jq --arg v "$V" --argjson c "$CODE" '.appVersionName=$v | .appVersionCode=$c' ../twa-manifest.json > twa-manifest.json
-          if [ -n "$KS_B64" ]; then
-            echo "$KS_B64" | base64 -d > android.keystore
-            echo "KIND=play" >> "$GITHUB_ENV"
-            echo "BUBBLEWRAP_KEYSTORE_PASSWORD=$KS_PASS" >> "$GITHUB_ENV"
-            echo "BUBBLEWRAP_KEY_PASSWORD=${KEY_PASS:-$KS_PASS}" >> "$GITHUB_ENV"
-          else
-            echo "::warning::İmza anahtarı (Secrets) yok — DENEME anahtarı üretiliyor; bu paket Play'e yüklenemez."
-            keytool -genkeypair -keystore android.keystore -alias ayyildiz -keyalg RSA -keysize 2048 -validity 10000 \
-              -storepass deneme123 -keypass deneme123 -dname "CN=Ay Yildiz Deneme"
-            echo "KIND=deneme" >> "$GITHUB_ENV"
-            echo "BUBBLEWRAP_KEYSTORE_PASSWORD=deneme123" >> "$GITHUB_ENV"
-            echo "BUBBLEWRAP_KEY_PASSWORD=deneme123" >> "$GITHUB_ENV"
-          fi
-          echo "Sürüm $V (kod $CODE)"
-      - name: Android projesini üret ve derle
-        working-directory: twa
+          K="$RUNNER_TEMP/ayy.keystore"
+          if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > "$K"; echo "KIND=play" >> "$GITHUB_ENV"
+            echo "AYY_KEYSTORE_PASSWORD=$KS_PASS" >> "$GITHUB_ENV"; echo "AYY_KEY_PASSWORD=${KEY_PASS:-$KS_PASS}" >> "$GITHUB_ENV"
+          else echo "::warning::İmza anahtarı (Secrets) yok — DENEME anahtarı; bu paket Play'e yüklenemez ve eski uygulamanın üstüne kurulmaz."
+            keytool -genkeypair -keystore "$K" -alias ayyildiz -keyalg RSA -keysize 2048 -validity 10000 -storepass deneme123 -keypass deneme123 -dname "CN=Ay Yildiz Deneme"
+            echo "KIND=deneme" >> "$GITHUB_ENV"; echo "AYY_KEYSTORE_PASSWORD=deneme123" >> "$GITHUB_ENV"; echo "AYY_KEY_PASSWORD=deneme123" >> "$GITHUB_ENV"; fi
+          echo "AYY_KEYSTORE=$K" >> "$GITHUB_ENV"
+      - name: Derle (.apk ve .aab)
+        working-directory: android-app/android
         run: |
-          unset ANDROID_SDK_ROOT; export ANDROID_HOME=$HOME/android-sdk   # Gradle tek SDK yolu ister
-          note(){ t=$( { grep -A10 'What went wrong' "$1" | head -n 14; grep -m6 -i 'caused by\|error:' "$1"; tail -n 6 "$1"; } | sed 's/\x1b\[[0-9;]*m//g' | tr -d '\r' | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g'); echo "::error title=$2::$t"; }
-          yes 2>/dev/null | bubblewrap update --skipVersionUpgrade 2>&1 | tee update.log; [ "${PIPESTATUS[1]}" = 0 ] || { note update.log "bubblewrap update"; exit 1; }
-          yes 2>/dev/null | bubblewrap build --skipPwaValidation 2>&1 | tee build.log; [ "${PIPESTATUS[1]}" = 0 ] || { note build.log "bubblewrap build"; exit 1; }
-          ls -la
-      - name: Digital Asset Links dosyası
-        working-directory: twa
-        run: |
-          SHA=$(keytool -list -v -keystore android.keystore -alias ayyildiz -storepass "$BUBBLEWRAP_KEYSTORE_PASSWORD" | awk '/SHA256:/{print $2; exit}')
-          PKG=$(jq -r .packageId twa-manifest.json)
-          printf '[{"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"%s","sha256_cert_fingerprints":["%s"]}}]\n' "$PKG" "$SHA" > assetlinks-yukleme-anahtari.json
-          cat assetlinks-yukleme-anahtari.json
-          rm -f android.keystore
+          note(){ t=$( { grep -A12 'What went wrong' "$1" | head -n 16; grep -m6 -i 'error:\|e: ' "$1"; tail -n 6 "$1"; } | sed 's/\x1b\[[0-9;]*m//g' | tr -d '\r' | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g'); echo "::error title=$2::$t"; }
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleRelease bundleRelease > build.log 2>&1 || { note build.log "gradle"; exit 1; }
+          APK=app/build/outputs/apk/release/app-release.apk; AAB=app/build/outputs/bundle/release/app-release.aab
+          ls -la "$APK" "$AAB"
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -n 1)
+          "$BT/apksigner" verify --print-certs "$APK" | tee certs.txt
+          echo "::notice title=APK::$(du -h "$APK" | cut -f1) · $(grep -m1 'SHA-256' certs.txt | sed 's/.*: //')"
       - uses: actions/upload-artifact@v4
         with:
-          name: android-paket-${{ env.KIND }}
+          name: android-${{ env.KIND }}
           path: |
-            twa/app-release-bundle.aab
-            twa/app-release-signed.apk
-            twa/assetlinks-yukleme-anahtari.json
-            twa/twa-manifest.json
+            android-app/android/app/build/outputs/apk/release/app-release.apk
+            android-app/android/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
-      - name: APK'yı indirme sayfasına koy (telefona doğrudan kurmak için)
+  emulator:
+    needs: apk
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with: { pattern: android-*, merge-multiple: true, path: paket }
+      - name: KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - name: Emülatörde dene
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: bash tools/android-emulator-test.sh paket/apk/release/app-release.apk || bash tools/android-emulator-test.sh $(find paket -name '*.apk' | head -n 1)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: emulator, path: emu, if-no-files-found: ignore }
+      - name: İndirme sayfası
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          V=$(tr -d ' \r\nV' < VERSION)
-          if [ "$KIND" = play ]; then TAG=android; F="AyYildiz-${V}.apk"; T="Android uygulaması ($V)"
-            N="Telefona doğrudan kurulabilir. Kalıcı imza anahtarıyla imzalı: sonraki sürümler eskisinin üstüne kurulur, oyun tam ekran uygulama olarak açılır. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/$F"
-          else TAG=android-deneme; F="AyYildiz-${V}-deneme.apk"; T="Android deneme paketi ($V)"
-            N="Geçici deneme anahtarıyla imzalı: üstte adres çubuğu görünür, her yenisi için eskisini kaldır. Kalıcı imza için docs/PLAY-STORE.md adım 2. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/$F"; fi
-          cp twa/app-release-signed.apk "$F"
-          gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
-          gh release create "$TAG" "$F" --prerelease --title "$T" --notes "$N"
+          V=$(tr -d ' \r\nV' < VERSION); APK=$(find paket -name '*.apk' | head -n 1); [ -n "$APK" ] || exit 0
+          F="AyYildiz-${V}.apk"; cp "$APK" "$F"; A=("$F"); for p in emu/*.png; do [ -f "$p" ] && cp "$p" "emulator-$(basename "$p")" && A+=("emulator-$(basename "$p")"); done
+          [ -f emu/oyun.txt ] && cp emu/oyun.txt emulator-oyun.txt && A+=(emulator-oyun.txt)
+          N="Android uygulaması $V. Telefona doğrudan kurulabilir; kalıcı imzalı, eski sürümün üstüne kurulur. Reklamlar DENEME reklamıdır. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/android/$F"
+          gh release delete android --cleanup-tag -y 2>/dev/null || true
+          gh release create android "${A[@]}" --prerelease --title "Android uygulaması ($V)" --notes "$N"

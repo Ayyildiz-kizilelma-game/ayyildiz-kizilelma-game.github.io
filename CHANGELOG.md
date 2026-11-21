@@ -1,6 +1,14 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.62 — 2026-11-21 · Android uygulaması ve reklamlar
+- Gelir yolunun ikinci adımı: Android uygulaması artık **Capacitor** ile yapılıyor (önceden TWA). Oyun dosyaları uygulamanın içinde; reklamlar ve sonraki adımda Google Play satın alımları bu sayede çalışacak. Yeni APK eskisinin üstüne kurulur.
+- **Reklamlar (yalnız Android uygulamasında, şimdilik Google deneme reklamları):** görev sonunda isteğe bağlı "Reklam izle · TP'yi ikiye katla"; mağazada kaplama paketini "24 saat dene". Bitmiş görevden çıkarken en çok 5 dakikada bir geçiş reklamı, ilk oturumda hiç. Afiş reklam yok. Reklamsız ürünü olan reklam görmez, ödülleri reklamsız alır.
+- İlk açılışta **Reklamlar ve gizlilik** bildirimi: kişiselleştirilmiş ya da yalnız kişiselleştirilmemiş reklam. Avrupa'da Google'ın izin formu da çıkar. Sonradan Mağaza → Reklam tercihleri.
+- Uygulamada geri tuşu açık ekranı kapatır, ana menüde uygulamadan çıkar. Google ile giriş tarayıcı sekmesinde açılıp oyuna döner.
+- Her sürümde Android paketi kendiliğinden derleniyor ve bir Android emülatöründe deneniyor (açılış, reklam bildirimi, deneme reklamları, çökme).
+- Gizlilik sayfasına reklamlar bölümü, Play rehberine AdMob hesabı ve veri güvenliği cevapları eklendi.
+
 ## V2.61 — 2026-11-21 · Mağaza altyapısı
 - Gelir yolunun ilk adımı: ana menüde **Mağaza**. İçinde Reklamsız, üç kaplama paketi (Kış Harekâtı, Mavi Vatan, Tarihî; her biri bütün uçaklarda kullanılan 3 kaplama) ve Destekçi paketi var. Henüz gerçek ödeme yok; satın alma Google Play ile V2.63'te gelecek.
 - Hangarda paket kaplamaları 🛒 işaretiyle görünür; birine basınca mağaza o paketle açılır.

@@ -1,15 +1,15 @@
 # Google Play'e yükleme rehberi (V2.52)
 
-Oyun Google Play'e **TWA** (Trusted Web Activity) olarak çıkar: küçük bir Android kabuğu, GitHub Pages'teki oyunu tam ekran
-açar. Oyun her güncellendiğinde uygulama da kendiliğinden güncellenir; Play'e yeni paket yüklemek yalnız uygulama kabuğu
-(simge, ad, sürüm) değişince gerekir.
+> **V2.62'den beri uygulama Capacitor ile yapılıyor** (önceden TWA). Oyun dosyaları APK'nın içinde, sistemin WebView'ında
+> çalışır. Neden: AdMob reklamları ve Google Play satın alımları ancak böyle çalışır, alan adı da gerekmez. Sonuç: her oyun
+> sürümünde yeni bir APK/AAB üretilir (iş akışı `VERSION` değişince kendiliğinden çalışır) ve Play'e yeni paket yüklenir.
 
 Hazır olanlar:
 
 | Ne | Nerede |
 |---|---|
-| Android paketi üreten iş akışı | GitHub → Actions → **Android paketi (Play Store)** (`.github/workflows/android.yml`) |
-| Uygulama ayarları (paket adı, yatay tam ekran, simgeler, kısayollar) | `twa-manifest.json` |
+| Android paketi üreten iş akışı | GitHub → Actions → **Android uygulaması** (`.github/workflows/android.yml`): derler, emülatörde dener, APK'yı indirme sayfasına koyar |
+| Uygulama ayarları | `android-app/` (Capacitor, eklenti sürümleri) ve `tools/android-hazirla.py` (paket adı, yatay tam ekran, simgeler, giriş bağlantısı, AdMob kimliği) |
 | Mağaza görselleri | `docs/play-store/` (öne çıkan görsel 1024×500, 5 ekran görüntüsü 1600×900) |
 | Gizlilik politikası | https://ayyildiz-kizilelma-game.github.io/privacy.html |
 | Hesap silme (Play şartı) | Oyunda Profil → Hesap → **Hesabımı sil** · web: `privacy.html#hesap-silme` · sunucu: `supabase/hesap_silme.sql` |
@@ -49,24 +49,21 @@ GitHub → depo → **Settings → Secrets and variables → Actions → New rep
 
 ## 3. Paketi üret
 
-> **Kalıcı imza (V2.59):** Secrets eklendikten sonra iş, APK'yı **Releases → "Android uygulaması"** sayfasına koyar
-> (`releases/download/android/AyYildiz-<sürüm>.apk`). Depodaki `.well-known/assetlinks.json` bu anahtarın parmak izini
-> içerdiği için uygulama adres çubuğu olmadan, tam ekran açılır; sonraki sürümler eskisinin üstüne kurulur.
->
-> **Telefonda denemek için (V2.58):** Secrets eklenmeden çalıştırılırsa iş bir **deneme .apk** üretir ve onu deponun
-> **Releases → "Android deneme paketi"** sayfasına koyar. Telefondan o sayfayı açıp .apk'yı indir, kur (Android
-> "bilinmeyen kaynaklardan yükleme" iznini bir kez ister). Deneme paketi her derlemede yeni bir deneme anahtarıyla
-> imzalanır: yenisini kurmadan önce eskisini kaldır. Bu paket Play'e yüklenmez.
+Her oyun sürümünde (`VERSION` değişince) **Actions → Android uygulaması** kendiliğinden çalışır; elle de *Run workflow* ile
+çalıştırılabilir. ~15 dakika sürer:
 
-GitHub → **Actions → Android paketi (Play Store) → Run workflow**. 2–3 dakika sonra işin sayfasında **Artifacts →
-android-paket-play** (Secrets yoksa `android-paket-deneme`) indir. İçinde:
+1. Android projesini sıfırdan kurar (`npx cap add android` + `tools/android-hazirla.py`), imzalı `.apk` ve `.aab` derler.
+2. APK'yı bir Android emülatöründe açar: uygulama açılıyor mu, reklam bildirimi görünüyor mu, deneme reklamları yükleniyor
+   mu, çökme var mı. Sonuçlar işin özetinde yazılır.
+3. APK'yı ve emülatör ekran görüntülerini **Releases → "Android uygulaması"** sayfasına koyar
+   (`releases/download/android/AyYildiz-<sürüm>.apk`). Telefona oradan kurulur; aynı anahtar ve paket adıyla imzalı olduğu
+   için eski sürümün (V2.59 TWA dahil) üstüne kurulur.
 
-- `app-release-bundle.aab`: Play'e yüklenecek dosya
-- `app-release-signed.apk`: telefona doğrudan kurup denemek için
-- `assetlinks-yukleme-anahtari.json`: adım 5 için
-- `twa-manifest.json`: sürüm adı ve kodu `VERSION` dosyasından gelir (V2.52 → 2.52 / 252)
+Play'e yüklenecek `.aab` işin sayfasında **Artifacts → android-play** içindedir. Sürüm kodu `VERSION`'dan gelir
+(V2.62 → 262); her Play paketinde artmalı.
 
-Her yeni Play paketinde sürüm kodu artmalı. Bu yüzden paketi yeni bir oyun sürümü yayınlandıktan sonra üret.
+> **TWA'dan geçişte:** misafir kaydı (giriş yapmadan oynanan ilerleme) Chrome'da kalır, uygulamaya geçmez. Giriş yapan
+> oyuncunun ilerlemesi buluttan gelir. Google ile giriş uygulamada tarayıcı sekmesinde açılır ve oyuna geri döner.
 
 ## 4. Play Console'da uygulama
 
@@ -98,7 +95,7 @@ KARADA VE DENİZDE
 
 TELEFONA UYGUN
 • Dokunmatik kumanda ya da eğerek uçuş, titreşim, otomatik grafik ayarı.
-• İnternetsiz de oynanır. Reklam yok, uygulama içi satın alma yok.
+• İnternetsiz de oynanır. Para güç satın almaz: reklamlar isteğe bağlı ödüllü reklamlardır.
 
 Model Kütüphanesi'nde bütün araçları 3B olarak incele. Sistem bilgileri Defence Turk Sistem Envanteri'nden atıfla alınmıştır.
 Bu oyun hobi amaçlı, bağımsız bir projedir; adı geçen şirketlerle resmî bir bağı yoktur.
@@ -110,31 +107,27 @@ Bu oyun hobi amaçlı, bağımsız bir projedir; adı geçen şirketlerle resmî
 - **Kategori:** Oyun → Simülasyon. **Etiketler:** Uçuş simülasyonu, Askerî.
 - **İletişim:** bir e-posta adresi ister (Play'de görünür; istersen ayrı bir adres aç).
 
-## 5. Adres çubuğunu gizlemek (Digital Asset Links)
+## 5. AdMob hesabı (gerçek reklam için)
 
-Bu adım yapılmazsa uygulama yine çalışır, ama üstte ince bir tarayıcı adres çubuğu görünür.
+V2.62'deki reklamlar Google'ın **deneme reklamlarıdır**: gelir getirmez, ama her şeyin çalıştığını gösterir. Gerçek reklam için:
 
-1. Play Console → uygulama → **Test et ve yayınla → Uygulama bütünlüğü → Uygulama imzalama**: **Uygulama imzalama
-   anahtarı sertifikası** altındaki **SHA-256** değerini kopyala.
-2. `assetlinks-yukleme-anahtari.json` dosyasını aç; `sha256_cert_fingerprints` listesine bu değeri de ekle
-   (listede iki değer olsun: yükleme anahtarı ve Google'ın anahtarı).
-3. Dosya alan adının **köküne** konmalı: `https://ayyildiz-kizilelma-game.github.io/.well-known/assetlinks.json`.
-   V2.55'ten beri oyun kendi kuruluşunun kök adresinde yayında, bu yüzden dosya doğrudan oyunun deposuna konur:
-   depoda `.well-known/assetlinks.json` olarak kaydet (bana gönderirsen ben eklerim). Yayın GitHub Actions ile yapıldığı
-   için ayrıca `.nojekyll` gerekmez.
-4. Birkaç dakika sonra adresi tarayıcıda açıp dosyanın göründüğünü kontrol et. Uygulamayı telefonda kapatıp açınca adres
-   çubuğu kaybolur.
+1. https://admob.google.com → Google hesabınla gir → hesap aç (ödeme ve vergi bilgileri sende).
+2. **Uygulamalar → Uygulama ekle** → Android → (Play'de yayında değilse "Hayır") → ad: *Ay Yıldız*.
+3. Çıkan **uygulama kimliğini** (`ca-app-pub-…~…`) ve iki **reklam birimi** oluşturup kimliklerini bana gönder:
+   *Ödüllü* ve *Geçiş (interstitial)*. Bunlar gizli bilgi değildir, uygulamanın içine yazılır.
+4. **Gizlilik ve mesajlaşma → GDPR**: Avrupa için izin mesajını oluştur ve yayınla (uygulama bu formu kendisi gösterir).
+5. Play'de yayına çıkınca `app-ads.txt` dosyası gerekecek; içeriğini AdMob verir, ben oyunun adresine koyarım.
 
 ## 6. Uygulama içeriği formları
 
 Play Console → **Politika → Uygulama içeriği**:
 
 - **Gizlilik politikası:** `https://ayyildiz-kizilelma-game.github.io/privacy.html`
-- **Reklamlar:** Hayır, reklam içermiyor.
+- **Reklamlar:** **Evet**, reklam içeriyor (AdMob; ödüllü ve seyrek geçiş reklamı, afiş yok).
 - **Uygulama erişimi:** Bütün işlevler kısıtlamasız (hesap isteğe bağlı, misafir olarak oynanır).
 - **İçerik derecelendirmesi (IARC anketi):** kategori *Oyun*. Şiddet: gerçekçi olmayan askerî araç çatışması, insan
   karakter yok, kan yok. Kullanıcı etkileşimi: **Evet** (çok oyunculu sohbet ve sesli sohbet). Konum paylaşımı: Hayır.
-  Dijital satın alma: Hayır. Beklenen sonuç: PEGI 7–12 / Herkes 10+.
+  Dijital satın alma: V2.63'ten sonra **Evet** (kozmetik ürünler). Beklenen sonuç: PEGI 7–12 / Herkes 10+.
 - **Hedef kitle:** **13 yaş ve üstü** seç. Çok oyunculu sohbet olduğu için 13 yaş altını seçmek Aileler politikasının
   ek şartlarını getirir.
 - **Veri güvenliği:**
@@ -147,7 +140,11 @@ Play Console → **Politika → Uygulama içeriği**:
   - **Uygulama bilgileri ve performansı → Teşhis** (performans raporu): toplanır, isteğe bağlı, anonim. Amaç: analiz.
   - **Ses** (sesli sohbet): yalnız bas-konuş sırasında diğer oyunculara anlık iletilir, kaydedilmez. Formda
     *geçici olarak işleniyor* seçeneğini işaretle.
-  - Üçüncü taraflarla paylaşım: **Yok**. Veriler Supabase (barındırma hizmeti) üzerinde tutulur. Barındırma hizmeti
+  - **Cihaz veya diğer kimlikler → Reklam kimliği** (V2.62): Google AdMob SDK'sı toplar ve Google ile **paylaşılır**.
+    Amaç: reklam veya pazarlama, sahtecilik önleme. Kişiselleştirilmemiş seçenek uygulamada var.
+  - **Konum → Yaklaşık konum** ve **Uygulama etkinliği**: AdMob SDK'sı reklam için işleyebilir; Google'ın SDK veri
+    güvenliği sayfasındaki cevapları kullan (https://developers.google.com/admob/android/privacy/play-data-disclosure).
+  - Oyunun kendi verileri için üçüncü taraflarla paylaşım: **Yok**. Veriler Supabase (barındırma hizmeti) üzerinde tutulur. Barındırma hizmeti
     sağlayıcısı "paylaşım" sayılmaz.
 - **Hesap silme:** web bağlantısı `https://ayyildiz-kizilelma-game.github.io/privacy.html#hesap-silme`.
   Oyun içi silme hesabı tamamen siler: giriş hesabı, profil, bulut kaydı ve bulut modelleri (V2.57). Formda
@@ -164,6 +161,5 @@ Play Console → **Politika → Uygulama içeriği**:
 
 ## Sonraki sürümler
 
-Oyun güncellemeleri (V2.53, V2.54…) Play'e yeni paket yüklemeden telefonlara gelir. Yeni paket yalnız `twa-manifest.json`
-değişince (simge, ad, kısayol, en düşük Android sürümü) gerekir: Actions'ta iş akışını yeniden çalıştır, yeni `.aab`'yi
-yükle.
+V2.62'den beri her oyun sürümü yeni bir paket demektir: iş akışı `VERSION` değişince APK ve `.aab` üretir; Play'e yeni
+`.aab` yüklenir. Web sürümü (GitHub Pages) her zamanki gibi anında güncellenir.
