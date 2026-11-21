@@ -17,7 +17,19 @@ for i in $(seq 1 60); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/nu
 sleep 25
 adb exec-out screencap -p > "$OUT/1-acilis.png"
 PID=$(adb shell pidof -s "$PKG" | tr -d '\r'); [ -n "$PID" ] && note "uygulama çalışıyor (pid $PID, $(( $(date +%s)-t0 )) sn)" || err "uygulama açık değil (çöktü mü?)"
-adb exec-out uiautomator dump /dev/tty > "$OUT/ui.xml" 2>/dev/null
+# the slow emulator sometimes shows "<app> isn't responding" for its own launcher: press Wait so it does not eat our tap
+for k in 1 2 3; do adb exec-out uiautomator dump /dev/tty > "$OUT/ui.xml" 2>/dev/null
+  W8=$(python3 - "$OUT/ui.xml" <<'P'
+import re,sys
+x=open(sys.argv[1],encoding='utf-8',errors='ignore').read()
+if "isn't responding" in x or 'yanıt vermiyor' in x:
+    for m in re.finditer(r'<node [^>]*>',x):
+        n=m.group(0)
+        if re.search(r'text="(Wait|Bekle)"',n) or 'android:id/aerr_wait' in n:
+            a=list(map(int,re.search(r'bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',n).groups())); print((a[0]+a[2])//2,(a[1]+a[3])//2); break
+P
+)
+  [ -z "$W8" ] && break; echo "sistem uyarısı kapatılıyor: $W8"; adb shell input tap $W8; sleep 3; done
 B=$(python3 - "$OUT/ui.xml" <<'P'
 import re,sys
 x=open(sys.argv[1],encoding='utf-8',errors='ignore').read()
@@ -34,7 +46,7 @@ if [ -z "$B" ]; then   # WebView text not in the accessibility tree: the button'
   B="$((W*527/1000)) $((H*805/1000))"; echo "konumla dokunuluyor: $B"; fi
 if [ -n "$B" ]; then note "reklam bildirimi göründü; 'Yalnız kişiselleştirilmemiş' seçildi"; adb shell input tap $B; else err "reklam bildirimi bulunamadı (ekran: 1-acilis.png)"; fi
 sleep 4; adb exec-out screencap -p > "$OUT/2-dokunduktan-sonra.png"
-for i in $(seq 1 30); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
+for i in $(seq 1 40); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
 adb exec-out screencap -p > "$OUT/3-sonra.png"
 PID2=$(adb shell pidof -s "$PKG" | tr -d '\r'); [ -n "$PID2" ] || err "dokunduktan sonra uygulama kapandı"
 adb logcat -d > "$OUT/logcat.txt"; adb logcat -d -b crash > "$OUT/crash.txt"
