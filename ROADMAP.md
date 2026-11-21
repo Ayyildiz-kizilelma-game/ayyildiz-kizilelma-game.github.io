@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.55 · son güncelleme: 21 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.56 · son güncelleme: 21 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -31,7 +31,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.53 | İçe aktarılan modellerin bulut yedeği ve bulut sunucusunun uyumaması (oyuncu isteği: tarayıcı verisi silinince modeller ve giriş kayboldu) | ✅ |
 | V2.54 | Sunucu kurulumu (model yedeği, hesap silme) ve hesap silmenin yalnız oyun verisini silmesi: Supabase projesi Saha Takip ile ortak | ✅ |
 | V2.55 | Oyun kendi adresine taşındı (ayyildiz-kizilelma-game.github.io): Saha Takip ile tarayıcı verisi ve sunucu tamamen ayrı; eski adres kaydı taşıyarak yönlendiriyor | ✅ |
-| V2.56 | Otomatik kontrollerin düzeltilmesi: yayını GitHub Pages yapıyor, "Testler" işi yalnız denetliyor (her gönderimdeki başarısız kontrol ve hata e-postası gitti) | |
+| V2.56 | Otomatik kontrollerin düzeltilmesi: yayını GitHub Pages yapıyor, "Testler" işi yalnız denetliyor (her gönderimdeki başarısız kontrol ve hata e-postası gitti) | ✅ |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.
