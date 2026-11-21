@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.60 — 2026-11-21 · Toparlama
+- Toparlama: özellik listesindeki eski notlar güncellendi. Silahlı bütün uçaklar gerçek Türk mühimmatına sahip (ANKA silahsız keşif İHA'sı); Android uygulaması kalıcı imzayla çalışıyor; Google Play'de kalan adımlar yazıldı.
+- Eski deneme paketi indirme sayfasından kaldırıldı; geçerli paket "Android uygulaması" sayfasında.
+- Bulut sunucusundaki eski giriş adresi (astakyon.github.io) listeden çıkarıldı; giriş yalnız yeni adresten.
+
 ## V2.59 — 2026-11-21 · Tam ekran uygulama
 - Uygulama tam ekran açılacak: kalıcı bir Android imza anahtarı oluşturuldu ve sitenin doğrulama dosyası (.well-known/assetlinks.json) bu anahtarla yayına alındı. Android, uygulamanın siteye ait olduğunu doğrulayınca oyunu tarayıcı çubuğu olmadan, gerçek uygulama gibi açar.
 - Kalıcı anahtarla imzalanan sonraki sürümler eskisinin üstüne kurulur, kaldırıp yeniden kurmak gerekmez.

@@ -35,6 +35,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.57 | Tam hesap silme: "Hesabımı sil" giriş hesabını da siliyor (Google Play şartı tam karşılandı) | ✅ |
 | V2.58 | Telefonda denemek için Android paketi (.apk): her derlemede "android-deneme" indirme sayfasına konuyor | ✅ |
 | V2.59 | Uygulama tam ekran: kalıcı imza anahtarı ve doğrulama dosyası (.well-known/assetlinks.json); APK "android" indirme sayfasında | ✅ |
+| V2.60 | Toparlama: özellik notları güncellendi, eski deneme paketi ve Supabase'teki eski giriş adresi kaldırıldı | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.

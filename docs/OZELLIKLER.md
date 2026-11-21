@@ -4,19 +4,17 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 68 özellik · ✅ iyi 61 · 🔧 iyileştirilmeli 4 · 🧪 denenmeli 3 · testi olmayan: 0
+**Özet:** 68 özellik · ✅ iyi 63 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 2 · testi olmayan: 0
 
 ## Karar listesi
 
 Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu gibi kalır.
 
-1. **Silahlar ve yük ekranı** (🔧 iyileştirilmeli) — KAAN, TB2, TB3, Akıncı, Kızılelma, ANKA-3, Aksungur, Hürjet ve Hürkuş (V2.41–V2.48) gerçek mühimmatla; diğer uçaklar model serisinde sırayla geçecek, o zamana kadar yer tutucu (Füze-1, GP-82…)
-2. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
-3. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
-4. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
-5. **Google Play paketi** (🔧 iyileştirilmeli) — Play Console hesabı, kapalı test (12 kişi, 14 gün) ve Digital Asset Links adımları oyuncuya kalıyor.
-6. **Uygulama olarak yükleme** (🔧 iyileştirilmeli) — KARAR (29 Ekim): Play Store yayını model serisinden sonra (docs/ANDROID.md).
-7. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
+1. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
+2. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
+3. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
+4. **Google Play paketi** (🔧 iyileştirilmeli) — Paket, kalıcı imza ve doğrulama dosyası hazır (V2.59). Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün); Play App Signing anahtarının parmak izi doğrulama dosyasına eklenecek.
+5. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
 
 ## Uçuş
 
@@ -37,7 +35,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 
 | Özellik | Ne yapar | Nereden | Tuş | Sürüm | Test | Durum |
 |---|---|---|---|---|---|---|
-| **Silahlar ve yük ekranı** | Top, 2 bomba ve 3 füze tipi; uçağa göre yük, hazır yük grupları. | Hangar → Yük · Bakım hangarı | Space top · X silah · N sıradaki · 1–5 | V1.02 | setup, features, v230 | 🔧 iyileştirilmeli |
+| **Silahlar ve yük ekranı** | Top, 2 bomba ve 3 füze tipi; uçağa göre yük, hazır yük grupları. | Hangar → Yük · Bakım hangarı | Space top · X silah · N sıradaki · 1–5 | V1.02 | setup, features, v230 | ✅ iyi |
 | **Gerçek Türk mühimmatı** | Model serisinden geçen uçaklar gerçek mühimmat taşır: KAAN'da GÖKDOĞAN, BOZDOĞAN, SOM-J (iç silah yuvasında, kapaklar atışta açılır), HGK-82 ve NEB-84 (kanat altında). TB2 (V2.42) ve TB3'te (V2.43) MAM-L, MAM-C ve MAM-T. Akıncı'da TEBER-82, NEB-84, L-UMTAS, GÖKDOĞAN ve SOM-A (V2.44). Kızılelma'da iç silah yuvasıyla BOZDOĞAN, GÖKDOĞAN, SOM-J; kanat altında TEBER-82 ve NEB-84 (V2.45). ANKA-3'te iç yuvada TEBER-82 ve SOM-J, dış kanatta MAM-L (V2.46; model V2.50'de oyuncunun fotoğraflarıyla yenilendi). Aksungur'da TEBER-82, MAM-C ve MAM-T (V2.47). Hürjet'te TEBER-82, HGK-82, BOZDOĞAN ve GÖKDOĞAN; Hürkuş'ta MAM-L, MAM-C ve LUMTAS (V2.48). Veriler Defence Turk Sistem Envanteri'nden. | Hangar → Yük · Model Kütüphanesi → Mühimmat | X silah · 1–5 silah seç | V2.41 | v241, v242, v243, v244, v245, v246, v247, v248, v250, setup | ✅ iyi |
 | **Hedef kilidi** | Füzeler için hedef kilidi, kilit uyarısı açılıp kapatılabilir. | Uçuşta | K kilit · Tab hedef değiştir | V1.02 | features | ✅ iyi |
 | **Düşman uçakları ve kanat adamı** | Kırmızı Kuvvet savaş uçakları, yapay zekâ kanat adamı (Kılıç 2) ve ona emir verme. | Görev ekranı → düşman / kanat adamı | F8 kanat adamı emirleri | V1.10 | ai, wing, enemy | ✅ iyi |
@@ -144,7 +142,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Google Play paketi** | Android uygulaması (TWA) GitHub Actions'ta imzalı .aab ve .apk olarak üretilir; mağaza metinleri, görseller ve adım adım yükleme rehberi docs/PLAY-STORE.md'de. | GitHub → Actions → Android paketi | — | V2.52 | setup | 🔧 iyileştirilmeli |
 | **Hesap ve profil** | Misafir ya da bulut hesabı, oyuncu kartı, birden çok profil, bulut eşitleme. | Ana menü → sağ üstteki profil | — | V1.66 | account, pcard | ✅ iyi |
 | **Kayıt ve yedek** | Bütün ilerleme tek kayıtta, her oturum yedekleniyor; grafik ayarları cihaza özel. | Kendiliğinden | — | V2.26 | depo | ✅ iyi |
-| **Uygulama olarak yükleme** | Ana ekrana ekleme, kısayollar, Android (Play Store) hazırlığı. | Ana menü → Uygulamayı yükle | — | V2.01 | install | 🔧 iyileştirilmeli |
+| **Uygulama olarak yükleme** | Ana ekrana ekleme, kısayollar, Android (Play Store) hazırlığı. | Ana menü → Uygulamayı yükle | — | V2.01 | install | ✅ iyi |
 | **Duyurular ve sürüm notları** | Yönetici duyuruları, güncellemeden sonra yenilikler şeridi, Yenilikler ekranı. | Ana menü → Yenilikler | — | V1.66 | notes | ✅ iyi |
 
 ## Yönetici araçları
