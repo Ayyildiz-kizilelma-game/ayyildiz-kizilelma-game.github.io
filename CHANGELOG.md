@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.54 — 2026-11-21 · Sunucu kurulumu ve güvenli hesap silme
+- Model bulut yedeği ve "Hesabımı sil" sunucuda kuruldu; ikisi de artık çalışıyor.
+- Hesabımı sil güvenli hâle getirildi: bulut sunucusu Saha Takip uygulamasıyla ortak olduğu için, giriş hesabının silinmesi o uygulamanın bütün verisini de zincirleme silecekti. Artık düğme yalnız oyunun verisini (profil, bulut kaydı, buluttaki modeller) siliyor; giriş bilgin yerinde kalıyor.
+- Silme uyarısı ve mesajları, gizlilik politikası ve Play Store notları buna göre güncellendi.
+
 ## V2.53 — 2026-11-16 · Model bulut yedeği
 - Model bulut yedeği: Model Kütüphanesi'nde içe aktardığın modeller, giriş yaptıysan buluta da yedekleniyor. Tarayıcı verisi silinse ya da başka cihazdan girsen bile, girişten birkaç saniye sonra modellerin kendiliğinden geri geliyor.
 - İlk girişte yalnız o cihazda olan modeller buluta çıkıyor (telefonunda duran modeller böylece bilgisayara da geçer).

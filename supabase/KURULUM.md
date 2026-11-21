@@ -55,7 +55,7 @@ Google Play, hesap açılan uygulamalarda oyuncunun hesabını **uygulamanın i�
 1. Supabase → **SQL Editor** → **New query**.
 2. `supabase/hesap_silme.sql` dosyasının tamamını yapıştır → **Run**.
 
-İşlev yalnız giriş yapmış oyuncunun **kendi** hesabını siler; profil ve bulut kaydı birlikte silinir. İşlev kurulmadan önce düğme, oyuncuyu gizlilik sayfasındaki *Hesap silme* bölümüne yönlendirir.
+İşlev yalnız giriş yapmış oyuncunun **kendi** oyun verisini siler: profil ve bulut kaydı (modelleri oyun ayrıca siler). Giriş hesabının kendisi silinmez, çünkü bu Supabase projesi Saha Takip ile ortak; giriş hesabı silinseydi o uygulamanın verisi de zincirleme silinirdi (V2.54). İşlev kurulmadan önce düğme, oyuncuyu gizlilik sayfasındaki *Hesap silme* bölümüne yönlendirir.
 
 ## 7. Model yedeği ve sunucunun uyumaması (V2.53)
 

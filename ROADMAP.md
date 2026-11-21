@@ -29,6 +29,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.51 | Hızlı ikinci açılış: oyun kodu ayrı dosyada (tarayıcının kod önbelleği); tek dosyalık sürüm indirme için korunur | ✅ |
 | V2.52 | Play Store hazırlığı: Android paketi (GitHub Actions), oyun içi hesap silme, mağaza metinleri ve görselleri, yükleme rehberi (Play Console adımları oyuncuda) | ✅ |
 | V2.53 | İçe aktarılan modellerin bulut yedeği ve bulut sunucusunun uyumaması (oyuncu isteği: tarayıcı verisi silinince modeller ve giriş kayboldu) | ✅ |
+| V2.54 | Sunucu kurulumu (model yedeği, hesap silme) ve hesap silmenin yalnız oyun verisini silmesi: Supabase projesi Saha Takip ile ortak | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.
