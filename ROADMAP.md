@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.62 · son güncelleme: 21 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.63 · son güncelleme: 21 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -38,7 +38,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.60 | Toparlama: özellik notları güncellendi, eski deneme paketi ve Supabase'teki eski giriş adresi kaldırıldı | ✅ |
 | V2.61 | Gelir yolu 1 — Mağaza altyapısı: mağaza ekranı, ürün listesi (reklamsız, 3 kaplama paketi, destekçi paketi), hesaba bağlı ürün sahipliği; henüz gerçek ödeme yok | ✅ |
 | V2.62 | Gelir yolu 2 — Android kabuğu Capacitor'a geçer; AdMob ödüllü reklamlar deneme modunda; reklam izni ekranı (KVKK/GDPR) ve gizlilik metni; Android emülatör testi GitHub Actions'ta | ✅ |
-| V2.63 | Uygulama içinden hızlı güncelleme: açılışta "Yeni sürüm" kartı, APK indirmeden birkaç saniyede güncelleme (oyuncu isteği, 22 Kasım) | |
+| V2.63 | Uygulama içinden hızlı güncelleme: açılışta "Yeni sürüm" kartı, APK indirmeden birkaç saniyede güncelleme (oyuncu isteği, 22 Kasım) | ✅ |
 | V2.64 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması | |
 | V2.65–V2.67 | three.js güncel sürüme geçiş | |
 | V2.68 | Kalabalık savaşta 60 FPS | |
