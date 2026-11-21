@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.59 — 2026-11-21 · Tam ekran uygulama
+- Uygulama tam ekran açılacak: kalıcı bir Android imza anahtarı oluşturuldu ve sitenin doğrulama dosyası (.well-known/assetlinks.json) bu anahtarla yayına alındı. Android, uygulamanın siteye ait olduğunu doğrulayınca oyunu tarayıcı çubuğu olmadan, gerçek uygulama gibi açar.
+- Kalıcı anahtarla imzalanan sonraki sürümler eskisinin üstüne kurulur, kaldırıp yeniden kurmak gerekmez.
+- Android paketi işi, kalıcı anahtarla imzalanan APK'yı "Android uygulaması" indirme sayfasına koyuyor; deneme paketi ayrı sayfada kalıyor.
+
 ## V2.58 — 2026-11-21 · Android deneme paketi
 - Telefonda denemek için Android uygulama paketi (.apk) hazırlandı. GitHub'daki "Android paketi" işi artık deneme paketini deponun indirme sayfasına (Releases → "Android deneme paketi") koyuyor; telefondan doğrudan indirilip kurulabiliyor.
 - Uygulama yeni adresten açılıyor (ayyildiz-kizilelma-game.github.io), sürüm adı oyunun sürümünden geliyor.

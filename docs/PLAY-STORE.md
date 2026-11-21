@@ -49,6 +49,10 @@ GitHub → depo → **Settings → Secrets and variables → Actions → New rep
 
 ## 3. Paketi üret
 
+> **Kalıcı imza (V2.59):** Secrets eklendikten sonra iş, APK'yı **Releases → "Android uygulaması"** sayfasına koyar
+> (`releases/download/android/AyYildiz-<sürüm>.apk`). Depodaki `.well-known/assetlinks.json` bu anahtarın parmak izini
+> içerdiği için uygulama adres çubuğu olmadan, tam ekran açılır; sonraki sürümler eskisinin üstüne kurulur.
+>
 > **Telefonda denemek için (V2.58):** Secrets eklenmeden çalıştırılırsa iş bir **deneme .apk** üretir ve onu deponun
 > **Releases → "Android deneme paketi"** sayfasına koyar. Telefondan o sayfayı açıp .apk'yı indir, kur (Android
 > "bilinmeyen kaynaklardan yükleme" iznini bir kez ister). Deneme paketi her derlemede yeni bir deneme anahtarıyla

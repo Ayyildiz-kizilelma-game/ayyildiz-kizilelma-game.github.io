@@ -83,11 +83,15 @@ jobs:
             twa/assetlinks-yukleme-anahtari.json
             twa/twa-manifest.json
           if-no-files-found: error
-      - name: Deneme APK'sını indirme sayfasına koy (yalnız deneme anahtarıyla)
-        if: env.KIND == 'deneme'
+      - name: APK'yı indirme sayfasına koy (telefona doğrudan kurmak için)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          V=$(tr -d ' \r\nV' < VERSION); F="AyYildiz-${V}-deneme.apk"; cp twa/app-release-signed.apk "$F"
-          gh release delete android-deneme --cleanup-tag -y 2>/dev/null || true
-          gh release create android-deneme "$F" --prerelease --title "Android deneme paketi ($V)" --notes "Telefonda denemek için. Google Play'e yüklenmez. Her deneme paketi farklı bir deneme anahtarıyla imzalanır; yenisini kurmadan önce eskisini kaldır. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/android-deneme/$F"
+          V=$(tr -d ' \r\nV' < VERSION)
+          if [ "$KIND" = play ]; then TAG=android; F="AyYildiz-${V}.apk"; T="Android uygulaması ($V)"
+            N="Telefona doğrudan kurulabilir. Kalıcı imza anahtarıyla imzalı: sonraki sürümler eskisinin üstüne kurulur, oyun tam ekran uygulama olarak açılır. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/$F"
+          else TAG=android-deneme; F="AyYildiz-${V}-deneme.apk"; T="Android deneme paketi ($V)"
+            N="Geçici deneme anahtarıyla imzalı: üstte adres çubuğu görünür, her yenisi için eskisini kaldır. Kalıcı imza için docs/PLAY-STORE.md adım 2. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/$TAG/$F"; fi
+          cp twa/app-release-signed.apk "$F"
+          gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
+          gh release create "$TAG" "$F" --prerelease --title "$T" --notes "$N"
