@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.57 — 2026-11-21 · Tam hesap silme
+- Tam hesap silme: Profil → Hesap → "Hesabımı sil" artık giriş hesabını da siliyor. E-posta adresin ve giriş bilgin, profilin, bulut kaydın ve buluttaki modellerin kalıcı olarak siliniyor. Google Play'in hesap silme şartı tam olarak karşılandı.
+- Sunucudaki silme işlemi gerçek bir hesap silinmeden, geri alınan bir denemeyle sınandı.
+- Silme uyarısı ve mesajları, gizlilik sayfası ve Play Store rehberi güncellendi.
+
 ## V2.56 — 2026-11-21 · Otomatik kontroller
 - Depodaki otomatik kontroller düzeltildi: her gönderimde başarısız görünen "GitHub Pages" adımı kaldırıldı. Oyunu GitHub Pages zaten doğrudan yayınlıyordu; o adım ikinci kez yayınlamaya çalışıp hata veriyordu. Artık gereksiz hata e-postası gelmeyecek.
 - Kontrol işinin adı "Testler" oldu: her gönderimde derlenmiş dosyaların kaynakla aynı olduğunu ve bütün testlerin geçtiğini denetliyor.

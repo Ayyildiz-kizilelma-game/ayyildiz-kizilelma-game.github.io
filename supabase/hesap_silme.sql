@@ -1,16 +1,20 @@
--- Ay Yıldız: Hedef Kızıl Elma — oyuncunun kendi oyun hesabını silmesi (V2.52, V2.54'te güvenli hâle getirildi; Google Play şartı)
+-- Ay Yıldız: Hedef Kızıl Elma — oyuncunun kendi hesabını tamamen silmesi (V2.52; V2.57'de tam silme; Google Play şartı)
 -- Supabase → SQL Editor → New query → bu dosyanın tamamını yapıştır → Run. Tekrar çalıştırmak güvenlidir.
--- Oyunda Profil → Hesap → "Hesabımı sil" bu işlevi çağırır. Yalnız giriş yapmış oyuncu, yalnız KENDİ verisini silebilir.
--- V2.54: Bu Supabase projesi başka bir uygulamayla (Saha Takip) paylaşılıyor; giriş hesabı (auth.users) silinseydi o
--- uygulamanın bütün verisi de zincirleme silinirdi. Bu yüzden işlev yalnız OYUNUN verisini siler: profil ve bulut kaydı.
+-- Oyunda Profil → Hesap → "Hesabımı sil" bu işlevi çağırır. Yalnız giriş yapmış oyuncu, yalnız KENDİ hesabını silebilir:
+-- bulut kaydı ve profil silinir, yönetici kayıtlarındaki adı boşaltılır, en son giriş hesabının kendisi (auth.users) silinir.
 -- Buluttaki model dosyalarını oyun, bu işlevi çağırmadan önce depolama API'siyle siler.
--- Giriş bilgisi (e-posta ve şifre) diğer uygulama için yerinde kalır.
+-- Bu Supabase projesi yalnız oyuna aittir (V2.55'te Saha Takip artıkları kaldırıldı), başka uygulamanın verisi etkilenmez.
 create or replace function public.delete_my_account() returns void
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, auth as $$
+declare uid uuid := auth.uid();
 begin
-  if auth.uid() is null then raise exception 'giriş gerekli'; end if;
-  delete from public.saves where user_id = auth.uid();
-  delete from public.profiles where id = auth.uid();
+  if uid is null then raise exception 'giriş gerekli'; end if;
+  update public.admin_log set admin = null where admin = uid;
+  update public.announcements set created_by = null where created_by = uid;
+  update public.content set updated_by = null where updated_by = uid;
+  delete from public.saves where user_id = uid;
+  delete from public.profiles where id = uid;
+  delete from auth.users where id = uid;
 end $$;
 revoke all on function public.delete_my_account() from public, anon;
 grant execute on function public.delete_my_account() to authenticated;

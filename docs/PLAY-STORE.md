@@ -141,11 +141,8 @@ Play Console → **Politika → Uygulama içeriği**:
   - Üçüncü taraflarla paylaşım: **Yok**. Veriler Supabase (barındırma hizmeti) üzerinde tutulur. Barındırma hizmeti
     sağlayıcısı "paylaşım" sayılmaz.
 - **Hesap silme:** web bağlantısı `https://ayyildiz-kizilelma-game.github.io/privacy.html#hesap-silme`.
-  Oyun içi silme oyunun bütün verisini siler; giriş hesabı Saha Takip ile ortak Supabase projesinde olduğu için yerinde kalır
-  (V2.54). Formda "kullanıcı verilerinin silinmesini isteyebilir" ve "hesap silme web bağlantısı" seçenekleri bununla karşılanır.
-  İleride oyun ayrı bir Supabase projesine taşınırsa giriş hesabı da silinebilir.
-  Supabase'te `supabase/hesap_silme.sql` dosyasını bir kez çalıştır (bkz. `supabase/KURULUM.md`, adım 6). Bunu yapmazsan
-  oyundaki *Hesabımı sil* düğmesi çalışmaz, oyuncuyu bu sayfaya yönlendirir.
+  Oyun içi silme hesabı tamamen siler: giriş hesabı, profil, bulut kaydı ve bulut modelleri (V2.57). Formda
+  "kullanıcı hesabın silinmesini isteyebilir" ve "hesap silme web bağlantısı" seçenekleri bununla karşılanır.
 - **Devlet uygulaması / finans / sağlık:** Hayır. **Haber uygulaması:** Hayır.
 
 ## 7. Kapalı test → üretim
