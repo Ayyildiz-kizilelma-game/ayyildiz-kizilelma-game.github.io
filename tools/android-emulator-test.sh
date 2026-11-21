@@ -48,7 +48,17 @@ if [ -n "$B" ]; then note "reklam bildirimi göründü; 'Yalnız kişiselleştir
 sleep 4; adb exec-out screencap -p > "$OUT/2-dokunduktan-sonra.png"
 for i in $(seq 1 40); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
 adb exec-out screencap -p > "$OUT/3-sonra.png"
-PID2=$(adb shell pidof -s "$PKG" | tr -d '\r'); [ -n "$PID2" ] || err "dokunduktan sonra uygulama kapandı"
+PID2=$(adb shell pidof -s "$PKG" | tr -d '\r')
+if [ -z "$PID2" ] || ! adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew"; then
+  # on the slow emulator Google Play services may restart and Android closes apps that use it: open the app again
+  # (the ad choice is saved, so this time the ads start right away)
+  adb logcat -d | grep -a "Killing.*$PKG" | tail -n 1 | sed 's/.*Killing/Kapatıldı:/' | cut -c1-300 > "$OUT/kapanma.txt"
+  [ -s "$OUT/kapanma.txt" ] && echo "::warning title=Emülatör::$(cat "$OUT/kapanma.txt") — uygulama yeniden açılıyor"
+  adb shell monkey -p "$PKG" -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
+  for i in $(seq 1 60); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
+  adb exec-out screencap -p > "$OUT/4-yeniden.png"
+fi
+PID2=$(adb shell pidof -s "$PKG" | tr -d '\r'); [ -n "$PID2" ] || err "uygulama açık değil"
 adb logcat -d > "$OUT/logcat.txt"; adb logcat -d -b crash > "$OUT/crash.txt"
 grep -a -i "AndroidRuntime\|FATAL\|$PKG\|Capacitor\|Ads \|UserMessaging\|ActivityManager.*ayyildiz\|ActivityTaskManager.*ayyildiz\|lowmemory\|am_kill" "$OUT/logcat.txt" | grep -v "Registering plugin" | tail -n 400 > "$OUT/kayit.txt"
 grep -a "AyYildiz\]" "$OUT/logcat.txt" | sed 's/.*\[AyYildiz\]/[AyYildiz]/' | head -n 20 > "$OUT/oyun.txt"

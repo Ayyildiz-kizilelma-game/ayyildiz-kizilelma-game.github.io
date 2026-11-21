@@ -84,6 +84,9 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_6
+          ram-size: 4096M
+          cores: 4
+          heap-size: 1024M
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: bash tools/android-emulator-test.sh $(find paket -name "*.apk" | head -n 1)
