@@ -49,6 +49,11 @@ GitHub → depo → **Settings → Secrets and variables → Actions → New rep
 
 ## 3. Paketi üret
 
+> **Telefonda denemek için (V2.58):** Secrets eklenmeden çalıştırılırsa iş bir **deneme .apk** üretir ve onu deponun
+> **Releases → "Android deneme paketi"** sayfasına koyar. Telefondan o sayfayı açıp .apk'yı indir, kur (Android
+> "bilinmeyen kaynaklardan yükleme" iznini bir kez ister). Deneme paketi her derlemede yeni bir deneme anahtarıyla
+> imzalanır: yenisini kurmadan önce eskisini kaldır. Bu paket Play'e yüklenmez.
+
 GitHub → **Actions → Android paketi (Play Store) → Run workflow**. 2–3 dakika sonra işin sayfasında **Artifacts →
 android-paket-play** (Secrets yoksa `android-paket-deneme`) indir. İçinde:
 

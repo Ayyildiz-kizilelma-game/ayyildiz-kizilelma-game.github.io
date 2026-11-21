@@ -33,6 +33,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.55 | Oyun kendi adresine taşındı (ayyildiz-kizilelma-game.github.io): Saha Takip ile tarayıcı verisi ve sunucu tamamen ayrı; eski adres kaydı taşıyarak yönlendiriyor | ✅ |
 | V2.56 | Otomatik kontrollerin düzeltilmesi: yayını GitHub Pages yapıyor, "Testler" işi yalnız denetliyor (her gönderimdeki başarısız kontrol ve hata e-postası gitti) | ✅ |
 | V2.57 | Tam hesap silme: "Hesabımı sil" giriş hesabını da siliyor (Google Play şartı tam karşılandı) | ✅ |
+| V2.58 | Telefonda denemek için Android paketi (.apk): her derlemede "android-deneme" indirme sayfasına konuyor | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.

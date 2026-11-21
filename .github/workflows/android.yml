@@ -9,7 +9,7 @@ name: Android paketi (Play Store)
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write   # deneme .apk'sını "android-deneme" sürüm sayfasına koymak için
 jobs:
   aab:
     runs-on: ubuntu-24.04   # Android SDK hazır kurulu
@@ -83,3 +83,11 @@ jobs:
             twa/assetlinks-yukleme-anahtari.json
             twa/twa-manifest.json
           if-no-files-found: error
+      - name: Deneme APK'sını indirme sayfasına koy (yalnız deneme anahtarıyla)
+        if: env.KIND == 'deneme'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=$(tr -d ' \r\nV' < VERSION); F="AyYildiz-${V}-deneme.apk"; cp twa/app-release-signed.apk "$F"
+          gh release delete android-deneme --cleanup-tag -y 2>/dev/null || true
+          gh release create android-deneme "$F" --prerelease --title "Android deneme paketi ($V)" --notes "Telefonda denemek için. Google Play'e yüklenmez. Her deneme paketi farklı bir deneme anahtarıyla imzalanır; yenisini kurmadan önce eskisini kaldır. Doğrudan indirme: https://github.com/${GITHUB_REPOSITORY}/releases/download/android-deneme/$F"

@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.58 — 2026-11-21 · Android deneme paketi
+- Telefonda denemek için Android uygulama paketi (.apk) hazırlandı. GitHub'daki "Android paketi" işi artık deneme paketini deponun indirme sayfasına (Releases → "Android deneme paketi") koyuyor; telefondan doğrudan indirilip kurulabiliyor.
+- Uygulama yeni adresten açılıyor (ayyildiz-kizilelma-game.github.io), sürüm adı oyunun sürümünden geliyor.
+- Deneme paketi Google Play'e yüklenmez; Play için gerçek imza anahtarıyla ayrı paket üretilecek.
+
 ## V2.57 — 2026-11-21 · Tam hesap silme
 - Tam hesap silme: Profil → Hesap → "Hesabımı sil" artık giriş hesabını da siliyor. E-posta adresin ve giriş bilgin, profilin, bulut kaydın ve buluttaki modellerin kalıcı olarak siliniyor. Google Play'in hesap silme şartı tam olarak karşılandı.
 - Sunucudaki silme işlemi gerçek bir hesap silinmeden, geri alınan bir denemeyle sınandı.
