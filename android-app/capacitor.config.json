@@ -17,6 +17,15 @@
     "SystemBars": {
       "insetsHandling": "disable",
       "hidden": true
+    },
+    "CapacitorUpdater": {
+      "autoUpdate": false,
+      "statsUrl": "",
+      "appReadyTimeout": 20000,
+      "resetWhenUpdate": true,
+      "autoDeleteFailed": true,
+      "autoDeletePrevious": true,
+      "shakeMenu": false
     }
   }
 }

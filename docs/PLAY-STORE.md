@@ -59,6 +59,9 @@ Her oyun sürümünde (`VERSION` değişince) **Actions → Android uygulaması*
    (`releases/download/android/AyYildiz-<sürüm>.apk`). Telefona oradan kurulur; aynı anahtar ve paket adıyla imzalı olduğu
    için eski sürümün (V2.59 TWA dahil) üstüne kurulur.
 
+Telefondaki uygulama (V2.63 ve sonrası) yeni sürümü açılışta kendisi bulur ve APK indirmeden günceller
+(**Hızlı güncelleme**, ayrıntı: ANDROID.md). Play'e çıkınca da bu sürer; Play mağazası yalnız uygulamanın kendisini günceller.
+
 Play'e yüklenecek `.aab` işin sayfasında **Artifacts → android-play** içindedir. Sürüm kodu `VERSION`'dan gelir
 (V2.62 → 262); her Play paketinde artmalı.
 
@@ -127,7 +130,7 @@ Play Console → **Politika → Uygulama içeriği**:
 - **Uygulama erişimi:** Bütün işlevler kısıtlamasız (hesap isteğe bağlı, misafir olarak oynanır).
 - **İçerik derecelendirmesi (IARC anketi):** kategori *Oyun*. Şiddet: gerçekçi olmayan askerî araç çatışması, insan
   karakter yok, kan yok. Kullanıcı etkileşimi: **Evet** (çok oyunculu sohbet ve sesli sohbet). Konum paylaşımı: Hayır.
-  Dijital satın alma: V2.63'ten sonra **Evet** (kozmetik ürünler). Beklenen sonuç: PEGI 7–12 / Herkes 10+.
+  Dijital satın alma: V2.64'ten sonra **Evet** (kozmetik ürünler). Beklenen sonuç: PEGI 7–12 / Herkes 10+.
 - **Hedef kitle:** **13 yaş ve üstü** seç. Çok oyunculu sohbet olduğu için 13 yaş altını seçmek Aileler politikasının
   ek şartlarını getirir.
 - **Veri güvenliği:**

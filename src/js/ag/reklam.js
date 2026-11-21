@@ -80,5 +80,5 @@ function adsPrefOpen(first){ let el=$('adsUI'); if(!el){ el=document.createEleme
   const more=$('adsMore'); if(more) more.innerHTML=ADS.consent&&ADS.consent.privacyOptionsRequirementStatus==='REQUIRED'?'<button class="btn ghost" type="button" data-ump="1">Google izin ayarları</button>':'';
   el.classList.remove('hidden'); }
 /* show the notice once the menu is up (not over the loading screen), then start the ads */
-if(ADS.native||ADS.sim){ const wait=setInterval(function(){ if(typeof state==='undefined'||state!=='menu'||(typeof BOOT!=='undefined'&&!BOOT.done)||anyModalOpen()) return; clearInterval(wait);
+if(ADS.native||ADS.sim){ const wait=setInterval(function(){ if(typeof state==='undefined'||state!=='menu'||(typeof BOOT!=='undefined'&&!BOOT.done)||anyModalOpen()||(typeof GUN!=='undefined'&&!GUN.checked)) return; clearInterval(wait);
     if(!ADS.st.pers) adsPrefOpen(true); else adsStart(); },1500); }

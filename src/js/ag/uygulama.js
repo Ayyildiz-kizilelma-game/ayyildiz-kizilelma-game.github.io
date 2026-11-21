@@ -8,7 +8,8 @@
      through an intent link that only this package can receive, and the app signs in with them. Email sign-in works directly. */
 const APP={native:false, P:{}, scheme:'tr.ayyildiz.hedefkizilelma', bridge:'https://ayyildiz-kizilelma-game.github.io/?uyg=giris'};
 try{ const C=window.Capacitor; APP.native=!!(C&&C.isNativePlatform&&C.isNativePlatform());
-  if(APP.native) ['App','Browser','AdMob'].forEach(function(n){ try{ APP.P[n]=C.registerPlugin?C.registerPlugin(n):(C.Plugins&&C.Plugins[n]); }catch(e){ APP.P[n]=C.Plugins&&C.Plugins[n]; } }); }catch(e){}
+  if(APP.native) [['App'],['Browser'],['AdMob'],['Updater','CapacitorUpdater'],['Http','CapacitorHttp']].forEach(function(x){ const k=x[0], n=x[1]||x[0];
+    try{ APP.P[k]=C.registerPlugin?C.registerPlugin(n):(C.Plugins&&C.Plugins[n]); }catch(e){ APP.P[k]=C.Plugins&&C.Plugins[n]; } }); }catch(e){}
 function appQuery(t){ const o={}; String(t||'').split('&').forEach(function(kv){ if(!kv) return; const i=kv.indexOf('='); try{ o[decodeURIComponent(i<0?kv:kv.slice(0,i))]=i<0?'':decodeURIComponent(kv.slice(i+1).replace(/\+/g,' ')); }catch(e){} }); return o; }
 /* ---- web side: the page Google sign-in returns to when it was started in the app */
 function appBridgeTarget(search,hash){ if(String(search||'').indexOf('uyg=giris')<0) return null;

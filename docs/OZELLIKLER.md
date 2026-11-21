@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 70 özellik · ✅ iyi 63 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 71 özellik · ✅ iyi 64 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -15,7 +15,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 3. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
 4. **Google Play paketi** (🔧 iyileştirilmeli) — Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün). Google ile girişin gerçek telefonda denenmesi.
 5. **Reklamlar** (🔧 iyileştirilmeli) — Şimdilik Google deneme reklamları (gelir yok). Gerçek reklam için AdMob hesabı ve kimlikleri gerekiyor.
-6. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.63 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
+6. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.64 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
 7. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
 
 ## Uçuş
@@ -142,6 +142,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Model bulut yedeği** | Model Kütüphanesi'nde içe aktarılan modeller giriş yapan oyuncu için buluta da yedeklenir; tarayıcı verisi silinse ya da başka cihazdan girilse bile girişten sonra kendiliğinden geri gelir. Yalnız cihazda olan modeller ilk girişte buluta çıkar. | Model Kütüphanesi · giriş | — | V2.53 | v253 | ✅ iyi |
 | **Hesabımı sil** | Giriş yapmış oyuncu hesabını (giriş bilgisi dahil), profilini, bulut kaydını ve buluttaki modellerini oyunun içinden kalıcı olarak siler (iki kez basılır; V2.57'de tam silme). Google Play şartı; web sayfası: gizlilik → Hesap silme. | Profil → Hesap | — | V2.52 | v252 | ✅ iyi |
 | **Google Play paketi** | Android uygulaması (V2.62'den beri Capacitor; oyun dosyaları APK'nın içinde) her sürümde GitHub Actions'ta imzalı .apk ve .aab olarak üretilir, emülatörde denenir ve indirme sayfasına konur. Geri tuşu menüleri kapatır; Google ile giriş tarayıcı sekmesinde açılıp oyuna döner. Mağaza metinleri ve yükleme rehberi docs/PLAY-STORE.md'de. | GitHub → Actions → Android uygulaması | — | V2.52 | setup, v262 | 🔧 iyileştirilmeli |
+| **Hızlı güncelleme** | Android uygulaması açılışta yeni sürüm olup olmadığına bakar; varsa "Yeni sürüm" kartı çıkar, Şimdi güncelle ile oyun dosyaları (~1,5 MB) indirilir ve uygulama birkaç saniyede yeni sürümle açılır. APK indirmek gerekmez. Yeni sürüm açılamazsa eski sürüme kendiliğinden döner; yeni sürümler telefonlara yalnız emülatör denemesi geçerse sunulur. | Uygulama açılışı | — | V2.63 | v263 | ✅ iyi |
 | **Reklamlar** | Yalnız Android uygulamasında, Google AdMob: isteğe bağlı ödüllü reklamla görev ödülünü (TP) ikiye katlama ve bir kaplama paketini 24 saat deneme; bitmiş görevden çıkarken en çok 5 dakikada bir geçiş reklamı (ilk oturumda hiç). Afiş yok. İlk açılışta kişiselleştirilmiş/kişiselleştirilmemiş seçimi, gereken ülkelerde Google izin formu. Reklamsız ürünü olan reklam görmez, ödülleri reklamsız alır. | Görev sonu · Mağaza · Mağaza → Reklam tercihleri | — | V2.62 | v262 | 🔧 iyileştirilmeli |
 | **Mağaza** | Ana menüde Mağaza: Reklamsız, üç kaplama paketi (Kış Harekâtı, Mavi Vatan, Tarihî; her biri 3 kaplama) ve Destekçi paketi. Sahip olunan ürünler hesaba bağlı (bulut tablosu entitlements, cihazda önbellek). Hangarda paket kaplamaları 🛒 ile görünür, seçince mağaza açılır. Para güç satın almaz. | Ana menü → Mağaza · Hangar → Boya | — | V2.61 | v261 | 🔧 iyileştirilmeli |
 | **Hesap ve profil** | Misafir ya da bulut hesabı, oyuncu kartı, birden çok profil, bulut eşitleme. | Ana menü → sağ üstteki profil | — | V1.66 | account, pcard | ✅ iyi |

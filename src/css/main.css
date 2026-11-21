@@ -1144,3 +1144,6 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .adsim small{ display:block; letter-spacing:.2em; opacity:.6; } .adsim b{ display:block; font-size:24px; margin:6px 0; } .adsim p{ font-size:42px; margin:10px 0 16px; }
 .adscard{ max-width:520px; } .adscard p{ font-size:13.5px; line-height:1.5; opacity:.88; } .adscard .stack{ margin-top:12px; }
 .btn.adx{ width:100%; margin:8px 0 4px; border-color:#ffc24a; color:#ffd27a; }
+/* V2.63 in-app update */
+.guncard{ max-width:520px; } .guncard ul{ margin:8px 0 6px 18px; padding:0; font-size:13px; line-height:1.5; opacity:.88; }
+.gunbar{ height:8px; border-radius:6px; background:rgba(184,236,255,.15); overflow:hidden; margin:10px 0 4px; } .gunbar i{ display:block; height:100%; width:0; background:#7dffb0; transition:width .2s; }

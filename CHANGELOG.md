@@ -1,6 +1,13 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.63 — 2026-11-21 · Hızlı güncelleme
+- **Uygulama içinden hızlı güncelleme (oyuncu isteği):** Android uygulaması açılınca yeni sürüm olup olmadığına bakar. Varsa "Yeni sürüm" kartı çıkar; **Şimdi güncelle**'ye basınca oyun dosyaları (~1,5 MB) iner ve uygulama birkaç saniyede yeni sürümle yeniden açılır. APK indirip kurmak gerekmez; ilerleme ve ayarlar korunur.
+- Güvenlik: güncelleme dosyası SHA-256 ile denetlenir; yeni sürüm açılamazsa uygulama eski sürüme kendiliğinden döner. Bir sürüm telefonlara ancak Android emülatöründe denendikten sonra sunulur.
+- Uygulamanın kendisinin değişmesi gereken nadir durumlarda kart "Yeni APK'yı indir" der.
+- Bu özelliği almak için V2.63 APK'sını bir kez elle kurmak gerekiyor; sonraki sürümler uygulamanın içinden gelir.
+- Yol haritası bir sıra kaydı: Google Play satın alımları V2.64.
+
 ## V2.62 — 2026-11-21 · Android uygulaması ve reklamlar
 - Gelir yolunun ikinci adımı: Android uygulaması artık **Capacitor** ile yapılıyor (önceden TWA). Oyun dosyaları uygulamanın içinde; reklamlar ve sonraki adımda Google Play satın alımları bu sayede çalışacak. Yeni APK eskisinin üstüne kurulur.
 - **Reklamlar (yalnız Android uygulamasında, şimdilik Google deneme reklamları):** görev sonunda isteğe bağlı "Reklam izle · TP'yi ikiye katla"; mağazada kaplama paketini "24 saat dene". Bitmiş görevden çıkarken en çok 5 dakikada bir geçiş reklamı, ilk oturumda hiç. Afiş reklam yok. Reklamsız ürünü olan reklam görmez, ödülleri reklamsız alır.

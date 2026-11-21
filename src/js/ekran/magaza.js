@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------ store (V2.61, income route step 1)
    The game stays free and money never buys power: the store sells cosmetics and comfort. This step builds the store
-   screen, the product list and owned products (entitlements); real payments come with Google Play in V2.63, ads in V2.62.
+   screen, the product list and owned products (entitlements); real payments come with Google Play in V2.64, ads in V2.62.
    • STORE: products. A pack unlocks paint schemes (PSCHEMES entries with p:'<product>'); a bundle contains other products.
    • Owned products: cloud table 'entitlements' (supabase/magaza.sql; a player can only read their own rows, only the
      server or an admin writes), cached on the device ('ayy-ent') so the paints stay on offline. Guests own nothing.
@@ -51,7 +51,7 @@ function magRender(){ const el=$('magBody'); if(!el) return; const admin=typeof 
   el.innerHTML=STORE.map(function(s){ const own=entOwns(s.id), trial=!ENT.own[s.id]&&entTrialLeft(s.id)>0, canTry=!own&&!s.icerir&&magSw(s.id)&&typeof adsOfferable==='function'&&adsOfferable(), sw=s.icerir?s.icerir.map(magSw).join(''):magSw(s.id);
     return '<div class="mgc'+(own?' own':'')+(MAG.focus===s.id?' fx':'')+'" data-pid="'+s.id+'"><div class="mgh"><b>'+magEsc(s.ad)+'</b><small>'+magEsc(s.tur)+'</small></div>'+
       (sw?'<div class="mgsw">'+sw+'</div>':'')+'<p>'+magEsc(s.ne)+'</p><div class="mga">'+
-      (trial?'<span class="mgok">⏳ Deneme: '+Math.ceil(entTrialLeft(s.id)/3600e3)+' saat kaldı</span>':own?'<span class="mgok">✓ Sahipsin</span>':'<button class="btn" type="button" disabled title="Google Play satın alımı V2.63 ile gelecek">Yakında · Google Play</button>')+
+      (trial?'<span class="mgok">⏳ Deneme: '+Math.ceil(entTrialLeft(s.id)/3600e3)+' saat kaldı</span>':own?'<span class="mgok">✓ Sahipsin</span>':'<button class="btn" type="button" disabled title="Google Play satın alımı V2.64 ile gelecek">Yakında · Google Play</button>')+
       (canTry?'<button class="btn ghost" type="button" data-trial="'+s.id+'">🎬 Reklam izle · 24 saat dene</button>':'')+(admin&&!own?'<button class="btn ghost" type="button" data-grant="'+s.id+'">Kendime tanımla (deneme)</button>':'')+'</div></div>'; }).join('')+
     '<p class="mgn">'+(ACC&&ACC.user?'Sahip olduğun ürünler hesabına bağlı; her cihazda giriş yapınca gelir.':'Satın alınan ürünler hesaba bağlanır; misafir oyuncular için mağaza yalnız tanıtım.')+
     ' Ödeme yalnız Google Play uygulamasından yapılabilecek. Para güç satın almaz: uçaklar ve silahlar ilerledikçe açılır.</p>'+

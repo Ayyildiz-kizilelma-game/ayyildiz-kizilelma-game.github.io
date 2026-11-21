@@ -6,7 +6,7 @@
 
 Uygulama bir **Capacitor** uygulamasıdır: oyun dosyaları APK'nın içindedir ve sistemin WebView'ında çalışır (V2.52–V2.61
 arasında Chrome'u açan bir TWA kabuğuydu). Geçişin nedeni gelir yolu: AdMob reklamları (V2.62) ve Google Play satın
-alımları (V2.63) yerel eklenti ister. Alan adı gerekmez.
+alımları (V2.64) yerel eklenti ister. Alan adı gerekmez.
 
 | Parça | Nerede |
 |---|---|
@@ -14,7 +14,7 @@ alımları (V2.63) yerel eklenti ister. Alan adı gerekmez.
 | Uygulama ayarı (paket adı `tr.ayyildiz.hedefkizilelma`, `https://localhost`, konsol kaydı) | `android-app/capacitor.config.json` |
 | Web dosyalarını kopyalama ve yerel projeyi düzenleme | `tools/android-hazirla.py` (`www`, `yerel`) |
 | Derleme, emülatör denemesi, indirme sayfası | `.github/workflows/android.yml`, `tools/android-emulator-test.sh` |
-| Oyun tarafı | `src/js/ag/uygulama.js` (geri tuşu, Google ile giriş), `src/js/ag/reklam.js` (reklamlar, izin) |
+| Oyun tarafı | `src/js/ag/uygulama.js` (geri tuşu, Google ile giriş), `src/js/ag/guncelleme.js` (hızlı güncelleme), `src/js/ag/reklam.js` (reklamlar, izin) |
 
 Android projesi (`android-app/android/`) depoda tutulmaz: iş akışı her seferinde `npx cap add android` ile sıfırdan kurar
 ve `android-hazirla.py yerel` ile şunları yapar:
@@ -34,6 +34,23 @@ python3 tools/android-hazirla.py www
 python3 tools/android-hazirla.py yerel V2.62
 (cd android-app && npx cap open android)
 ```
+
+### Hızlı güncelleme (V2.63)
+
+Oyun dosyaları APK'nın içinde olduğu için her sürüm normalde yeni APK isterdi. V2.63'ten beri:
+
+- `android.yml` her sürümde oyun dosyalarını `AyYildiz-www-<sürüm>.zip` (~1,5 MB) ve `guncelleme.json` (sürüm, zip adresi,
+  boyut, SHA-256, `enAzKod`, başlık, notlar) olarak "android" indirme sayfasına koyar — **yalnız emülatör denemesi
+  geçerse**; bozuk bir sürüm telefonlara hiç sunulmaz.
+- Uygulama açılınca (ve bir saatten uzun arka planda kaldıktan sonra) `guncelleme.json`'u okur. Daha yeni sürüm varsa
+  "Yeni sürüm" kartı çıkar; **Şimdi güncelle** zip'i indirir (SHA-256 denetimiyle), uygulama birkaç saniyede yeni sürümle
+  yeniden açılır. İlerleme ve ayarlar aynı yerde kalır.
+- Geçişi `@capgo/capacitor-updater` eklentisi yapar: kendi sunucumuz (GitHub indirme sayfası), elle mod, Capgo sunucusu
+  ve istatistik yok (`statsUrl: ""`). Yeni sürüm 20 saniye içinde "hazırım" demezse (`notifyAppReady`) eski sürüme döner.
+- Yerel parça değişirse (yeni eklenti) `tools/android-hazirla.py` içindeki `EN_AZ_KOD` artırılır; daha eski uygulamalara
+  kart "Yeni APK'yı indir" der. Yeni APK kurulunca uygulama her zaman kendi içindeki dosyalarla başlar.
+- Emülatör denemesi: `tools/android-emulator-guncelleme.sh` bir deneme paketini (sürümü V99.0 diye değiştirilmiş aynı
+  dosyalar, geçici "guncelleme-denemesi" indirme sayfası) indirip kurar, yeni sürümde kaldığını denetler.
 
 ### Google ile giriş
 

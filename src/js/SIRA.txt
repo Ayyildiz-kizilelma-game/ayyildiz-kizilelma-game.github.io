@@ -137,6 +137,7 @@ veri/rehber-veri.js
 ekran/rehber.js
 ekran/magaza.js
 ag/uygulama.js
+ag/guncelleme.js
 ag/reklam.js
 ekran/sorun-giderme.js
 gorev/tp-dengesi.js

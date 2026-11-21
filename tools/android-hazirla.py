@@ -4,6 +4,10 @@
   python3 tools/android-hazirla.py www            copy the built game into android-app/www (+ Capacitor runtime)
   python3 tools/android-hazirla.py yerel VERSION  after `npx cap add android`: package id, version, full screen,
                                                   landscape, sign-in link, AdMob app id, icons, splash, signing
+  python3 tools/android-hazirla.py paket VERSION URL   V2.63 quick update: zip of www + guncelleme.json for the
+                                                  download page (URL = where the zip will be)
+  python3 tools/android-hazirla.py test ADRES     emulator test build only: www reads its update file from ADRES and
+                                                  updates without asking
 
 The Android project itself is not kept in the repo: GitHub Actions (.github/workflows/android.yml) creates it from scratch
 each time with `npx cap add android` and this script, so the same steps always give the same app. Nothing here holds
@@ -17,6 +21,9 @@ PKG = 'tr.ayyildiz.hedefkizilelma'
 # Google's test AdMob app id (V2.62). The real id comes with the AdMob account (then also the ad unit ids in ag/reklam.js).
 ADMOB_APP_ID = os.environ.get('ADMOB_APP_ID') or 'ca-app-pub-3940256099942544~3347511713'
 BG = '#0a1220'
+# The oldest app (version code) that can take a quick update of the game files. Raise it when the native part changes
+# (a new Capacitor plugin, a manifest change the game code relies on): older apps are then offered the new APK instead.
+EN_AZ_KOD = 263
 SITE_FILES = ['index.html', 'oyun.js', 'manifest.webmanifest', 'privacy.html', 'version.json', 'icon-192.png', 'icon-512.png']
 SITE_DIRS = ['icons', 'assets', 'vendor']
 
@@ -194,10 +201,66 @@ public class MainActivity extends BridgeActivity {
     print('Android projesi hazır: %s %s (kod %d), AdMob %s' % (PKG, v, code, 'DENEME' if '3940256099942544' in ADMOB_APP_ID else 'gerçek'))
 
 
+def notlar(version):
+    v = 'V' + version.strip().lstrip('V')
+    txt = open(os.path.join(ROOT, 'CHANGELOG.md'), encoding='utf-8').read()
+    m = re.search(r'^## ' + re.escape(v) + r' — [^\n]*?(?:· ([^\n]*))?\n(.*?)(?=^## |\Z)', txt, re.S | re.M)
+    if not m:
+        return '', []
+    clean = lambda t: re.sub(r'\*\*|`', '', t).strip()
+    items = [clean(l[2:]) for l in m.group(2).splitlines() if l.startswith('- ')]
+    items = [i if len(i) <= 160 else i[:157].rsplit(' ', 1)[0] + '…' for i in items]
+    return clean(m.group(1) or ''), items[:4]
+
+
+def paket(version, url):
+    import zipfile, json, hashlib
+    v = version.strip().lstrip('V')
+    out = os.path.join(ROOT, 'AyYildiz-www-%s.zip' % v)
+    with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for base, _, files in os.walk(WWW):
+            for f in sorted(files):
+                full = os.path.join(base, f)
+                z.write(full, os.path.relpath(full, WWW))
+    baslik, items = notlar(v)
+    man = {'surum': 'V' + v, 'zip': url, 'boyut': os.path.getsize(out), 'enAzKod': EN_AZ_KOD,
+           'sha256': hashlib.sha256(open(out, 'rb').read()).hexdigest(), 'baslik': baslik, 'notlar': items}
+    with open(os.path.join(ROOT, 'guncelleme.json'), 'w', encoding='utf-8') as f:
+        json.dump(man, f, ensure_ascii=False, indent=1)
+    print('paket: %s (%.1f MB), guncelleme.json: %s' % (os.path.basename(out), man['boyut'] / 1048576, baslik))
+
+
+def test(adres):
+    p = os.path.join(WWW, 'index.html')
+    h = open(p, encoding='utf-8').read()
+    inj = '<script>window.AYY_GUNCELLEME_ADRES=%s;window.AYY_GUNCELLEME_OTO=1;</script>\n' % json_str(adres)
+    h = h.replace('<script src="capacitor.js"></script>', inj + '<script src="capacitor.js"></script>', 1)
+    open(p, 'w', encoding='utf-8').write(h)
+    print('deneme: güncelleme adresi', adres)
+
+
+def deneme_json(zp, url, out):
+    import json, hashlib
+    json.dump({'surum': 'V99.0', 'zip': url, 'boyut': os.path.getsize(zp), 'enAzKod': 0,
+               'sha256': hashlib.sha256(open(zp, 'rb').read()).hexdigest(), 'baslik': 'Deneme güncellemesi',
+               'notlar': ['Emülatör denemesi']}, open(out, 'w', encoding='utf-8'), ensure_ascii=False)
+
+
+def json_str(s):
+    import json
+    return json.dumps(s)
+
+
 if __name__ == '__main__':
-    if len(sys.argv) < 2 or sys.argv[1] not in ('www', 'yerel'):
+    if len(sys.argv) < 2 or sys.argv[1] not in ('www', 'yerel', 'paket', 'test', 'deneme-json'):
         sys.exit(__doc__)
     if sys.argv[1] == 'www':
         www()
+    elif sys.argv[1] == 'paket':
+        paket(sys.argv[2], sys.argv[3])
+    elif sys.argv[1] == 'deneme-json':
+        deneme_json(sys.argv[2], sys.argv[3], sys.argv[4])
+    elif sys.argv[1] == 'test':
+        test(sys.argv[2])
     else:
         yerel(sys.argv[2] if len(sys.argv) > 2 else open(os.path.join(ROOT, 'VERSION')).read())
