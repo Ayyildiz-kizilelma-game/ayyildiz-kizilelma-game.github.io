@@ -169,6 +169,7 @@ Açık teknik borç:
 - **Google Play** (V2.52): `.github/workflows/android.yml` (Bubblewrap ile TWA; sürüm `VERSION`'dan, imza GitHub Secrets'tan, yoksa deneme anahtarı), `twa-manifest.json` (minSdk 24), `docs/PLAY-STORE.md` ve `docs/play-store/` görselleri; `ag/hesap-silme` (oyun içi hesap silme, `supabase/hesap_silme.sql` → `delete_my_account()`).
 - **Model bulut yedeği** (V2.53): `ag/model-bulut` (`mcSync` girişten sonra iki yönlü eşitler, `libPersist` sonrası `mcUpload`, `libRemoveSkin` sonrası `mcRemove`), özel `models` deposu `supabase/model_yedek.sql`; `.github/workflows/supabase-uyanik.yml` sunucuyu üç günde bir yoklar.
 - **Kendi adres** (V2.55): oyun `Ayyildiz-kizilelma-game/ayyildiz-kizilelma-game.github.io` deposunda, kök adreste. Eski adresteki küçük depo `tools/eski-adres` sayfasını yayınlar (yönlendirme, `#tasi=` ile kayıt taşıma, eski önbelleği silme); `cekirdek/depo` `depoImportLink` bağlantıdaki kaydı yalnız burada kayıt yoksa alır.
+- **Otomatik işler** (V2.56): `Testler` (pages.yml: derleme denetimi + başsız testler), `Sürüm yayınla`, `Android paketi`, `Bulut sunucusunu uyanık tut`. Yayın GitHub Pages'in daldan yayınıyla (main, kök) yapılır.
 - **Belgeler:** tek yol haritası `ROADMAP.md` (eski planlar `docs/arsiv/`). Sürüm geçmişi `tools/surumler.py` → `docs/SURUM-GECMISI.md`.
 
 ## Android (planlı)

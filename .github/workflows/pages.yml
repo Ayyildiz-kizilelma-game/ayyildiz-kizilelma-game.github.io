@@ -1,34 +1,20 @@
-name: GitHub Pages
+name: Testler
+# V2.56: Bu iş yalnız denetim yapar: derlenmiş dosyalar kaynakla aynı mı, bütün başsız testler geçiyor mu.
+# Yayını GitHub Pages'in kendisi yapar (Ayarlar → Pages → "Deploy from a branch", main, kök klasör). Eskiden burada ikinci
+# bir yayın adımı vardı; Pages ayarı daldan yayın olduğu için o adım her gönderimde "artifact bulunamadı" hatası veriyordu.
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: '22' }
       - run: python3 tools/build.py --check
       - run: node tests/paralel.js
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: . }
-      - id: deployment
-        uses: actions/deploy-pages@v4
