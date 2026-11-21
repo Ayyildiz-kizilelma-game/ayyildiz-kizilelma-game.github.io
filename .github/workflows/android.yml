@@ -86,7 +86,7 @@ jobs:
           profile: pixel_6
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: bash tools/android-emulator-test.sh paket/apk/release/app-release.apk || bash tools/android-emulator-test.sh $(find paket -name '*.apk' | head -n 1)
+          script: bash tools/android-emulator-test.sh $(find paket -name "*.apk" | head -n 1)
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: emulator, path: emu, if-no-files-found: ignore }

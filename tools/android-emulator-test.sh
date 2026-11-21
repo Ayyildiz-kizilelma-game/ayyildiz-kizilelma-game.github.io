@@ -8,6 +8,8 @@ fail=0; err(){ echo "::error title=Emülatör::$1"; fail=1; }; note(){ echo "::n
 adb wait-for-device; adb shell settings put global window_animation_scale 0; adb shell settings put global transition_animation_scale 0
 adb install -r "$APK" > "$OUT/install.txt" 2>&1 || { err "kurulum başarısız: $(tail -n 2 "$OUT/install.txt" | tr '\n' ' ')"; exit 1; }
 adb logcat -c
+# Android shows a one-time "Viewing full screen" tip over immersive apps: mark it as seen
+adb shell settings put secure immersive_mode_confirmations confirmed
 adb shell monkey -p "$PKG" -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
 t0=$(date +%s)
 # wait for the game's menu (the ad notice shows once the menu is up)
@@ -27,6 +29,9 @@ for m in re.finditer(r'<node [^>]*>',x):
             a=list(map(int,b.groups())); print((a[0]+a[2])//2,(a[1]+a[3])//2); break
 P
 )
+if [ -z "$B" ]; then   # WebView text not in the accessibility tree: the button's place in the layout (52.7 % width, 80.5 % height)
+  WH=$(adb shell wm size | tail -n 1 | grep -o '[0-9]*x[0-9]*'); W=${WH%x*}; H=${WH#*x}; [ "$W" -lt "$H" ] && { t=$W; W=$H; H=$t; }
+  B="$((W*527/1000)) $((H*805/1000))"; echo "konumla dokunuluyor: $B"; fi
 if [ -n "$B" ]; then note "reklam bildirimi göründü; 'Yalnız kişiselleştirilmemiş' seçildi"; adb shell input tap $B; else err "reklam bildirimi bulunamadı (ekran: 1-acilis.png)"; fi
 for i in $(seq 1 30); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
 adb exec-out screencap -p > "$OUT/2-menu.png"

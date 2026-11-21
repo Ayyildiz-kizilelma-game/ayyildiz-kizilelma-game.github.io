@@ -12,5 +12,11 @@
     "androidScheme": "https",
     "hostname": "localhost"
   },
-  "loggingBehavior": "production"
+  "loggingBehavior": "production",
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "disable",
+      "hidden": true
+    }
+  }
 }
