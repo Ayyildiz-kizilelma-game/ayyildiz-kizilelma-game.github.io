@@ -1,6 +1,12 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.68 — 2026-11-24 · Sıralama ve birlik yarışı
+- **Sıralama** (Kariyer → Sıralama): bu haftanın ve tüm zamanların en çok TP kazanan pilotları ve her yarışın en iyi süreleri. Kendi yerin altta yazar. Hafta Pazartesi 00:00'da (Türkiye saati) başlar.
+- **Birlik yarışı:** görevlerde kazandığın her TP birliğinin (Hilal Kanatlar, Mavi Kanatlar, Bozkurtlar) haftalık toplamına eklenir. Hafta bitince kazanan birlikte o hafta TP kazanan herkes 150 TP ödül alır. Puan, haftanın ilk TP'sini kazandığın birlikte kalır.
+- Misafirler sıralamayı görebilir; listeye girmek için giriş yapmak gerekiyor. Ekranda e-posta hiç görünmez: yalnız çağrı adı, birlik, arma ve puan. Gizlilik politikası buna göre güncellendi.
+- İnternet yokken kazanılan TP cihazda bekler, bağlantı gelince gönderilir.
+
 ## V2.67 — 2026-11-24 · Telefonda Ultra'da daha az işlemci yükü
 - **Telefonda Ultra'da daha az işlemci yükü.** Telefonlarda sahne şimdiye kadar iki derinlik katmanında (önce uzak, sonra yakın) çiziliyordu; çok uzak ve çok yakın nesneler birbirine karışmasın diye. Bu, birçok nesnenin iki kez çizilmesi demekti (son Ultra raporunda kare başına 75 çizim, ~4 ms işlemci). Artık "ters derinlik" ile tek geçişte aynı kesinlik sağlanıyor: alçak şehir uçuşunda 305 → 257, kalabalık savaşta 232 → 188 çizim. Görüntü aynı.
 - Efektler kapalıyken ve bilgisayarda eski yol sürüyor.

@@ -85,6 +85,7 @@ Bu rehber `python3 tools/ozellikler.py` ile oyundaki **Rehber** ekranıyla aynı
 
 - **Rütbe ve tecrübe puanı:** Er'den Orgeneral'e rütbeler, terfi töreni; rütbeyle açılan uçaklar, araçlar, görevler ve boyalar. *Nereden:* Ana menü → Kariyer.
 - **Uçuş okulu:** Adım adım dersler: kalkış, iniş, rüzgârlı iniş, helikopter, askı yükü, silah, gemiye iniş. *Nereden:* Kariyer → Eğitim.
+- **Sıralama ve birlik yarışı:** Bulut sıralaması: bu haftanın ve tüm zamanların en çok TP kazanan pilotları, her yarışın en iyi süreleri. Birlik yarışı: haftanın TP'si birliklere (Hilal Kanatlar, Mavi Kanatlar, Bozkurtlar) toplanır; kazanan birlikte o hafta TP kazanan herkes 150 TP alır. Hafta Pazartesi 00:00'da (Türkiye saati) başlar. Misafir okuyabilir, giriş yapan listeye girer. *Nereden:* Kariyer → Sıralama.
 - **Ehliyet ve sertifikalar:** İHA pilotu, pilot, tank sürücüsü, araç sürücüsü, kaptan belgeleri ve sınavları; belgesiz kullanım engeli. *Nereden:* Kariyer → Ehliyet ve Sertifikalar.
 - **Başarımlar, madalyalar, istatistikler:** Başarımlar, madalyalar, uçuş istatistikleri, rekorlar. *Nereden:* Kariyer · üstteki kupa düğmesi.
 

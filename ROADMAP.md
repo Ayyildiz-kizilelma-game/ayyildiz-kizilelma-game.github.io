@@ -6,15 +6,16 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 
 ## Şu an
 
-- **Oyun:** 71 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 64'ü iyi durumda, 4'ü iyileştirilmeli, 3'ü gerçek cihazda denenmeli.
+- **Oyun:** 72 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 65'i iyi durumda, 4'ü iyileştirilmeli, 3'ü gerçek cihazda denenmeli.
 - **Platformlar:** web (GitHub Pages) ve Android uygulaması (Capacitor, V2.62). Uygulama yeni sürümleri kendi içinden
   indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
   Kalabalık savaşta P90 30 FPS. V2.66 telefon raporu (Ultra): alçak şehir uçuşu ve kalabalık savaş P90 30, işlemci 17–19 ms; Orta'da her sahne 60 FPS. V2.67: telefonda ters derinlik tamponu, iki katmanlı derinlik kalktı (Ultra alçak uçuş 305 → 257, savaş 232 → 188 çizim, bilgisayarda öykünme); yeni telefon raporu bekleniyor.
-- **Testler:** 118 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
+- **Testler:** 119 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
+- **Sıralama (V2.68):** Kariyer → Sıralama: haftalık ve toplam TP, yarış rekorları, birlik yarışı (bulutta, Pazartesi başlayan haftalar).
 - **Bekleyen denemeler:** iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler

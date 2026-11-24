@@ -1147,3 +1147,17 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 /* V2.63 in-app update */
 .guncard{ max-width:520px; } .guncard ul{ margin:8px 0 6px 18px; padding:0; font-size:13px; line-height:1.5; opacity:.88; }
 .gunbar{ height:8px; border-radius:6px; background:rgba(184,236,255,.15); overflow:hidden; margin:10px 0 4px; } .gunbar i{ display:block; height:100%; width:0; background:#7dffb0; transition:width .2s; }
+/* V2.68 leaderboards and unit race */
+.lbcard{ max-width:620px; } .lbbody{ display:flex; flex-direction:column; gap:10px; }
+.lbtabs{ flex-wrap:wrap; } .lbraces button{ font-size:12px; }
+.lbl{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
+.lbl li{ display:flex; align-items:center; gap:10px; padding:7px 10px; border-radius:8px; background:rgba(8,15,28,.55); border:1px solid rgba(184,236,255,.10); }
+.lbl li.me{ border-color:#ffd27a; background:rgba(255,210,122,.10); }
+.lbl li:nth-child(-n+3) .lbs{ color:#ffd27a; }
+.lbs{ width:2.2em; text-align:right; font-weight:700; font-variant-numeric:tabular-nums; opacity:.9; } .lbe{ width:1.4em; text-align:center; }
+.lbn{ flex:1; min-width:0; display:flex; flex-direction:column; } .lbn b{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#eaf3f8; } .lbn small{ font-size:11px; opacity:.85; }
+.lbv{ font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.lbempty{ text-align:center; opacity:.7; padding:18px 0; margin:0; } .lbme{ font-size:13px; margin:2px 0 0; opacity:.9; } .lbinfo{ font-size:13px; line-height:1.45; margin:0; opacity:.85; }
+.lbbars{ display:flex; flex-direction:column; gap:10px; } .lbbar{ padding:8px 10px; border-radius:10px; background:rgba(8,15,28,.55); border:1px solid rgba(184,236,255,.10); } .lbbar.me{ border-color:rgba(255,210,122,.6); }
+.lbbh{ display:flex; justify-content:space-between; gap:8px; font-size:13px; margin-bottom:6px; } .lbbh span{ opacity:.75; white-space:nowrap; }
+.lbbt{ height:10px; border-radius:6px; background:rgba(184,236,255,.12); overflow:hidden; } .lbbt i{ display:block; height:100%; min-width:2px; transition:width .3s; }

@@ -67,3 +67,12 @@ Google Play, hesap açılan uygulamalarda oyuncunun hesabını **uygulamanın i�
 Her oyuncu yalnız kendi klasörünü görür. Bir model en çok 45 MB olabilir; daha büyükler yalnız cihazda kalır. Ücretsiz planda toplam depolama 1 GB'tır.
 
 **Sunucunun uyumaması:** Ücretsiz Supabase projeleri bir hafta kullanılmayınca duraklatılır (oyunda giriş yaparken "Failed to fetch"). Depodaki **Bulut sunucusunu uyanık tut** iş akışı üç günde bir sunucudan tek satır okur. Kurulum gerekmez. Sunucu yanıt vermezse iş kırmızı olur ve GitHub sana e-posta gönderir; o zaman supabase.com → proje → **Restore project**. GitHub, depoda 60 gün hiç değişiklik olmazsa zamanlanmış işleri durdurur; Actions sekmesinden yeniden açılır.
+
+## 8. Sıralama ve birlik yarışı (V2.68)
+
+Kariyer → Sıralama: haftalık ve toplam TP, yarış rekorları, birliklerin haftalık yarışı.
+
+1. Supabase → **SQL Editor** → **New query**.
+2. `supabase/siralama.sql` dosyasının tamamını yapıştır → **Run**.
+
+Oyuncu tablolara doğrudan yazamaz; TP ve yarış süresi yalnız sınırlı işlevlerle eklenir (çağrı başına en çok 1 500 TP, haftada en çok 100 000; yarışta 5 sn – 1 saat). Hafta Pazartesi 00:00'da (Türkiye saati) başlar. Hesap silinince kayıtlar da silinir.

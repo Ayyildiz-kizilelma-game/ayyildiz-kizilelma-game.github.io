@@ -53,6 +53,7 @@ F = [
  # ---- Kariyer
  ('Kariyer ve ilerleme','Rütbe ve tecrübe puanı','Er\'den Orgeneral\'e rütbeler, terfi töreni; rütbeyle açılan uçaklar, araçlar, görevler ve boyalar.','Ana menü → Kariyer','—','V1.67',T('career','progress'),'iyi',''),
  ('Kariyer ve ilerleme','Uçuş okulu','Adım adım dersler: kalkış, iniş, rüzgârlı iniş, helikopter, askı yükü, silah, gemiye iniş.','Kariyer → Eğitim','—','V1.78',T('school'),'iyi',''),
+ ('Kariyer ve ilerleme','Sıralama ve birlik yarışı','Bulut sıralaması: bu haftanın ve tüm zamanların en çok TP kazanan pilotları, her yarışın en iyi süreleri. Birlik yarışı: haftanın TP\'si birliklere (Hilal Kanatlar, Mavi Kanatlar, Bozkurtlar) toplanır; kazanan birlikte o hafta TP kazanan herkes 150 TP alır. Hafta Pazartesi 00:00\'da (Türkiye saati) başlar. Misafir okuyabilir, giriş yapan listeye girer.','Kariyer → Sıralama','—','V2.68',T('v268'),'iyi',''),
  ('Kariyer ve ilerleme','Ehliyet ve sertifikalar','İHA pilotu, pilot, tank sürücüsü, araç sürücüsü, kaptan belgeleri ve sınavları; belgesiz kullanım engeli.','Kariyer → Ehliyet ve Sertifikalar','—','V1.92',T('licenses'),'iyi',''),
  ('Kariyer ve ilerleme','Başarımlar, madalyalar, istatistikler','Başarımlar, madalyalar, uçuş istatistikleri, rekorlar.','Kariyer · üstteki kupa düğmesi','—','V1.79',T('progress'),'iyi',''),
  # ---- Çok oyunculu

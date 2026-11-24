@@ -140,6 +140,7 @@ ekran/magaza.js
 ag/uygulama.js
 ag/guncelleme.js
 ag/reklam.js
+ag/siralama.js
 ekran/sorun-giderme.js
 gorev/tp-dengesi.js
 performans/performans-testi.js

@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 71 özellik · ✅ iyi 64 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 72 özellik · ✅ iyi 65 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -89,6 +89,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 |---|---|---|---|---|---|---|
 | **Rütbe ve tecrübe puanı** | Er'den Orgeneral'e rütbeler, terfi töreni; rütbeyle açılan uçaklar, araçlar, görevler ve boyalar. | Ana menü → Kariyer | — | V1.67 | career, progress | ✅ iyi |
 | **Uçuş okulu** | Adım adım dersler: kalkış, iniş, rüzgârlı iniş, helikopter, askı yükü, silah, gemiye iniş. | Kariyer → Eğitim | — | V1.78 | school | ✅ iyi |
+| **Sıralama ve birlik yarışı** | Bulut sıralaması: bu haftanın ve tüm zamanların en çok TP kazanan pilotları, her yarışın en iyi süreleri. Birlik yarışı: haftanın TP'si birliklere (Hilal Kanatlar, Mavi Kanatlar, Bozkurtlar) toplanır; kazanan birlikte o hafta TP kazanan herkes 150 TP alır. Hafta Pazartesi 00:00'da (Türkiye saati) başlar. Misafir okuyabilir, giriş yapan listeye girer. | Kariyer → Sıralama | — | V2.68 | v268 | ✅ iyi |
 | **Ehliyet ve sertifikalar** | İHA pilotu, pilot, tank sürücüsü, araç sürücüsü, kaptan belgeleri ve sınavları; belgesiz kullanım engeli. | Kariyer → Ehliyet ve Sertifikalar | — | V1.92 | licenses | ✅ iyi |
 | **Başarımlar, madalyalar, istatistikler** | Başarımlar, madalyalar, uçuş istatistikleri, rekorlar. | Kariyer · üstteki kupa düğmesi | — | V1.79 | progress | ✅ iyi |
 
