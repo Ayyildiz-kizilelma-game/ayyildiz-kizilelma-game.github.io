@@ -1,15 +1,21 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.64 · son güncelleme: 24 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.65 · son güncelleme: 24 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
 ## Şu an
 
-- **Oyun:** 61 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 55'i iyi durumda, 3'ü iyileştirilmeli, 3'ü gerçek cihazda denenmeli.
-- **Telefon (Samsung Xclipse 920, Ultra):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye. Kalabalık savaşta P90 30 FPS.
-- **Testler:** 95 test 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres) ve metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
-- **Bekleyen denemeler:** iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet.
+- **Oyun:** 71 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 64'ü iyi durumda, 4'ü iyileştirilmeli, 3'ü gerçek cihazda denenmeli.
+- **Platformlar:** web (GitHub Pages) ve Android uygulaması (Capacitor, V2.62). Uygulama yeni sürümleri kendi içinden
+  indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
+- **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
+- **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
+  Kalabalık savaşta P90 30 FPS. r187 ile yeni ölçüm V2.66'da.
+- **Testler:** 116 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
+  metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
+- **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
+- **Bekleyen denemeler:** iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler
 
@@ -40,7 +46,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.62 | Gelir yolu 2 — Android kabuğu Capacitor'a geçer; AdMob ödüllü reklamlar deneme modunda; reklam izni ekranı (KVKK/GDPR) ve gizlilik metni; Android emülatör testi GitHub Actions'ta | ✅ |
 | V2.63 | Uygulama içinden hızlı güncelleme: açılışta "Yeni sürüm" kartı, APK indirmeden birkaç saniyede güncelleme (oyuncu isteği, 22 Kasım) | ✅ |
 | V2.64 | three.js r128 → r187, görünüm aynı: kendi paketimiz (tools/three), r128 uyum katmanı (ışıklar, renk, efektler, ortam haritası) | ✅ |
-| V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | |
+| V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | ✅ |
 | V2.66 | three.js: telefon ölçümü, temizlik ve karar belgesinin sonucu | |
 | V2.67 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması (Play Console hesabı açılınca) | |
 | V2.68 | Kalabalık savaşta 60 FPS | |
