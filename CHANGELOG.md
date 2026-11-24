@@ -1,6 +1,13 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.69 — 2026-11-24 · Sezonlar ve Harekât Kartı
+- **Sezonlar ve Harekât Kartı** (Kariyer → Harekât Kartı): sezonlar millî günlerde başlar: 18 Mart, 19 Mayıs, 30 Ağustos, 29 Ekim. İlk sezon "Çanakkale Geçilmez" 18 Mart 2027'de başlıyor; o güne kadar 10 seviyelik **Hazırlık Dönemi** açık.
+- Kariyerde kazandığın her TP sezon puanı da sayılır; millî günün kendisinde 2 katı. Her hafta 3 sezon görevi (+500 SP). 1000 SP bir seviye.
+- Ücretsiz yolda TP, sezon amblemi ve sezon kaplaması. Harekât Kartı yolunda yalnız sezon kaplamaları ve amblemler: para güç satın almaz. Alınmamış ödüller sezon bitince kendiliğinden verilir; kaplamalar ve amblemler senin kalır. Harekât Kartı'nın satın alınması Google Play ile (V2.74) gelecek.
+- **Günlük ödül:** her gün ilk girişte 50 TP'den başlayıp 7. günde 150 TP'ye çıkar; bir gün kaçarsa baştan. Ödüllü reklamla 2 katı alınabilir.
+- **Harekât'ta kaldığın yerden devam:** Kızıl Elma'da bir bölümün bir kısmını yapıp başarısız olursan (geçilen hedefler, düşürülen İHA'lar, refakatte gidilen yol), görev sonu ekranındaki düğmeyle reklam izleyip oradan devam edebilirsin.
+
 ## V2.68 — 2026-11-24 · Sıralama ve birlik yarışı
 - **Sıralama** (Kariyer → Sıralama): bu haftanın ve tüm zamanların en çok TP kazanan pilotları ve her yarışın en iyi süreleri. Kendi yerin altta yazar. Hafta Pazartesi 00:00'da (Türkiye saati) başlar.
 - **Birlik yarışı:** görevlerde kazandığın her TP birliğinin (Hilal Kanatlar, Mavi Kanatlar, Bozkurtlar) haftalık toplamına eklenir. Hafta bitince kazanan birlikte o hafta TP kazanan herkes 150 TP ödül alır. Puan, haftanın ilk TP'sini kazandığın birlikte kalır.

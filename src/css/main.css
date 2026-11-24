@@ -1161,3 +1161,27 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .lbbars{ display:flex; flex-direction:column; gap:10px; } .lbbar{ padding:8px 10px; border-radius:10px; background:rgba(8,15,28,.55); border:1px solid rgba(184,236,255,.10); } .lbbar.me{ border-color:rgba(255,210,122,.6); }
 .lbbh{ display:flex; justify-content:space-between; gap:8px; font-size:13px; margin-bottom:6px; } .lbbh span{ opacity:.75; white-space:nowrap; }
 .lbbt{ height:10px; border-radius:6px; background:rgba(184,236,255,.12); overflow:hidden; } .lbbt i{ display:block; height:100%; min-width:2px; transition:width .3s; }
+/* V2.69 seasons, Harekât Kartı, daily reward */
+.szcard{ max-width:680px; } .szbody{ display:flex; flex-direction:column; gap:8px; }
+.szhead{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; border-left:4px solid var(--szc,#ffd27a); padding-left:12px; }
+.szhead h3{ margin:2px 0 4px; font-size:20px; } .szhead .k{ margin:0; font-size:11px; letter-spacing:.14em; opacity:.75; }
+.szlv{ text-align:center; min-width:64px; } .szlv b{ display:block; font-size:34px; line-height:1; color:#ffd27a; } .szlv small{ opacity:.7; }
+.szbar{ height:10px; border-radius:6px; background:rgba(184,236,255,.12); overflow:hidden; } .szbar i{ display:block; height:100%; background:linear-gradient(90deg,#ffb25a,#ffd27a); }
+.szbay{ margin:0; padding:8px 10px; border-radius:8px; background:rgba(200,16,46,.22); border:1px solid rgba(255,107,107,.5); font-size:13px; }
+.szh{ margin:6px 0 2px; font-size:11px; letter-spacing:.16em; opacity:.7; } .szth{ display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.sztasks{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:6px; } .sztasks .tk{ padding:6px 8px; border-radius:8px; background:rgba(8,15,28,.55); font-size:12px; } .sztasks .tk.on{ opacity:.6; }
+.szkart{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding:8px 10px; border-radius:10px; border:1px dashed rgba(255,210,122,.6); font-size:12.5px; } .szkart span{ flex:1; min-width:180px; opacity:.85; }
+.sztrack{ display:flex; flex-direction:column; gap:3px; }
+.szrow{ display:grid; grid-template-columns:2.4em 1fr 1fr; gap:6px; align-items:center; } .sztrack.solo .szrow{ grid-template-columns:2.4em 1fr; }
+.szhdr{ font-size:11px; letter-spacing:.08em; opacity:.7; text-transform:uppercase; }
+.szn{ text-align:center; font-weight:700; opacity:.6; } .szrow.on .szn{ opacity:1; color:#ffd27a; } .szrow.nx .szn{ outline:1px dashed rgba(255,210,122,.6); border-radius:6px; }
+.szc{ display:flex; align-items:center; justify-content:space-between; gap:6px; min-height:34px; padding:4px 8px; border-radius:8px; background:rgba(8,15,28,.5); border:1px solid rgba(184,236,255,.08); font-size:12.5px; }
+.szrow:not(.on) .szc{ opacity:.55; } .szc.got{ border-color:rgba(125,255,176,.35); } .szc.lk{ background:rgba(8,15,28,.3); } .szc em{ color:#7dffb0; font-style:normal; font-weight:700; }
+.szc .btn.sm{ padding:3px 10px; font-size:12px; } .szno{ opacity:.35; } .sztp{ color:#b8ecff; }
+.szbo{ display:flex; align-items:center; gap:6px; } .szbo i{ width:18px; height:18px; border-radius:50%; border:1px solid rgba(255,255,255,.35); overflow:hidden; }
+.szem{ display:flex; align-items:center; gap:6px; } .szem b{ font-size:17px; }
+.gocard{ max-width:500px; } .godays{ display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin:8px 0 12px; }
+.godays span{ display:flex; flex-direction:column; align-items:center; padding:6px 2px; border-radius:8px; background:rgba(8,15,28,.55); border:1px solid rgba(184,236,255,.1); font-size:11px; }
+.godays b{ font-size:16px; } .godays em{ font-style:normal; opacity:.6; font-size:10px; } .godays .got{ opacity:.45; } .godays .now{ border-color:#ffd27a; background:rgba(255,210,122,.12); }
+.gocard .btn.gold{ border-color:#ffc24a; color:#ffd27a; }
+.szbody>*, .lbbody>*{ flex-shrink:0; }   /* a scrolling flex column must not squash its rows (the level bar vanished) */
