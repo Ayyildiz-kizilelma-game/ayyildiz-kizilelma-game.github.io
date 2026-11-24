@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.65 · son güncelleme: 24 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.66 · son güncelleme: 24 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -12,7 +12,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
   Kalabalık savaşta P90 30 FPS. r187 ile yeni ölçüm telefon raporu gelince (V2.68).
-- **Testler:** 116 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
+- **Testler:** 117 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
 - **Bekleyen denemeler:** iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
@@ -47,7 +47,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.63 | Uygulama içinden hızlı güncelleme: açılışta "Yeni sürüm" kartı, APK indirmeden birkaç saniyede güncelleme (oyuncu isteği, 22 Kasım) | ✅ |
 | V2.64 | three.js r128 → r187, görünüm aynı: kendi paketimiz (tools/three), r128 uyum katmanı (ışıklar, renk, efektler, ortam haritası) | ✅ |
 | V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | ✅ |
-| V2.66 | Savaşta takılmalar: akıllı performans gölgeyi kapatınca shader'lar yeniden derlenmesin (gölgesiz varyantlar ve görev nesneleri önceden, arka planda derleniyor) | |
+| V2.66 | Savaşta takılmalar: akıllı performans gölgeyi kapatınca shader'lar yeniden derlenmesin (gölgesiz varyantlar ve görev nesneleri önceden, arka planda derleniyor) | ✅ |
 | V2.67 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması (Play Console hesabı açılınca) | |
 | V2.68 | Kalabalık savaşta 60 FPS ve three.js r187'nin telefonda ölçümü (oyuncunun telefonundan performans raporu gerekli) | |
 | V2.69 | Liderlik tabloları ve birlik yarışı | |
