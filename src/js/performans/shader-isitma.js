@@ -29,11 +29,30 @@ function warmStep(budget){ if(WARM.done||SETTINGS.warm===false) return 0; if(WAR
     while(WARM.i<WARM.q.length){ const o=WARM.q[WARM.i++]; if(o.parent===null) continue;   /* removed meanwhile */ one[0]=o;
       try{ renderer.compile(WARM.px,camera); }catch(e){ if(!WARM.err){ WARM.err=1; console.warn('ısıtma',e); } }
       n++; if(performance.now()-t0>budget) break; } }
-  WARM.n+=n; WARM.ms+=performance.now()-t0; if(WARM.i>=WARM.q.length&&!WARM.pend){ WARM.done=true; WARM.at=Math.round(performance.now()); } return n; }
+  WARM.n+=n; WARM.ms+=performance.now()-t0; if(WARM.i>=WARM.q.length&&!WARM.pend){ if(warmVariant()) return n; WARM.done=true; WARM.at=Math.round(performance.now()); } return n; }
+/* V2.66: smart performance (optimizasyon-1 perfLadder) turns shadows off when a battle gets heavy. That changes every
+   material's program (no shadow sampling), so the old programs could not be reused: the stress test compiled 33
+   programs in 10 s of battle, exactly when the game was already slow. After the normal warm-up, the same materials are
+   compiled once more as they are without shadows (only inside the compile call; nothing is drawn that way), so the
+   switch later finds every program ready. */
+function warmVariant(R,LT){ R=R||renderer; LT=LT||sunLight; /* (R, LT: stand-ins in tests) */ if(WARM.varDone||!R.compileAsync||SETTINGS.warmAsync===false) return false;
+  if(!R.shadowMap.enabled||!LT||!LT.castShadow){ WARM.varDone=true; return false; }
+  WARM.varDone=true; const L=WARM.q.filter(function(o){ return o.parent!==null; }); if(!L.length) return false;
+  const prevT=WARM.px.traverse; WARM.px.traverse=function(cb){ for(let i=0;i<L.length;i++) cb(L[i]); };
+  const t0=performance.now(), p0=(R.info.programs||[]).length;
+  R.shadowMap.enabled=false; LT.castShadow=false;
+  try{ WARM.pend=Promise.resolve(R.compileAsync(WARM.px,camera)).catch(function(){}).then(function(){ WARM.pend=null; WARM.varN=(R.info.programs||[]).length-p0; }); }
+  finally{ R.shadowMap.enabled=true; LT.castShadow=true; WARM.px.traverse=prevT; }
+  WARM.varMs=Math.round(performance.now()-t0); return true; }
 function warmStart(){ if(SETTINGS.warm===false) return; if(!WARM.prog0) WARM.prog0=(renderer.info.programs||[]).length; warmScan(); }
 /* title menu only: in play the programs compile on first sight as before */
-cullStep=HOOK.wrap('cullStep','performans/shader-isitma#_wmCull',function(_wmCull){ return function(dt){ _wmCull(dt); if(!WARM.started||WARM.done) return; if(state!=='menu') return; try{ warmStep(8); }catch(e){} }; },cullStep);
-enterTitle=HOOK.wrap('enterTitle','performans/shader-isitma#_wmTitle',function(_wmTitle){ return function(){ const r=_wmTitle.apply(this,arguments); if(WARM.started){ try{ warmScan(); }catch(e){} } return r; }; },enterTitle);
+/* V2.66: with compileAsync the warm-up also runs in play: what a mission adds (AI aircraft, targets, its effects) is
+   compiled ahead while it is still out of sight, in both shadow variants. The synchronous path stays menu-only. */
+function warmPlayOk(){ return !!renderer.compileAsync&&SETTINGS.warmAsync!==false&&(state==='play'||state==='walk'); }
+cullStep=HOOK.wrap('cullStep','performans/shader-isitma#_wmCull',function(_wmCull){ return function(dt){ _wmCull(dt); if(!WARM.started||WARM.done) return; if(state!=='menu'&&!warmPlayOk()) return; try{ warmStep(8); }catch(e){} }; },cullStep);
+startGame=HOOK.wrap('startGame','performans/shader-isitma#_wmGame',function(next){ return function(){ const r=next.apply(this,arguments);
+  if(WARM.started&&SETTINGS.warm!==false) setTimeout(function(){ if(!warmPlayOk()) return; try{ WARM.varDone=false; WARM.ext=(WARM.ext||0)+warmScan(); }catch(e){} },1200); return r; }; },startGame);
+enterTitle=HOOK.wrap('enterTitle','performans/shader-isitma#_wmTitle',function(_wmTitle){ return function(){ const r=_wmTitle.apply(this,arguments); if(WARM.started){ try{ WARM.varDone=false; warmScan(); }catch(e){} } return r; }; },enterTitle);
 setTimeout(function(){ if(WARM.started) return; WARM.started=true; try{ warmStart(); }catch(e){ console.warn('ısıtma',e); } },4600);   /* after merging (2.5 s) and baking (4 s) */
 /* start-up timings in the performance report */
 function bootInfo(){ const M={}; BOOT.marks.forEach(function(m){ M[m[0]]=m[1]; }); const steps=BOOT.stepMs.slice().sort(function(a,b){ return b[1]-a[1]; }).slice(0,4);

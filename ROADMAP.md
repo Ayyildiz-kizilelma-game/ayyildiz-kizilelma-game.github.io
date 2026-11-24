@@ -11,7 +11,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
   indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
-  Kalabalık savaşta P90 30 FPS. r187 ile yeni ölçüm V2.66'da.
+  Kalabalık savaşta P90 30 FPS. r187 ile yeni ölçüm telefon raporu gelince (V2.68).
 - **Testler:** 116 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
@@ -47,9 +47,9 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.63 | Uygulama içinden hızlı güncelleme: açılışta "Yeni sürüm" kartı, APK indirmeden birkaç saniyede güncelleme (oyuncu isteği, 22 Kasım) | ✅ |
 | V2.64 | three.js r128 → r187, görünüm aynı: kendi paketimiz (tools/three), r128 uyum katmanı (ışıklar, renk, efektler, ortam haritası) | ✅ |
 | V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | ✅ |
-| V2.66 | three.js: telefon ölçümü, temizlik ve karar belgesinin sonucu | |
+| V2.66 | Savaşta takılmalar: akıllı performans gölgeyi kapatınca shader'lar yeniden derlenmesin (gölgesiz varyantlar ve görev nesneleri önceden, arka planda derleniyor) | |
 | V2.67 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması (Play Console hesabı açılınca) | |
-| V2.68 | Kalabalık savaşta 60 FPS | |
+| V2.68 | Kalabalık savaşta 60 FPS ve three.js r187'nin telefonda ölçümü (oyuncunun telefonundan performans raporu gerekli) | |
 | V2.69 | Liderlik tabloları ve birlik yarışı | |
 | V2.70 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart) | |
 | V2.71 | Filo (klan) sistemi | |

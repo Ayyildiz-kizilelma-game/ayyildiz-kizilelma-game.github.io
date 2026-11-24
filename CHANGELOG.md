@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.66 — 2026-11-24 · Savaşta takılmalar
+- **Savaşta takılmalar azaldı.** Akıllı performans, kalabalık bir savaşta görüntü ağırlaşınca gölgeleri kapatıyor. Bu, her malzemenin gölgelendiricisinin (shader) yeniden derlenmesi demekti: denemede 10 saniyelik savaşta 33 derleme oluyordu (son telefon raporundaki 863 ms'lik tek karelik donmanın da büyük olasılıkla sebebi buydu). Artık malzemelerin gölgesiz hâli de menüdeyken önceden, arka planda derleniyor; aynı denemede 33 → 6.
+- Görev başlarken eklenen nesneler (yapay zekâ uçakları, hedefler, efektleri) de görünmeden önce arka planda derleniyor; ilk karşılaşmada takılma olmasın diye.
+- Yol haritası: kalabalık savaşta 60 FPS ve yeni grafik motorunun telefonda ölçümü V2.68'de birleşti (telefondan performans raporu gerekiyor).
+
 ## V2.65 — 2026-11-24 · Toplu çizim
 - **Daha az çizim çağrısı:** şehirlerin ve üslerin birleştirilmiş parçaları artık malzeme başına tek seferde çiziliyor (three.js r187 BatchedMesh). 102 parça 12 çizime indi; uçuşta 272 → 242, şehirde 280 → 265, ormanda 341 → 315 çizim. Görüntü aynı. Telefonda işlemci yükünü azaltması bekleniyor; ölçüm V2.66'da.
 - **Daha hızlı ön derleme:** menüdeyken yapılan gölgelendirici (shader) hazırlığı artık sürücüye toplu veriliyor ve oyun beklemiyor; test makinesinde 336 malzeme toplam 23 ms işlemci süresi tuttu (önce saniyeler boyunca kare başına 8 ms).
