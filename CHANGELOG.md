@@ -1,6 +1,12 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.67 — 2026-11-24 · Telefonda Ultra'da daha az işlemci yükü
+- **Telefonda Ultra'da daha az işlemci yükü.** Telefonlarda sahne şimdiye kadar iki derinlik katmanında (önce uzak, sonra yakın) çiziliyordu; çok uzak ve çok yakın nesneler birbirine karışmasın diye. Bu, birçok nesnenin iki kez çizilmesi demekti (son Ultra raporunda kare başına 75 çizim, ~4 ms işlemci). Artık "ters derinlik" ile tek geçişte aynı kesinlik sağlanıyor: alçak şehir uçuşunda 305 → 257, kalabalık savaşta 232 → 188 çizim. Görüntü aynı.
+- Efektler kapalıyken ve bilgisayarda eski yol sürüyor.
+- Performans testi ipuçlarındaki eski sürüm sözleri ("V2.18'de küçültülecek" gibi) kaldırıldı.
+- Mağaza: Google Play ile gerçek satın alma V2.74'e (yol haritasının sonuna) taşındı.
+
 ## V2.66 — 2026-11-24 · Savaşta takılmalar
 - **Savaşta takılmalar azaldı.** Akıllı performans, kalabalık bir savaşta görüntü ağırlaşınca gölgeleri kapatıyor. Bu, her malzemenin gölgelendiricisinin (shader) yeniden derlenmesi demekti: denemede 10 saniyelik savaşta 33 derleme oluyordu (son telefon raporundaki 863 ms'lik tek karelik donmanın da büyük olasılıkla sebebi buydu). Artık malzemelerin gölgesiz hâli de menüdeyken önceden, arka planda derleniyor; aynı denemede 33 → 6.
 - Görev başlarken eklenen nesneler (yapay zekâ uçakları, hedefler, efektleri) de görünmeden önce arka planda derleniyor; ilk karşılaşmada takılma olmasın diye.

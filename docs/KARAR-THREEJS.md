@@ -72,3 +72,15 @@ paketliyoruz:
 - **Asenkron shader ısıtma:** menüdeki ön derleme `renderer.compileAsync` ile 48'lik gruplar hâlinde; sürücü programları
   paralel derliyor (KHR_parallel_shader_compile), oyun beklemiyor. Test makinesinde 336 malzeme toplam 23 ms işlemci
   süresi (önce: kare başına 8 ms, birkaç saniye).
+
+## Kazanımlar (V2.67)
+
+- **Ters derinlik tamponu (telefon):** logaritmik derinlik kullanılmayan cihazlarda `reversedDepthBuffer` açık; efekt
+  tamponuna 32 bit kayan noktalı derinlik dokusu (`DepthTexture`, `FloatType`) bağlanıyor, şablon (stencil) tamponu
+  kapalı (MSAA çözümlemesinde derinlik/şablon biçimi uyuşmayınca görüntü kararıyordu). Bu kesinlik yeterli olduğundan
+  sahne artık iki derinlik katmanında (uzak, sonra yakın) çizilmiyor: V2.66 Ultra raporunda bu bölme 75 çizim ve 3,9 ms
+  işlemci tutuyordu. Ölçüm (telefon öykünmesi 832×384, piksel oranı 1,75, Ultra): alçak şehir uçuşu 305 → 257, kalabalık
+  savaş 232 → 188 çizim; görüntü farkı ortalama ±2'nin altında.
+- Efektler kapalıyken (doğrudan ekrana çizim, 24 bit derinlik) bölme eskisi gibi sürüyor. Bilgisayardaki logaritmik
+  derinlik yolu değişmedi. `?tersderinlik=0` ile eski yol karşılaştırılabilir; performans raporuna `revDepth` ve `split`
+  eklendi.

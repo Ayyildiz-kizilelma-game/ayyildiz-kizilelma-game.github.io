@@ -40,7 +40,7 @@ function ptRefresh(iv){ if(!iv.length) return 60; const m=ptPct(iv,25), hz=1000/
 function ptTexMem(){ const T=new Map(); try{ scene.traverse(function(o){ const ms=o.material?(Array.isArray(o.material)?o.material:[o.material]):[]; ms.forEach(function(m){ ['map','emissiveMap','normalMap','alphaMap','envMap','aoMap','lightMap','bumpMap','roughnessMap','metalnessMap'].forEach(function(k){ const t=m[k]; if(t&&t.image) T.set(t.uuid,t); }); }); }); }catch(e){}
   let b=0; T.forEach(function(t){ const im=t.image, w=im.width||0, h=im.height||0; b+=w*h*4*(t.generateMipmaps!==false&&t.minFilter!==THREE.LinearFilter&&t.minFilter!==THREE.NearestFilter?1.33:1); }); return {n:T.size, mb:Math.round(b/1048576)}; }
 function ptDevice(){ const d={kind:DEV.kind, mobile:!!DEV.mobile, gpu:String(DEV.gpu||'?').slice(0,120), webgl:DEV.webgl, ua:String((typeof navigator!=='undefined'&&navigator.userAgent)||'').slice(0,200), cores:(typeof navigator!=='undefined'&&navigator.hardwareConcurrency)||null, mem:(typeof navigator!=='undefined'&&navigator.deviceMemory)||null,
-    sw:(typeof screen!=='undefined'&&screen.width)||0, sh:(typeof screen!=='undefined'&&screen.height)||0, dpr:(typeof window!=='undefined'&&window.devicePixelRatio)||1, pr:ptR1(renderer.getPixelRatio()*100)/100, logDepth:!!DEV.logDepth, tier:(typeof devTier==='function'?devTier():null),
+    sw:(typeof screen!=='undefined'&&screen.width)||0, sh:(typeof screen!=='undefined'&&screen.height)||0, dpr:(typeof window!=='undefined'&&window.devicePixelRatio)||1, pr:ptR1(renderer.getPixelRatio()*100)/100, logDepth:!!DEV.logDepth, revDepth:!!DEV.revDepth, split:PERF2.split, tier:(typeof devTier==='function'?devTier():null),
     standalone:!!(typeof window!=='undefined'&&window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches), maxTex:(renderer.capabilities&&renderer.capabilities.maxTextureSize)||null, gpuTimer:!!(PT.gq&&PT.gq.ext) };
   try{ const v=renderer.getDrawingBufferSize(new THREE.Vector2()); d.bw=v.x; d.bh=v.y; }catch(e){}
   return d; }
@@ -163,12 +163,12 @@ function ptTips(r){ const T=[], rf=r.refresh||60;
   else if(/gpu/.test(r.sum.bound)) T.push('Asıl darboğaz ekran kartı. Çizilen piksel ve nesne sayısını azaltan ayarlar en çok kazandırır.');
   else if(r.sum.bound==='cpu') T.push('Asıl darboğaz işlemci (oyun mantığı ve çizim komutları). Görüş mesafesi ve kalabalık azaltılmalı.');
   top.slice(0,3).forEach(function(f){ T.push(f.name+' kapatılınca kare '+(f.gpu!=null?f.gpu+' ms (ekran kartı)':f.ms90+' ms (P90)')+' kısalıyor'+(f.pct>0?' (%'+f.pct+')':'')+'.'); });
-  const lg=r.feats.find(function(f){ return f.id==='logderinlik'; }); if(lg&&((lg.gpu!=null?lg.gpu:lg.ms90)>1)) T.push('Logaritmik derinlik bu bilgisayarda pahalı; V2.16\'da kaldırılacak.');
-  const fx=r.fx.filter(function(x){ return x.spike>Math.max(50,x.med*3); }); if(fx.length) T.push('İlk '+fx.map(function(x){ return x.k; }).join(' ve ')+' anında takılma var ('+fx.map(function(x){ return Math.round(x.spike)+' ms'; }).join(', ')+'); shader ön derleme (V2.18) bunu giderecek.');
+  const lg=r.feats.find(function(f){ return f.id==='logderinlik'; }); if(lg&&((lg.gpu!=null?lg.gpu:lg.ms90)>1)) T.push('Logaritmik derinlik bu bilgisayarda pahalı.');
+  const fx=r.fx.filter(function(x){ return x.spike>Math.max(50,x.med*3); }); if(fx.length) T.push('İlk '+fx.map(function(x){ return x.k; }).join(' ve ')+' anında takılma var ('+fx.map(function(x){ return Math.round(x.spike)+' ms'; }).join(', ')+').');
   if(r.stress&&r.base&&r.stress.p90<r.base.p90*0.7) T.push('Kalabalık savaşta P90 '+r.base.p90+' → '+r.stress.p90+' FPS düşüyor.');
   if(r.warm.length>=4){ const a=r.warm[0].p90, b=r.warm[r.warm.length-1].p90; if(b<a*0.85) T.push('Isınma: 5 dakikada P90 '+a+' → '+b+' FPS (%'+Math.round((1-b/a)*100)+' düşüş). Cihaz ısınınca yavaşlıyor.'); else T.push('Isınma testinde belirgin yavaşlama yok ('+a+' → '+b+' FPS).'); }
   if(r.sum.slow>25) T.push('Karelerin %'+r.sum.slow+'\'i 20 FPS\'in altında: Google Play ölçütüne göre bu bir "yavaş oturum" (sınır %25).'); else if(r.sum.slow>5) T.push('Karelerin %'+r.sum.slow+'\'i 20 FPS\'in altında: Google Play\'in "yavaş oturum" sınırına (%25) yaklaşıyor.');
-  if(r.mem&&r.mem.tex&&r.mem.tex.mb>(r.dev.mobile?60:150)) T.push('Doku belleği yüksek (~'+r.mem.tex.mb+' MB); V2.17\'de küçültülecek.');
+  if(r.mem&&r.mem.tex&&r.mem.tex.mb>(r.dev.mobile?60:150)) T.push('Doku belleği yüksek (~'+r.mem.tex.mb+' MB).');
   return T.map(function(t){ return t.replace(/(^|[^V\d.])(\d+)\.(\d)/g,'$1$2,$3'); }); }   /* Turkish decimals; keeps version numbers like V2.16 */
 function ptFinish(aborted){ if(!PT.run) return; const prev=PT.steps[PT.si]; try{ if(prev&&prev.exit) prev.exit(); }catch(e){} if(PT.seg&&prev&&!prev.idle&&!prev.fx&&PT.seg.ft.length>20) PT.segs.push(ptSummaryFull(prev,PT.seg));
   PT.run=false; PT.path=null; PT.seg=null; ptStressOff();

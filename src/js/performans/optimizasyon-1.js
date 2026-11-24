@@ -19,7 +19,9 @@ frame=function(now){ const cap=fpsCap();
   if(cap>0&&now){ const iv=1000/cap; if(now-PERF2.capLast<iv-2.5){ requestAnimationFrame(frame); return; } PERF2.capLast=(now-PERF2.capLast>iv*3)?now:PERF2.capLast+iv; }
   _p2Frame(now); };
 /* ---- depth split */
-function splitWanted(){ return !DEV.logDepth&&SETTINGS.split!==false; }
+/* V2.67: no split while the scene goes into the effects buffer with reversed float depth (a phone report showed the
+   split cost 75 draw calls and 3.9 ms of CPU per frame on Ultra); with effects off it is still needed */
+function splitWanted(){ return !DEV.logDepth&&SETTINGS.split!==false&&!(DEV.revDepth&&FX.floatDepth&&FX.on&&FX.composer); }
 (function(){ if(!renderer||typeof renderer.render!=='function') return; const rr=renderer.render.bind(renderer);
   renderer.render=function(sc,cam){
     if(sc!==scene||cam!==camera) return rr(sc,cam);

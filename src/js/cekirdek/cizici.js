@@ -12,7 +12,8 @@ const DEV=(function(){ let coarse=false, ua=(navigator.userAgent||''), st={};
     logDepth:!safe&&(depth==='log'||(depth==='auto'&&!mobile)), gpu:'?', webgl:'?'}; })();
 try{
   if(!window.THREE) throw new Error('three');
-  renderer = new THREE.WebGLRenderer({canvas:$('gl'), antialias:!DEV.safe, powerPreference:'high-performance', precision:'highp', logarithmicDepthBuffer:DEV.logDepth});   /* log depth on PC: no z-fighting on distant runways; phones use a moving near plane instead */
+  renderer = new THREE.WebGLRenderer({canvas:$('gl'), antialias:!DEV.safe, powerPreference:'high-performance', precision:'highp', logarithmicDepthBuffer:DEV.logDepth,
+    reversedDepthBuffer:!DEV.logDepth&&!DEV.safe&&!/[?&]tersderinlik=0\b/.test(location.search)});   /* V2.67: reversed depth (EXT_clip_control) for phones; with a 32-bit float depth buffer (effects on) it replaces the two-layer depth split */   /* log depth on PC: no z-fighting on distant runways; phones use a moving near plane instead */
 }catch(e){
   $('title').innerHTML = '<div class="box ui"><h1>AY YILDIZ</h1><p class="tag">Bu tarayıcıda 3B grafik başlatılamadı. Donanım hızlandırmayı açıp sayfayı yenile.</p></div>';
   return;
@@ -20,6 +21,7 @@ try{
 renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
 try{ const gl=renderer.getContext(), ext=gl.getExtension('WEBGL_debug_renderer_info'); DEV.gpu=ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER); DEV.webgl=renderer.capabilities.isWebGL2?'WebGL 2':'WebGL 1';
   DEV.hp=renderer.capabilities.precision; DEV.maxTex=renderer.capabilities.maxTextureSize; DEV.depthBits=gl.getParameter(gl.DEPTH_BITS); }catch(e){}
+try{ DEV.revDepth=!!(renderer.capabilities.reversedDepthBuffer&&renderer.state.buffers.depth.getReversed()); }catch(e){ DEV.revDepth=false; }
 const GFX={trees:null,clouds:null,treeN:0,cloudN:0};
 const scene = new THREE.Scene();
 const HORIZON = new THREE.Color(0xc2d8e8);

@@ -30,8 +30,11 @@ fxBuild=function(){
   FX.hdr=halfOK&&FX.level>=2&&!DEV.mobile&&!DEV.safe&&cls!=='igpu'&&cls!=='soft';
   const pr=renderer.getPixelRatio(), W=Math.max(1,Math.round(HW*pr)), H=Math.max(1,Math.round(HH*pr));
   const opts={minFilter:THREE.LinearFilter, magFilter:THREE.LinearFilter, format:THREE.RGBAFormat, type:FX.hdr?THREE.HalfFloatType:THREE.UnsignedByteType, depthBuffer:true, stencilBuffer:true /* r128: without stencil the depth buffer is 16 bit */};
+  if(DEV.revDepth&&THREE.DepthTexture) opts.stencilBuffer=false;   /* V2.67: float depth is a depth-only format (with stencil the MSAA resolve could not copy it); r187 gives 24 bit depth without stencil anyway */
   const aa=fxAAChoice(); let rt; FX.msaa=w2&&!!THREE.WebGLMultisampleRenderTarget&&(aa==='msaa4'||aa==='msaa8'||(aa==='auto'&&!DEV.mobile));
   if(FX.msaa){ rt=new THREE.WebGLMultisampleRenderTarget(W,H,opts); let mx=4; try{ mx=gl.getParameter(gl.MAX_SAMPLES)||4; }catch(e){} rt.samples=Math.min(aa==='msaa8'?8:4,mx); FX.samples=rt.samples; } else { rt=new THREE.WebGLRenderTarget(W,H,opts); FX.samples=0; }
+  /* V2.67: reversed depth + 32-bit float depth in the effects buffer: precise enough for the whole island in one pass */
+  FX.floatDepth=false; if(DEV.revDepth&&THREE.DepthTexture){ try{ rt.depthTexture=new THREE.DepthTexture(W,H,THREE.FloatType); FX.floatDepth=true; }catch(e){} }
   if(FX.composer){ try{ FX.composer.renderTarget1.dispose(); FX.composer.renderTarget2.dispose(); }catch(e){} }
   const c=new THREE.EffectComposer(renderer,rt); c.setPixelRatio(pr); c.setSize(HW,HH);
   c.addPass(new THREE.RenderPass(scene,camera));
@@ -75,13 +78,13 @@ function ptApplyRec(rec){ if(!rec||!rec.ch.length) return; const s=rec.set; Obje
   saveSettings(); applyQuality(); try{ syncSettingsUI(); }catch(e){} toast('Önerilen ayarlar uygulandı'+(s.depth?' — derinlik değişikliği için sayfayı yenile':''),'#7dffb0'); }
 /* tips: integrated GPU on a laptop that may have a discrete one */
 ptTips=HOOK.wrap('ptTips','performans/efekt-kalitesi#_q13Tips',function(_q13Tips){ return function(r){ const T=_q13Tips(r).filter(function(t){ return !/Logaritmik derinlik bu bilgisayarda pahalı/.test(t); }), d=r.dev||{};
-  const lg=(r.feats||[]).find(function(f){ return f.id==='logderinlik'; }); if(lg&&(lg.gpu!=null?lg.gpu:lg.ms90)>3) T.push('Logaritmik derinlik bu bilgisayarda '+String(lg.gpu!=null?lg.gpu:lg.ms90).replace('.',',')+' ms tutuyor; V2.17\'de kaldırılacak.');
+  const lg=(r.feats||[]).find(function(f){ return f.id==='logderinlik'; }); if(lg&&(lg.gpu!=null?lg.gpu:lg.ms90)>3) T.push('Logaritmik derinlik bu bilgisayarda '+String(lg.gpu!=null?lg.gpu:lg.ms90).replace('.',',')+' ms tutuyor.');
   if(!d.mobile&&gpuClass(d.gpu)==='igpu') T.unshift('Oyun tümleşik ekran kartında ('+String(d.gpu).replace(/^ANGLE \(|\)$/g,'').split(',').slice(0,2).join(',')+') çalışıyor. Bilgisayarında ayrı bir NVIDIA ya da AMD kart varsa: Windows Ayarlar → Sistem → Ekran → Grafik → tarayıcını seç → Seçenekler → Yüksek performans → tarayıcıyı yeniden başlat. Fark çok büyük olur.');
-  return T.map(function(t){ return t.replace(/V2\.16'da kaldırılacak/,'V2.17\'de kaldırılacak').replace(/V2\.17'de küçültülecek/,'V2.18\'de küçültülecek').replace(/shader ön derleme \(V2\.18\)/,'shader ön derleme (V2.19)'); }); }; },ptTips);
+  return T; }; },ptTips);   /* V2.67: tips no longer promise a version number */
 ptResults=HOOK.wrap('ptResults','performans/efekt-kalitesi#_q13Res',function(_q13Res){ return function(rep,list){ try{ if(rep&&rep.dev) rep.tips=ptTips(rep); }catch(e){} _q13Res(rep,list); const el=$('ptResUI'); if(!el) return; const rec=ptRecommend(rep); const tips=el.querySelector('.pttips'); if(!rec||!tips) return;
   const box=document.createElement('div'); box.className='ptrec';
   if(rec.ok) box.innerHTML='<b>Ayarların bu cihaz için uygun.</b> <small>Ölçülen kare süresi hedefin içinde.</small>';
-  else if(!rec.ch.length) box.innerHTML=rec.cpu?'<b>Ayar değiştirmek yetmiyor.</b> <small>Bu cihazda darboğaz işlemci (nesne ve çizim sayısı). Birleştirme ve sadeleştirme sürümleri (V2.14–V2.16) bunu doğrudan hedefliyor.</small>':'<b>Önerilecek ayar bulunamadı.</b> <small>Kalite ayarlarıyla hedefe inilemiyor.</small>';
+  else if(!rec.ch.length) box.innerHTML=rec.cpu?'<b>Ayar değiştirmek yetmiyor.</b> <small>Bu cihazda darboğaz işlemci (nesne ve çizim sayısı). Görüş mesafesini ya da kalabalığı azaltmak en çok kazandırır.</small>':'<b>Önerilecek ayar bulunamadı.</b> <small>Kalite ayarlarıyla hedefe inilemiyor.</small>';
   else { box.innerHTML='<div><b>Önerilen ayarlar</b> <small>(tahmini kare '+String(Math.round(rec.est*10)/10).replace('.',',')+' ms ≈ '+Math.round(1000/rec.est)+' FPS)</small><ul>'+rec.ch.map(function(c){ return '<li>'+c+'</li>'; }).join('')+'</ul></div><button class="btn primary sm" type="button" data-pt="rec">Önerilen ayarları uygula</button>';
     box.querySelector('[data-pt="rec"]').addEventListener('click',function(e){ e.stopPropagation(); ptApplyRec(rec); this.disabled=true; this.textContent='Uygulandı ✓'; }); }
   tips.parentNode.insertBefore(box,tips.nextSibling); }; },ptResults);
