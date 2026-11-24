@@ -65,6 +65,8 @@ grep -a "AyYildiz\]" "$OUT/logcat.txt" | sed 's/.*\[AyYildiz\]/[AyYildiz]/' | he
 grep -q "AdMob başladı" "$OUT/oyun.txt" && note "AdMob başladı (deneme reklamları)" || err "AdMob başlamadı: $(grep -a 'AdMob\|reklam' "$OUT/logcat.txt" | tail -n 3 | tr '\n' ' ' | cut -c1-400)"
 grep -q "reklam hazır: rew" "$OUT/oyun.txt" && note "ödüllü deneme reklamı yüklendi" || err "ödüllü reklam yüklenmedi"
 grep -q "reklam hazır: int" "$OUT/oyun.txt" && note "geçiş deneme reklamı yüklendi" || echo "::warning title=Emülatör::geçiş reklamı yüklenmedi"
-[ -s "$OUT/crash.txt" ] && err "çökme kaydı: $(head -n 5 "$OUT/crash.txt" | tr '\n' ' ' | cut -c1-400)"
+# only a crash of the game fails the test; the test tool itself (UiAutomation, "Bad file descriptor") crashes now and then
+if grep -aq "Process: $PKG" "$OUT/crash.txt" 2>/dev/null; then err "çökme kaydı: $(grep -a -A3 "Process: $PKG" "$OUT/crash.txt" | head -n 5 | tr '\n' ' ' | cut -c1-400)"
+elif [ -s "$OUT/crash.txt" ]; then echo "::warning title=Emülatör::başka bir süreç çöktü (oyun değil): $(grep -a 'FATAL EXCEPTION' "$OUT/crash.txt" | head -n 1 | cut -c1-200)"; fi
 JS=$(grep -a "Capacitor/Console" "$OUT/logcat.txt" | grep -ai "error\|uncaught" | head -n 3 | tr '\n' ' ' | cut -c1-500); [ -n "$JS" ] && echo "::warning title=Emülatör JS::$JS"
 exit $fail
