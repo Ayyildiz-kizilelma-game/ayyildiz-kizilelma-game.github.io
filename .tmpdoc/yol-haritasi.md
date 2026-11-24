@@ -1,21 +1,22 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.68 · son güncelleme: 24 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.69 · son güncelleme: 24 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
 ## Şu an
 
-- **Oyun:** 72 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 65'i iyi durumda, 4'ü iyileştirilmeli, 3'ü gerçek cihazda denenmeli.
+- **Oyun:** 74 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 67'si iyi durumda, 4'ü iyileştirilmeli, 3'ü gerçek cihazda denenmeli.
 - **Platformlar:** web (GitHub Pages) ve Android uygulaması (Capacitor, V2.62). Uygulama yeni sürümleri kendi içinden
   indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
   Kalabalık savaşta P90 30 FPS. V2.66 telefon raporu (Ultra): alçak şehir uçuşu ve kalabalık savaş P90 30, işlemci 17–19 ms; Orta'da her sahne 60 FPS. V2.67: telefonda ters derinlik tamponu, iki katmanlı derinlik kalktı (Ultra alçak uçuş 305 → 257, savaş 232 → 188 çizim, bilgisayarda öykünme); yeni telefon raporu bekleniyor.
-- **Testler:** 119 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
+- **Testler:** 120 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
 - **Sıralama (V2.68):** Kariyer → Sıralama: haftalık ve toplam TP, yarış rekorları, birlik yarışı (bulutta, Pazartesi başlayan haftalar).
+- **Sezonlar (V2.69):** Kariyer → Harekât Kartı; ilk sezon "Çanakkale Geçilmez" 18 Mart 2027'de, o güne kadar Hazırlık Dönemi. Günlük ödül ve Harekât'ta kaldığın yerden devam.
 - **Bekleyen denemeler:** iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler
@@ -51,7 +52,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.66 | Savaşta takılmalar: akıllı performans gölgeyi kapatınca shader'lar yeniden derlenmesin (gölgesiz varyantlar ve görev nesneleri önceden, arka planda derleniyor) | ✅ |
 | V2.67 | Ultra'da işlemci yükü: alçak şehir uçuşu ve kalabalık savaşta 60 FPS (çizim çağrılarını azaltma, toplu çizimi genişletme; telefon raporu V2.66 Ultra: alçak uçuş ve savaş P90 30, işlemci 17–19 ms) | ✅ |
 | V2.68 | Liderlik tabloları ve birlik yarışı | ✅ |
-| V2.69 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart); 2× günlük ödül ve Harekât'ta devam reklamları | |
+| V2.69 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart); 2× günlük ödül ve Harekât'ta devam reklamları | ✅ |
 | V2.70 | Filo (klan) sistemi | |
 | V2.71 | Gece Görev Paketi (NVG ile; satılık görev paketi) | |
 | V2.72–V2.73 | Gerçekçi uçuş modu ve tıklanabilir kokpit | |
@@ -66,7 +67,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 ## Gelir planı (oyuncu kararı, 21 Kasım)
 
 - **Oyun ücretsiz kalır, para güç satın almaz.** Uçak, silah ya da güç satılmaz; uçaklar ilerledikçe açılır. Oyun içi para birimi yok, ürünler doğrudan satılır.
-- **Ödüllü reklam (asıl gelir, isteğe bağlı):** 2× TP, 2× günlük ödül, Harekât'ta kaldığın yerden devam, kaplamayı 24 saat deneme. V2.62'de 2× TP ve 24 saat kaplama denemesi geldi; 2× günlük ödül ve Harekât devamı sezon sürümüyle (V2.69).
+- **Ödüllü reklam (asıl gelir, isteğe bağlı):** 2× TP, 2× günlük ödül, Harekât'ta kaldığın yerden devam, kaplamayı 24 saat deneme. V2.62'de 2× TP ve 24 saat kaplama denemesi, V2.69'da 2× günlük ödül ve Harekât'ta kaldığın yerden devam geldi.
 - **Ara reklam (az):** yalnız görev aralarında, en çok 5 dakikada bir, ilk oturumda hiç. Afiş (banner) reklam yok.
 - **Satın alımlar:** Reklamsız, kaplama paketleri, birlik/pilot görünümleri, Harekât Kartı (sezon), görev paketleri (ör. Gece Görev Paketi), Destekçi paketi.
 - **Tahmin:** Türkiye'de ödüllü reklam eCPM ≈ $1,5–2,5 → günde 1000 aktif oyuncu ≈ ayda $135–225 reklam geliri; satın alımlar bunun üstüne.
