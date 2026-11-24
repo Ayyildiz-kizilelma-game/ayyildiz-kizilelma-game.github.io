@@ -11,7 +11,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
   indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
-  Kalabalık savaşta P90 30 FPS. r187 ile yeni ölçüm telefon raporu gelince (V2.68).
+  Kalabalık savaşta P90 30 FPS. V2.66 telefon raporu (Ultra): alçak şehir uçuşu ve kalabalık savaş P90 30, işlemci 17–19 ms; Orta'da her sahne 60 FPS. İyileştirme V2.67'de.
 - **Testler:** 117 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
@@ -48,13 +48,13 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.64 | three.js r128 → r187, görünüm aynı: kendi paketimiz (tools/three), r128 uyum katmanı (ışıklar, renk, efektler, ortam haritası) | ✅ |
 | V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | ✅ |
 | V2.66 | Savaşta takılmalar: akıllı performans gölgeyi kapatınca shader'lar yeniden derlenmesin (gölgesiz varyantlar ve görev nesneleri önceden, arka planda derleniyor) | ✅ |
-| V2.67 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması (Play Console hesabı açılınca) | |
-| V2.68 | Kalabalık savaşta 60 FPS ve three.js r187'nin telefonda ölçümü (oyuncunun telefonundan performans raporu gerekli) | |
-| V2.69 | Liderlik tabloları ve birlik yarışı | |
-| V2.70 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart) | |
-| V2.71 | Filo (klan) sistemi | |
-| V2.72 | Gece Görev Paketi (NVG ile; satılık görev paketi) | |
-| V2.73–V2.74 | Gerçekçi uçuş modu ve tıklanabilir kokpit | |
+| V2.67 | Ultra'da işlemci yükü: alçak şehir uçuşu ve kalabalık savaşta 60 FPS (çizim çağrılarını azaltma, toplu çizimi genişletme; telefon raporu V2.66 Ultra: alçak uçuş ve savaş P90 30, işlemci 17–19 ms) | |
+| V2.68 | Liderlik tabloları ve birlik yarışı | |
+| V2.69 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart); 2× günlük ödül ve Harekât'ta devam reklamları | |
+| V2.70 | Filo (klan) sistemi | |
+| V2.71 | Gece Görev Paketi (NVG ile; satılık görev paketi) | |
+| V2.72–V2.73 | Gerçekçi uçuş modu ve tıklanabilir kokpit | |
+| V2.74 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.
@@ -65,7 +65,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 ## Gelir planı (oyuncu kararı, 21 Kasım)
 
 - **Oyun ücretsiz kalır, para güç satın almaz.** Uçak, silah ya da güç satılmaz; uçaklar ilerledikçe açılır. Oyun içi para birimi yok, ürünler doğrudan satılır.
-- **Ödüllü reklam (asıl gelir, isteğe bağlı):** 2× TP, 2× günlük ödül, Harekât'ta kaldığın yerden devam, kaplamayı 24 saat deneme. V2.62'de 2× TP ve 24 saat kaplama denemesi geldi; 2× günlük ödül ve Harekât devamı sezon sürümüyle (V2.70).
+- **Ödüllü reklam (asıl gelir, isteğe bağlı):** 2× TP, 2× günlük ödül, Harekât'ta kaldığın yerden devam, kaplamayı 24 saat deneme. V2.62'de 2× TP ve 24 saat kaplama denemesi geldi; 2× günlük ödül ve Harekât devamı sezon sürümüyle (V2.69).
 - **Ara reklam (az):** yalnız görev aralarında, en çok 5 dakikada bir, ilk oturumda hiç. Afiş (banner) reklam yok.
 - **Satın alımlar:** Reklamsız, kaplama paketleri, birlik/pilot görünümleri, Harekât Kartı (sezon), görev paketleri (ör. Gece Görev Paketi), Destekçi paketi.
 - **Tahmin:** Türkiye'de ödüllü reklam eCPM ≈ $1,5–2,5 → günde 1000 aktif oyuncu ≈ ayda $135–225 reklam geliri; satın alımlar bunun üstüne.
