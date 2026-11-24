@@ -131,6 +131,7 @@ savas/fuze-kacinma.js
 savas/kanat-adami.js
 modeller/model-kaydi-api.js
 performans/optimizasyon-2.js
+performans/toplu-cizim.js
 ekran/surum-notlari.js
 veri/surum-notlari-veri.js
 veri/rehber-veri.js

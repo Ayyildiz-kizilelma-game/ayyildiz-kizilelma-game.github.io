@@ -10,8 +10,9 @@ T_('failing step skipped, rest runs',ran===11,ran);
 /* shader warm-up: every material once, hidden objects included, nothing drawn */
 THREE.Mesh.prototype.isMesh=true; WARM.seen=new Set(); const n=warmScan(); T_('warm queue built',n>0,n);
 T_('hidden explosion particles included',WARM.q.indexOf(parts[0].m)>=0||WARM.seen.has(warmKey(parts[0].m)));
+SETTINGS.warmAsync=false;   /* the synchronous path; the asynchronous one (V2.65) needs a real GPU */
 const n0=WARM.n; let guard=0; while(!WARM.done&&guard++<10000) warmStep(1e9); T_('warm finished',WARM.done&&WARM.n-n0===WARM.q.length,(WARM.n-n0)+'/'+WARM.q.length);
-const again=warmScan(); T_('second scan finds nothing new',again===0,again);
+delete SETTINGS.warmAsync; const again=warmScan(); T_('second scan finds nothing new',again===0,again);
 SETTINGS.warm=false; WARM.done=false; T_('kill switch',warmStep(8)===0); delete SETTINGS.warm; WARM.done=true;
 /* report */
 const bi=bootInfo(); T_('boot info in report',bi&&bi.warm&&bi.slow.length>0&&bi.world!=null,JSON.stringify(bi));

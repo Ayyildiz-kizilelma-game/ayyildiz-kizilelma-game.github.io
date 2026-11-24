@@ -174,7 +174,7 @@ Açık teknik borç:
 - **Belgeler:** tek yol haritası `ROADMAP.md` (eski planlar `docs/arsiv/`). Sürüm geçmişi `tools/surumler.py` → `docs/SURUM-GECMISI.md`.
 
 ## three.js (V2.64: r187)
-Kendi paketimiz `vendor/three-r187/` (`tools/three/paketle.mjs`), r128 uyum katmanı `tools/three/cekirdek.js`; ek parçalar `needLibs` ile grup dosyalarından (`modeller/varliklar.js`). Ayrıntı: [KARAR-THREEJS.md](KARAR-THREEJS.md).
+Kendi paketimiz `vendor/three-r187/` (`tools/three/paketle.mjs`), r128 uyum katmanı `tools/three/cekirdek.js`; ek parçalar `needLibs` ile grup dosyalarından (`modeller/varliklar.js`). Ayrıntı: [KARAR-THREEJS.md](KARAR-THREEJS.md). V2.65: `performans/toplu-cizim` (MBT) birleştirilmiş hücreleri malzeme başına bir `BatchedMesh`'e koyar; `performans/shader-isitma` `compileAsync` kullanır.
 
 ## Android (V2.62: Capacitor)
 Ayrıntı: [ANDROID.md](ANDROID.md). `android-app/` (Capacitor 8 + AdMob, App, Browser eklentileri) ve `tools/android-hazirla.py` oyunun derlenmiş dosyalarını APK'ya koyar; Android projesi depoda değil, `android.yml` her sürümde sıfırdan kurar, derler, emülatörde dener (`tools/android-emulator-test.sh`). Oyun tarafı: `ag/uygulama` (`APP.native`, geri tuşu, Google girişi Custom Tab + `?uyg=giris` köprüsü) ve `ag/reklam` (`ADS`, `adsReward`, `adsInter`, izin bildirimi, `?reklam=dene` benzetimi). Hızlı güncelleme (V2.63): `ag/guncelleme` (`GUN`, `gunCheck`, `gunApply`; Capgo updater elle modda, `guncelleme.json` + `AyYildiz-www-<sürüm>.zip` "android" indirme sayfasında).

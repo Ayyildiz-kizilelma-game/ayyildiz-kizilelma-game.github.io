@@ -61,3 +61,14 @@ paketliyoruz:
   dizi): çizim sayıları r128 ile aynı, üçgen sayısı biraz daha az (r187'de koni ağaçlar daha az üçgenli).
 - WebGL1 desteği bitti (r163'ten beri); WebGL2 olmayan cihaz kalmadı sayılır.
 - Sonraki adımlar: V2.65 asenkron shader derleme ve BatchedMesh, V2.66 telefon ölçümü.
+
+## Kazanımlar (V2.65)
+
+- **Toplu çizim (`BatchedMesh`, `performans/toplu-cizim.js`):** birleştirme sisteminin (MRG) aynı malzemeli hücreleri tek
+  bir BatchedMesh'te; hücre görünürlüğü `setVisibleAt`, kamera ve gölge kamerasına göre ayıklamayı batch kendisi yapar.
+  Ölçüm (tarayıcı denetimi, aynı rastgele dizi): 102 hücre → 12 çizim; uçuşta 272 → 242, ikinci uçuş görünümünde
+  307 → 292, şehirde 280 → 265, ormanda 341 → 315 çizim. Görüntü aynı. Hücre bozulunca (içinde bir şey hareket edince)
+  hücre batch'ten çıkıyor ve eskisi gibi tek başına çiziliyor. `?toplu=0` ile kapatılıp karşılaştırılabilir.
+- **Asenkron shader ısıtma:** menüdeki ön derleme `renderer.compileAsync` ile 48'lik gruplar hâlinde; sürücü programları
+  paralel derliyor (KHR_parallel_shader_compile), oyun beklemiyor. Test makinesinde 336 malzeme toplam 23 ms işlemci
+  süresi (önce: kare başına 8 ms, birkaç saniye).

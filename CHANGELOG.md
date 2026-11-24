@@ -1,6 +1,12 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.65 — 2026-11-24 · Toplu çizim
+- **Daha az çizim çağrısı:** şehirlerin ve üslerin birleştirilmiş parçaları artık malzeme başına tek seferde çiziliyor (three.js r187 BatchedMesh). 102 parça 12 çizime indi; uçuşta 272 → 242, şehirde 280 → 265, ormanda 341 → 315 çizim. Görüntü aynı. Telefonda işlemci yükünü azaltması bekleniyor; ölçüm V2.66'da.
+- **Daha hızlı ön derleme:** menüdeyken yapılan gölgelendirici (shader) hazırlığı artık sürücüye toplu veriliyor ve oyun beklemiyor; test makinesinde 336 malzeme toplam 23 ms işlemci süresi tuttu (önce saniyeler boyunca kare başına 8 ms).
+- Bir parça hareket edince o bölüm toplu çizimden çıkıp eskisi gibi ayrı çiziliyor; denendi.
+- Yol haritasının "Şu an" özeti güncellendi.
+
 ## V2.64 — 2026-11-24 · three.js r187
 - **Grafik motoru güncellendi: three.js r128 (2021) → r187 (2026).** Oyun aynı görünüyor; önce/sonra ekran görüntüleri (uçuş, şehir, gece) karşılaştırıldı, ortalama renk farkı ±5'in altında.
 - three.js artık oyunun kendi dosyası (vendor/three-r187): internetten ayrı bir kütüphane indirilmiyor, Android uygulamasında da içeride.

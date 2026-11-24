@@ -16,12 +16,20 @@ function warmScan(){ WARM.q=[]; WARM.i=0; WARM.lights=[];
   if(!WARM.px){ WARM.px=Object.create(scene); }
   WARM.px.traverseVisible=function(cb){ for(let i=0;i<WARM.lights.length;i++) cb(WARM.lights[i]); };
   WARM.done=!WARM.q.length; return WARM.q.length; }
-function warmStep(budget){ if(WARM.done||SETTINGS.warm===false) return 0; const t0=performance.now(); let n=0; const one=[null];
-  WARM.px.traverse=function(cb){ if(one[0]) cb(one[0]); };
-  while(WARM.i<WARM.q.length){ const o=WARM.q[WARM.i++]; if(o.parent===null) continue;   /* removed meanwhile */ one[0]=o;
-    try{ renderer.compile(WARM.px,camera); }catch(e){ if(!WARM.err){ WARM.err=1; console.warn('ısıtma',e); } }
-    n++; if(performance.now()-t0>budget) break; }
-  WARM.n+=n; WARM.ms+=performance.now()-t0; if(WARM.i>=WARM.q.length){ WARM.done=true; WARM.at=Math.round(performance.now()); } return n; }
+/* V2.65 (three.js r187): renderer.compileAsync hands a whole group of materials to the driver at once and waits for the
+   programs without blocking (KHR_parallel_shader_compile); the next group goes when that one is ready. Without the
+   extension compileAsync still works, it just waits longer. Older path: one material at a time, synchronously. */
+function warmStep(budget){ if(WARM.done||SETTINGS.warm===false) return 0; if(WARM.pend) return 0; const t0=performance.now(); let n=0;
+  if(renderer.compileAsync&&SETTINGS.warmAsync!==false){ const L=[];
+    while(WARM.i<WARM.q.length&&L.length<48){ const o=WARM.q[WARM.i++]; if(o.parent!==null) L.push(o); }
+    WARM.px.traverse=function(cb){ for(let i=0;i<L.length;i++) cb(L[i]); };
+    if(L.length){ WARM.async=(WARM.async||0)+1; WARM.pend=Promise.resolve().then(function(){ return renderer.compileAsync(WARM.px,camera); }).catch(function(e){ if(!WARM.err){ WARM.err=1; console.warn('ısıtma',e); } }).then(function(){ WARM.pend=null; }); }
+    n=L.length; }
+  else { const one=[null]; WARM.px.traverse=function(cb){ if(one[0]) cb(one[0]); };
+    while(WARM.i<WARM.q.length){ const o=WARM.q[WARM.i++]; if(o.parent===null) continue;   /* removed meanwhile */ one[0]=o;
+      try{ renderer.compile(WARM.px,camera); }catch(e){ if(!WARM.err){ WARM.err=1; console.warn('ısıtma',e); } }
+      n++; if(performance.now()-t0>budget) break; } }
+  WARM.n+=n; WARM.ms+=performance.now()-t0; if(WARM.i>=WARM.q.length&&!WARM.pend){ WARM.done=true; WARM.at=Math.round(performance.now()); } return n; }
 function warmStart(){ if(SETTINGS.warm===false) return; if(!WARM.prog0) WARM.prog0=(renderer.info.programs||[]).length; warmScan(); }
 /* title menu only: in play the programs compile on first sight as before */
 cullStep=HOOK.wrap('cullStep','performans/shader-isitma#_wmCull',function(_wmCull){ return function(dt){ _wmCull(dt); if(!WARM.started||WARM.done) return; if(state!=='menu') return; try{ warmStep(8); }catch(e){} }; },cullStep);
