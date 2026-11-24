@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.66 · son güncelleme: 24 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.67 · son güncelleme: 24 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -11,8 +11,8 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
   indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
-  Kalabalık savaşta P90 30 FPS. V2.66 telefon raporu (Ultra): alçak şehir uçuşu ve kalabalık savaş P90 30, işlemci 17–19 ms; Orta'da her sahne 60 FPS. İyileştirme V2.67'de.
-- **Testler:** 117 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
+  Kalabalık savaşta P90 30 FPS. V2.66 telefon raporu (Ultra): alçak şehir uçuşu ve kalabalık savaş P90 30, işlemci 17–19 ms; Orta'da her sahne 60 FPS. V2.67: telefonda ters derinlik tamponu, iki katmanlı derinlik kalktı (Ultra alçak uçuş 305 → 257, savaş 232 → 188 çizim, bilgisayarda öykünme); yeni telefon raporu bekleniyor.
+- **Testler:** 118 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
 - **Bekleyen denemeler:** iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
@@ -48,7 +48,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.64 | three.js r128 → r187, görünüm aynı: kendi paketimiz (tools/three), r128 uyum katmanı (ışıklar, renk, efektler, ortam haritası) | ✅ |
 | V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | ✅ |
 | V2.66 | Savaşta takılmalar: akıllı performans gölgeyi kapatınca shader'lar yeniden derlenmesin (gölgesiz varyantlar ve görev nesneleri önceden, arka planda derleniyor) | ✅ |
-| V2.67 | Ultra'da işlemci yükü: alçak şehir uçuşu ve kalabalık savaşta 60 FPS (çizim çağrılarını azaltma, toplu çizimi genişletme; telefon raporu V2.66 Ultra: alçak uçuş ve savaş P90 30, işlemci 17–19 ms) | |
+| V2.67 | Ultra'da işlemci yükü: alçak şehir uçuşu ve kalabalık savaşta 60 FPS (çizim çağrılarını azaltma, toplu çizimi genişletme; telefon raporu V2.66 Ultra: alçak uçuş ve savaş P90 30, işlemci 17–19 ms) | ✅ |
 | V2.68 | Liderlik tabloları ve birlik yarışı | |
 | V2.69 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart); 2× günlük ödül ve Harekât'ta devam reklamları | |
 | V2.70 | Filo (klan) sistemi | |
