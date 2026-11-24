@@ -33,6 +33,8 @@ function terFar(off){ let key=''; for(let i=0;i<TER.tiles.length;i++){ const t=T
   let ov=0, oi=0; if(key) TER.tiles.forEach(function(t){ if(off||t.lv===0) return; const g=t.geos[t.lv];
     P.array.set(g.attributes.position.array,ov*3); N.array.set(g.attributes.normal.array,ov*3); C.array.set(g.attributes.color.array,ov*3);
     const S=g.index.array, D=I.array; for(let k=0;k<S.length;k++) D[oi+k]=S[k]+ov; ov+=g.attributes.position.count; oi+=S.length; });
-  [P,N,C].forEach(function(A){ A.updateRange.offset=0; A.updateRange.count=ov*3; A.needsUpdate=true; }); I.updateRange.offset=0; I.updateRange.count=oi; I.needsUpdate=true; G.setDrawRange(0,oi); }
+  [P,N,C].forEach(function(A){ terRange(A,ov*3); }); terRange(I,oi); G.setDrawRange(0,oi); }
+/* upload only the filled part (V2.64: three.js r159+ uses addUpdateRange instead of updateRange) */
+function terRange(A,n){ if(A.clearUpdateRanges){ A.clearUpdateRanges(); A.addUpdateRange(0,n); } else { A.updateRange.offset=0; A.updateRange.count=n; } A.needsUpdate=true; }
 cullStep=HOOK.wrap('cullStep','dunya/arazi-kademeleri#_tlCull',function(_tlCull){ return function(dt){ _tlCull(dt); TLOD.t+=dt||0; if(TLOD.t>0.25){ TLOD.t=0; try{ terLodStep(); }catch(e){} } }; },cullStep);
 applyQuality=HOOK.wrap('applyQuality','dunya/arazi-kademeleri#_tlQ',function(_tlQ){ return function(){ const r=_tlQ.apply(this,arguments); try{ terLodStep(true); }catch(e){} return r; }; },applyQuality);

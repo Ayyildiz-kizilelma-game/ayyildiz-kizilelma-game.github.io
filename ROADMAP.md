@@ -39,8 +39,10 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.61 | Gelir yolu 1 — Mağaza altyapısı: mağaza ekranı, ürün listesi (reklamsız, 3 kaplama paketi, destekçi paketi), hesaba bağlı ürün sahipliği; henüz gerçek ödeme yok | ✅ |
 | V2.62 | Gelir yolu 2 — Android kabuğu Capacitor'a geçer; AdMob ödüllü reklamlar deneme modunda; reklam izni ekranı (KVKK/GDPR) ve gizlilik metni; Android emülatör testi GitHub Actions'ta | ✅ |
 | V2.63 | Uygulama içinden hızlı güncelleme: açılışta "Yeni sürüm" kartı, APK indirmeden birkaç saniyede güncelleme (oyuncu isteği, 22 Kasım) | ✅ |
-| V2.64 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması | |
-| V2.65–V2.67 | three.js güncel sürüme geçiş | |
+| V2.64 | three.js r128 → r187, görünüm aynı: kendi paketimiz (tools/three), r128 uyum katmanı (ışıklar, renk, efektler, ortam haritası) | |
+| V2.65 | three.js kazanımları: asenkron shader derleme (açılış), BatchedMesh ile daha az çizim | |
+| V2.66 | three.js: telefon ölçümü, temizlik ve karar belgesinin sonucu | |
+| V2.67 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması (Play Console hesabı açılınca) | |
 | V2.68 | Kalabalık savaşta 60 FPS | |
 | V2.69 | Liderlik tabloları ve birlik yarışı | |
 | V2.70 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart) | |

@@ -2,21 +2,21 @@
    Every vehicle is first built from code (always works, no download). If assets/models.json lists a .glb file
    for an id, that model is loaded in the background and "skins" every copy of the vehicle (player, hangar, AI).
    See docs/ARCHITECTURE.md → "3B modeller". */
-const VENDOR={base:'vendor/three-r128/', cdn:'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/',
-  files:{CopyShader:'shaders/CopyShader.js', LuminosityHighPassShader:'shaders/LuminosityHighPassShader.js', FXAAShader:'shaders/FXAAShader.js',
-    EffectComposer:'postprocessing/EffectComposer.js', RenderPass:'postprocessing/RenderPass.js', ShaderPass:'postprocessing/ShaderPass.js', UnrealBloomPass:'postprocessing/UnrealBloomPass.js',
-    GLTFLoader:'loaders/GLTFLoader.js', DRACOLoader:'loaders/DRACOLoader.js', GLTFExporter:'exporters/GLTFExporter.js',
-    FBXLoader:'loaders/FBXLoader.js', OBJLoader:'loaders/OBJLoader.js', MTLLoader:'loaders/MTLLoader.js', STLLoader:'loaders/STLLoader.js', ColladaLoader:'loaders/ColladaLoader.js', TGALoader:'loaders/TGALoader.js',
-    NURBSUtils:'curves/NURBSUtils.js', NURBSCurve:'curves/NURBSCurve.js', fflate:'libs/fflate.min.js'}};
+/* V2.64: three.js r187 packed by tools/three/paketle.mjs; the add-ons come in a few group files that attach their classes
+   to window.THREE (no CDN fallback: the files are part of the game, also in the Android app) */
+const VENDOR={base:'vendor/three-r187/',
+  files:{CopyShader:'efektler.js', LuminosityHighPassShader:'efektler.js', FXAAShader:'efektler.js', EffectComposer:'efektler.js', RenderPass:'efektler.js', ShaderPass:'efektler.js', UnrealBloomPass:'efektler.js',
+    GLTFLoader:'gltf.js', DRACOLoader:'gltf.js', GLTFExporter:'gltf-disa.js',
+    FBXLoader:'fbx.js', TGALoader:'fbx.js', NURBSUtils:'fbx.js', NURBSCurve:'fbx.js', fflate:'fbx.js',
+    OBJLoader:'obj.js', MTLLoader:'obj.js', STLLoader:'stl.js', ColladaLoader:'collada.js'}};
 const LIBS={};
 function loadScript(src){ return new Promise(function(res,rej){ const s=document.createElement('script'); s.src=src; s.async=false; s.onload=function(){ res(); }; s.onerror=function(){ s.remove(); rej(new Error('yüklenemedi: '+src)); }; document.head.appendChild(s); }); }
-/* load three.js add-ons on demand: first from our own vendor/ folder (works offline / in the Android app), then from the CDN */
+/* load three.js add-ons on demand from vendor/ (one file per group, loaded once) */
 function needLibs(names){
   return names.reduce(function(p,n){ return p.then(function(){
-    if(THREE[n]||(n==='fflate'&&typeof window!=='undefined'&&window.fflate)) return; if(LIBS[n]) return LIBS[n];
-    const f=VENDOR.files[n]; if(!f) throw new Error('bilinmeyen kitaplık '+n);
-    LIBS[n]=loadScript(VENDOR.base+f.split('/').pop()).catch(function(){ return loadScript(VENDOR.cdn+f); });
-    return LIBS[n];
+    if(THREE[n]) return; const f=VENDOR.files[n]; if(!f) throw new Error('bilinmeyen kitaplık '+n);
+    if(!LIBS[f]) LIBS[f]=loadScript(VENDOR.base+f).catch(function(e){ delete LIBS[f]; throw e; });
+    return LIBS[f];
   }); },Promise.resolve());
 }
 const MODELS={manifest:null, skins:{}, inst:{}, loader:null, busy:{}, preview:null};
@@ -28,9 +28,8 @@ function gltfLoader(){
   return needLibs(['GLTFLoader','DRACOLoader']).then(function(){
     if(MODELS.loader) return MODELS.loader;
     const l=new THREE.GLTFLoader();
-    /* Draco-compressed models: decoder from vendor/ when it is there (GitHub Pages, Android app), else from the CDN */
-    const local=VENDOR.base+'draco/', cdn='https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/gltf/';
-    return fetch(local+'draco_wasm_wrapper.js',{method:'HEAD'}).then(function(r){ return r.ok?local:cdn; },function(){ return cdn; }).then(function(path){
+    /* Draco-compressed models: decoder from vendor/ */
+    return Promise.resolve(VENDOR.base+'draco/').then(function(path){
       try{ const d=new THREE.DRACOLoader(); d.setDecoderPath(path); d.setDecoderConfig({type:'wasm'}); l.setDRACOLoader(d); }catch(e){}
       MODELS.loader=l; return l; });
   });
@@ -47,7 +46,7 @@ function makeSkin(id,root,spec){
   spec=Object.assign({rotation:[0,0,0]},spec||{});
   if(!root.userData.prepared) root.traverse(function(o){ if(!o.isMesh) return; o.castShadow=true; o.receiveShadow=true; o.userData.rs=true; o.userData.cs=true;
     (Array.isArray(o.material)?o.material:[o.material]).forEach(function(mt){ if(!mt) return;
-      ['map','emissiveMap'].forEach(function(k){ if(mt[k]){ mt[k].encoding=THREE.LinearEncoding; mt[k].needsUpdate=true; } });   /* game renders in display colours */
+      ['map','emissiveMap'].forEach(function(k){ if(mt[k]){ mt[k].colorSpace=THREE.NoColorSpace; mt[k].needsUpdate=true; } });   /* game renders in display colours */
       if(mt.color&&mt.color.convertLinearToSRGB) mt.color.convertLinearToSRGB(); if(mt.emissive&&mt.emissive.convertLinearToSRGB) mt.emissive.convertLinearToSRGB();
       if(mt.isMeshStandardMaterial&&!mt.envMap){ mt.envMap=ENVMAP; mt.envMapIntensity=0.9; } mt.needsUpdate=true; }); });
   root.userData.prepared=true;

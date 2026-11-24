@@ -18,6 +18,8 @@ srv.listen(0,'127.0.0.1',async function(){ const port=srv.address().port; let fa
   const exe=fs.existsSync('/opt/pw-browsers/chromium')?'/opt/pw-browsers/chromium':undefined;
   const b=await pw.chromium.launch({executablePath:exe,args:['--use-gl=swiftshader','--enable-unsafe-swiftshader','--enable-precise-memory-info']});
   try{ const p=await b.newPage({viewport:{width:1280,height:720}}); const errs=[]; p.on('pageerror',function(x){ errs.push(x.message); });
+    /* V2.64: fixed random sequence, so draw/triangle counts compare between versions (traffic, AI planes, clouds) */
+    await p.addInitScript(function(){ let x=12345; Math.random=function(){ x=(x*1103515245+12345)%2147483648; return x/2147483648; }; });
     await p.addInitScript(function(Q){ try{ localStorage.setItem('kaan-sim-settings',JSON.stringify({quality:Q,accPrompted:true,notesSeen:'x',notesDur:0})); }catch(e){} },+(process.env.Q||2));
     await p.goto('http://127.0.0.1:'+port+'/check.html',{waitUntil:'domcontentloaded',timeout:300000}); await p.waitForFunction(function(){ return window.__E&&window.__E("typeof BOOT==='undefined'||BOOT.done"); },null,{timeout:300000,polling:500}); await p.waitForTimeout(4000);   /* V2.19: the world is built in steps after the script */
     const check="(function(){ const out=[]; try{ cullCollect(); cullAll(); }catch(e){} const fr=new THREE.Frustum(), M4=new THREE.Matrix4(), mt=new THREE.Matrix4(), v=new THREE.Vector3(), sp=new THREE.Sphere(); camera.updateMatrixWorld(); M4.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse); fr.setFromProjectionMatrix(M4);"+

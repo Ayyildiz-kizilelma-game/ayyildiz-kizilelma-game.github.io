@@ -1,6 +1,15 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.64 — 2026-11-24 · three.js r187
+- **Grafik motoru güncellendi: three.js r128 (2021) → r187 (2026).** Oyun aynı görünüyor; önce/sonra ekran görüntüleri (uçuş, şehir, gece) karşılaştırıldı, ortalama renk farkı ±5'in altında.
+- three.js artık oyunun kendi dosyası (vendor/three-r187): internetten ayrı bir kütüphane indirilmiyor, Android uygulamasında da içeride.
+- Görünüm aynı kalsın diye bir uyum katmanı var: ışık şiddetleri, renkler, nokta ışıkları, metal yüzeylerdeki yansıma ve parlama efekti eskisi gibi.
+- Model Kütüphanesi'nin bütün yükleyicileri (GLB/GLTF, Draco, FBX, OBJ, STL, Collada) ve dışa aktarma yeni sürümde denendi.
+- Sıradaki iki sürüm bu güncellemenin kazançları: daha hızlı açılış (asenkron shader derleme) ve daha az çizim çağrısı; sonra telefonda ölçüm. Google Play satın alımları V2.67'ye kaydı.
+- Bulunan ve düzeltilen hata: uzaktaki arazinin ayrıntı güncellemesi yeni sürümde sessizce duruyordu; düzeltildi. Bütün gizli hata yakalayıcıları tek tek denendi, başka sessiz hata yok.
+- Çizim çağrısı ve üçgen sayısı r128 ile aynı (ağaçlar biraz daha az üçgenli). Tarayıcı denetimi artık sabit bir rastgele sayı dizisiyle çalışıyor, sürümler arası sayılar karşılaştırılabiliyor.
+
 ## V2.63 — 2026-11-21 · Hızlı güncelleme
 - **Uygulama içinden hızlı güncelleme (oyuncu isteği):** Android uygulaması açılınca yeni sürüm olup olmadığına bakar. Varsa "Yeni sürüm" kartı çıkar; **Şimdi güncelle**'ye basınca oyun dosyaları (~1,5 MB) iner ve uygulama birkaç saniyede yeni sürümle yeniden açılır. APK indirip kurmak gerekmez; ilerleme ve ayarlar korunur.
 - Güvenlik: güncelleme dosyası SHA-256 ile denetlenir; yeni sürüm açılamazsa uygulama eski sürüme kendiliğinden döner. Bir sürüm telefonlara ancak Android emülatöründe denendikten sonra sunulur.

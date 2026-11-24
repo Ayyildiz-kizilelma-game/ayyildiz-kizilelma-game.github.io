@@ -37,13 +37,19 @@ def split(single):
     page = single[:a] + '<script src="' + src + '"></script>' + single[b:]
     page = page.replace('</head>', '<link rel="preload" href="' + src + '" as="script">\n</head>', 1)
     return page, game, src
+THREE_TAG = '<script src="vendor/three-r187/three.min.js"></script>'
+def inline_three(single):
+    """V2.64: tek-dosya.html carries three.js inside it (the r187 build is not on any CDN); index.html loads vendor/."""
+    t = (ROOT / 'vendor' / 'three-r187' / 'three.min.js').read_text(encoding='utf-8').replace('</script', '<\\/script')
+    assert THREE_TAG in single, 'three.js betik etiketi yok'
+    return single.replace(THREE_TAG, '<script>' + t + '</script>', 1)
 def sw_core(text, src):
     """keep the service worker's core list pointing at this version's oyun.js (so it is cached on install, offline play works)"""
     if re.search(r"'oyun\.js\?v=[^']*'", text): return re.sub(r"'oyun\.js\?v=[^']*'", "'" + src + "'", text)
     return text.replace("'index.html',", "'index.html','" + src + "',", 1)
 if __name__ == '__main__':
     single = build(); page, game, src = split(single)
-    outs = {ROOT / 'tek-dosya.html': single, ROOT / 'index.html': page, ROOT / 'oyun.js': game}
+    outs = {ROOT / 'tek-dosya.html': inline_three(single), ROOT / 'index.html': page, ROOT / 'oyun.js': game}
     swp = ROOT / 'sw.js'; outs[swp] = sw_core(swp.read_text(encoding='utf-8'), src)
     if '--check' in sys.argv:
         bad = [f.name for f, t in outs.items() if not f.exists() or f.read_text(encoding='utf-8') != t]

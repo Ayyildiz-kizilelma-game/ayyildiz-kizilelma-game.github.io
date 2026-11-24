@@ -1,0 +1,9 @@
+{
+  "name": "ayyildiz-three",
+  "private": true,
+  "description": "three.js paketleme (V2.64): ES modüllerini oyunun kullandığı tek dosyalık window.THREE biçimine çevirir. Çalıştırma: node paketle.mjs",
+  "dependencies": {
+    "esbuild": "0.25.12",
+    "three": "0.187.0"
+  }
+}

@@ -144,7 +144,7 @@ Açık teknik borç:
   - Ana menü: Hızlı Oyun · Kariyer · Çok Oyunculu.
   - Hızlı Savaş (`QB_MODES`): yapay zekâ ayarı yalnız o savaş için `aiCfg` kancasıyla değişir.
 - **Rehber ve envanter** (`ekran/rehber`, `veri/rehber-veri`): `tools/ozellikler.py`'den üretilir. `docs/OZELLIKLER.md` ve `docs/OYUNCU-REHBERI.md` de aynı listeden çıkar.
-- **Mağaza** (`ekran/magaza`): ürün listesi `STORE`, paket kaplamaları `PSCHEMES` içinde `p:'<ürün>'` ile; sahiplik `ENT` (Supabase `entitlements`, oyuncu yalnız okur — `supabase/magaza.sql`). Gerçek ödeme V2.64'te Google Play ile.
+- **Mağaza** (`ekran/magaza`): ürün listesi `STORE`, paket kaplamaları `PSCHEMES` içinde `p:'<ürün>'` ile; sahiplik `ENT` (Supabase `entitlements`, oyuncu yalnız okur — `supabase/magaza.sql`). Gerçek ödeme V2.67'de Google Play ile.
 - **Sorun giderme** (`ekran/sorun-giderme`): Performans testi, Görüntü testi ve Tanılama tek ekranda.
   - Kapatma kuralı: tam ekranlarda sol üstte "← Geri", açılır kartlarda sağ üstte ✕.
   - Görev editörü Görevler ekranındaki "＋ Görev editörü" düğmesiyle açılır.
@@ -172,6 +172,9 @@ Açık teknik borç:
 - **Kendi adres** (V2.55): oyun `Ayyildiz-kizilelma-game/ayyildiz-kizilelma-game.github.io` deposunda, kök adreste. Eski adresteki küçük depo `tools/eski-adres` sayfasını yayınlar (yönlendirme, `#tasi=` ile kayıt taşıma, eski önbelleği silme); `cekirdek/depo` `depoImportLink` bağlantıdaki kaydı yalnız burada kayıt yoksa alır.
 - **Otomatik işler** (V2.56): `Testler` (pages.yml: derleme denetimi + başsız testler), `Sürüm yayınla`, `Android paketi`, `Bulut sunucusunu uyanık tut`. Yayın GitHub Pages'in daldan yayınıyla (main, kök) yapılır.
 - **Belgeler:** tek yol haritası `ROADMAP.md` (eski planlar `docs/arsiv/`). Sürüm geçmişi `tools/surumler.py` → `docs/SURUM-GECMISI.md`.
+
+## three.js (V2.64: r187)
+Kendi paketimiz `vendor/three-r187/` (`tools/three/paketle.mjs`), r128 uyum katmanı `tools/three/cekirdek.js`; ek parçalar `needLibs` ile grup dosyalarından (`modeller/varliklar.js`). Ayrıntı: [KARAR-THREEJS.md](KARAR-THREEJS.md).
 
 ## Android (V2.62: Capacitor)
 Ayrıntı: [ANDROID.md](ANDROID.md). `android-app/` (Capacitor 8 + AdMob, App, Browser eklentileri) ve `tools/android-hazirla.py` oyunun derlenmiş dosyalarını APK'ya koyar; Android projesi depoda değil, `android.yml` her sürümde sıfırdan kurar, derler, emülatörde dener (`tools/android-emulator-test.sh`). Oyun tarafı: `ag/uygulama` (`APP.native`, geri tuşu, Google girişi Custom Tab + `?uyg=giris` köprüsü) ve `ag/reklam` (`ADS`, `adsReward`, `adsInter`, izin bildirimi, `?reklam=dene` benzetimi). Hızlı güncelleme (V2.63): `ag/guncelleme` (`GUN`, `gunCheck`, `gunApply`; Capgo updater elle modda, `guncelleme.json` + `AyYildiz-www-<sürüm>.zip` "android" indirme sayfasında).

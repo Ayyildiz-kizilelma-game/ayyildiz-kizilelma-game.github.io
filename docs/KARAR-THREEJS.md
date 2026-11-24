@@ -34,3 +34,30 @@
 - **C — Doğrudan WebGPU'ya hazırlan.** En büyük kazanç, en büyük risk. Tarayıcı desteği ve three.js'in WebGPU oluşturucusu olgunlaştıkça yeniden değerlendirilir.
 
 Not: bu rapordaki sürüm numaraları Haziran 2026 bilgisine dayanıyor. Geçiş kararı verilirse önce güncel sürüm notları yeniden okunur.
+
+
+## Sonuç (V2.64, 24 Kasım 2026)
+
+Oyuncu kararıyla (22 Kasım) geçiş yapıldı: **r128 → r187**. Oyun kodu klasik betik olarak kaldı; three.js'i kendimiz
+paketliyoruz:
+
+- `tools/three/` (`three@0.187.0`, `esbuild`): `node paketle.mjs` → `vendor/three-r187/three.min.js` (çekirdek, `window.THREE`)
+  ve ihtiyaç anında yüklenen grup dosyaları (`efektler.js`, `gltf.js`, `gltf-disa.js`, `fbx.js`, `obj.js`, `stl.js`,
+  `collada.js`, `draco/`). CDN yok: dosyalar oyunun parçası (Android uygulamasında da). `tek-dosya.html` çekirdeği içinde taşır.
+- **r128 uyum katmanı** (`tools/three/cekirdek.js`), görünüm aynı kalsın diye:
+  - renk yönetimi kapalı, çıktı doğrusal (r128'deki `LinearEncoding`);
+  - ışıklar: r128 her ışığı π ile çarpıyordu; çizim sırasında oyunun ışıkları π ile çarpılıyor (yoğunluk değerleri aynı anlamda);
+  - nokta ışıklarında fiziksel ters kare sönümü yok (`decay 0`);
+  - düz küp ortam haritası yalnız yansıma veriyor (r187 ondan ayrıca dağınık ışık ekliyordu, metaller beyazlaşıyordu);
+  - parlama (bloom) arabellekleri 8 bit (r187'de yarım kayan noktalı, parlak noktalar fazla parlıyordu);
+  - çift yüzlü saydam nesneler tek geçişte çiziliyor (r150+ iki geçişte çiziyordu);
+  - `InstancedMesh` r128'deki gibi ayıklamasız doğuyor ve geometrinin sınır küresini kullanıyor (oyunun kendi ayıklama
+    sistemi buna dayanıyor; r187 varsayılanıyla çizim sayısı %10 artmıştı);
+  - kaldırılan adlar: `WebGLMultisampleRenderTarget`, `LinearEncoding`/`sRGBEncoding`, `texture.encoding`,
+    `renderer.outputEncoding`, `capabilities.isWebGL2`.
+- Oyun kodunda tek değişiklik: uzak arazinin güncellenmesi (`updateRange` → `addUpdateRange`, r159'da değişti). Eski
+  çağrı sessizce hata veriyordu; bütün boş `catch` blokları hata yazacak biçimde denendi, başka yutulan hata yok.
+- Önce/sonra ekran görüntüleri (uçuş, şehir, gece): ortalama renk farkı ±4'ün altında. Tarayıcı denetimi (aynı rastgele
+  dizi): çizim sayıları r128 ile aynı, üçgen sayısı biraz daha az (r187'de koni ağaçlar daha az üçgenli).
+- WebGL1 desteği bitti (r163'ten beri); WebGL2 olmayan cihaz kalmadı sayılır.
+- Sonraki adımlar: V2.65 asenkron shader derleme ve BatchedMesh, V2.66 telefon ölçümü.
