@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.73 · son güncelleme: 25 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.74 · son güncelleme: 25 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -62,7 +62,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.71 | Gece Görev Paketi (NVG ile; satılık görev paketi) | ✅ |
 | V2.72 | Gerçekçi uçuş modu: hücum açısı ve stol, enerji, tam yerçekimi, gerçek G sınırları, pilotta G etkisi | ✅ |
 | V2.73 | Tıklanabilir kokpit | ✅ |
-| V2.74 | Kokpitler 2.0: her insanlı uçağa kendi kokpiti (KAAN, Hürjet, Hürkuş), helikopterlere ayrı kokpit (T129 ATAK, T625 Gökbey); İHA'larda yer kontrol istasyonu ve VR görünümü (oyuncu isteği, 25 Kasım) | |
+| V2.74 | Kokpitler 2.0: her insanlı uçağa kendi kokpiti (KAAN, Hürjet, Hürkuş), helikopterlere ayrı kokpit (T129 ATAK, T625 Gökbey); İHA'larda yer kontrol istasyonu ve VR görünümü (oyuncu isteği, 25 Kasım) | ✅ |
 | V2.75 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
 
 **Model serisinin kuralları:**
