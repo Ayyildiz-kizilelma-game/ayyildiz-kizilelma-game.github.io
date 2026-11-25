@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.69 · son güncelleme: 24 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.70 · son güncelleme: 25 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -54,7 +54,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.67 | Ultra'da işlemci yükü: alçak şehir uçuşu ve kalabalık savaşta 60 FPS (çizim çağrılarını azaltma, toplu çizimi genişletme; telefon raporu V2.66 Ultra: alçak uçuş ve savaş P90 30, işlemci 17–19 ms) | ✅ |
 | V2.68 | Liderlik tabloları ve birlik yarışı | ✅ |
 | V2.69 | Sezonluk etkinlikler ve Harekât Kartı (ilk sezon 18 Mart); 2× günlük ödül ve Harekât'ta devam reklamları | ✅ |
-| V2.70 | Filo (klan) sistemi | |
+| V2.70 | Filo (klan) sistemi | ✅ |
 | V2.71 | Gece Görev Paketi (NVG ile; satılık görev paketi) | |
 | V2.72–V2.73 | Gerçekçi uçuş modu ve tıklanabilir kokpit | |
 | V2.74 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
