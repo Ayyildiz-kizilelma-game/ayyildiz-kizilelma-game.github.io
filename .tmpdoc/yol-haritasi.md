@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.74 · son güncelleme: 25 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.75 · son güncelleme: 25 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -18,10 +18,11 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 - **Sıralama (V2.68):** Kariyer → Sıralama: haftalık ve toplam TP, yarış rekorları, birlik yarışı (bulutta, Pazartesi başlayan haftalar).
 - **Sezonlar (V2.69):** Kariyer → Harekât Kartı; ilk sezon "Çanakkale Geçilmez" 18 Mart 2027'de, o güne kadar Hazırlık Dönemi. Günlük ödül ve Harekât'ta kaldığın yerden devam.
 - **Filolar (V2.70):** Kariyer → Filo; en çok 30 pilot, haftalık filo hedefi, sıralamada etiket.
-- **Gece Görev Paketi (V2.71):** beş gece görevi, ilk görev ücretsiz; satın alma V2.75'te.
+- **Gece Görev Paketi (V2.71):** beş gece görevi, ilk görev ücretsiz; satın alma V2.79'da.
 - **Gerçekçi uçuş (V2.72):** Ayarlar → Uçuş → Uçuş modeli: Arcade / Gerçekçi.
 - **Tıklanabilir kokpit (V2.73):** KAAN, Hürjet, Hürkuş kokpitinde iniş takımı, MASTER ARM, fırlatma kolu, flare, silah seçimi, gece görüş; harita ölçeği.
-- **Kokpitler 2.0 (V2.74):** her insanlı uçak ve helikopterin kendi kokpiti; İHA'larda sensör, yer kontrol istasyonu ve VR görünümü.
+- **Kokpitler 2.0 (V2.74):** her insanlı uçak ve helikopterin kendi kokpiti; İHA'larda sensör ve yer kontrol istasyonu görünümü.
+- **Kokpitler 3.0 (V2.75):** her uçak ve helikopterde üç kokpit düzeni (A/B/C), uçuşta 🛩 ile seçilir; VR kaldırıldı.
 - **Bekleyen denemeler:** VR görünümü gerçek telefon ve gözlükle; birden çok gerçek hesapla filo (başvuru, onay, devir); iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler
@@ -63,7 +64,11 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.72 | Gerçekçi uçuş modu: hücum açısı ve stol, enerji, tam yerçekimi, gerçek G sınırları, pilotta G etkisi | ✅ |
 | V2.73 | Tıklanabilir kokpit | ✅ |
 | V2.74 | Kokpitler 2.0: her insanlı uçağa kendi kokpiti (KAAN, Hürjet, Hürkuş), helikopterlere ayrı kokpit (T129 ATAK, T625 Gökbey); İHA'larda yer kontrol istasyonu ve VR görünümü (oyuncu isteği, 25 Kasım) | ✅ |
-| V2.75 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
+| V2.75 | Kokpitler 3.0: her uçak ve helikopterde üç kokpit düzeni (KAAN gece, Hürjet arka koltuk, Hürkuş sade, T129 nişancı ve gece görüş, T625 kapı topçusu dahil); VR kaldırıldı (oyuncu tasarım seçimi, 26 Kasım) | ✅ |
+| V2.76 | Kamera açıları: uçaklarda kokpit, takip, burun, kuyruk, gövde altı, sinematik; İHA'larda burun, kuyruk, gövde altı EO/IR, kanat altı, takip, taktik harita; tek kamera düğmesi (oyuncu isteği, 26 Kasım) | |
+| V2.77 | Gidilebilir yer kontrol istasyonu: üste konteyner, harekât merkezi, mobil kamyon; yeni EO/IR kamera görünümü (oyuncu isteği, 26 Kasım) | |
+| V2.78 | Öneriler: lazer işaretleme, ekip modu (pilot + operatör), fotoğraf modu, camda yağmur, kask ekranı, İHA kalkışı, kapı topçusu ateşi (oyuncu isteği, 26 Kasım) | |
+| V2.79 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.
