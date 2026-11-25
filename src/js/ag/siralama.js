@@ -39,10 +39,11 @@ raceFinish=HOOK.wrap('raceFinish','ag/siralama#lbRace',function(next){ return fu
 /* ---- loading */
 function lbRpc(fn,args){ return Promise.resolve(ACC.sb.rpc(fn,args||{})).then(function(r){ if(r&&r.error) throw r.error; return r?r.data:null; }); }
 function lbFetch(tab){ const prev=lbWeekId(lbWeekStart()-864e5);
-  if(tab==='hafta') return lbRpc('lb_hafta_liste',{h:null,lim:50});
-  if(tab==='genel') return lbRpc('lb_genel_liste',{lim:50});
+  if(tab==='hafta') return lbRpc('lb_hafta_liste2',{h:null,lim:50});
+  if(tab==='genel') return lbRpc('lb_genel_liste2',{lim:50});
+  if(tab==='filo') return lbRpc('filo_liste',{q:null,lim:50,h:null});
   if(tab==='birlik') return Promise.all([lbRpc('lb_birlik',{h:null}),lbRpc('lb_birlik',{h:prev})]).then(function(a){ return {now:a[0]||[], prev:a[1]||[]}; });
-  return lbRpc('lb_yaris_liste',{y:LB.race,lim:20}); }
+  return lbRpc('lb_yaris_liste2',{y:LB.race,lim:20}); }   /* *2: with the fleet tag (V2.70) */
 function lbLoad(){ const tab=LB.tab, k=tab==='yaris'?'yaris:'+LB.race:tab, id=++LB.load; LB.err=null;
   if(typeof ACC==='undefined'||!ACC.sb){ lbRender(); return Promise.resolve(); }
   const first=lbOn()?lbFlush():Promise.resolve();
@@ -50,12 +51,12 @@ function lbLoad(){ const tab=LB.tab, k=tab==='yaris'?'yaris:'+LB.race:tab, id=++
     .then(function(a){ if(id!==LB.load) return; LB.data[k]=a[0]||[]; const m=a[1]; LB.me=Array.isArray(m)?m[0]||null:m; lbRender(); })
     .catch(function(e){ if(id!==LB.load) return; LB.err=e&&e.message||String(e); lbRender(); }); }
 /* ---- rendering */
-const LB_TABS=[['hafta','Bu hafta'],['genel','Tüm zamanlar'],['birlik','Birlik yarışı'],['yaris','Yarışlar']];
+const LB_TABS=[['hafta','Bu hafta'],['genel','Tüm zamanlar'],['birlik','Birlik yarışı'],['filo','Filolar'],['yaris','Yarışlar']];
 function lbEmb(e){ const x=(typeof EMBLEMS!=='undefined'?EMBLEMS:[]).find(function(m){ return m[0]===e; }); return x?x[1]:'☾'; }
 function lbUnit(u){ return (typeof UNITS!=='undefined'&&UNITS[u])||UNITS.hava; }
 function lbRows(L,val,unitOf){ const me=lbOn()?ACC.user.id:null;
   if(!L||!L.length) return '<p class="lbempty">Henüz kimse yok. İlk sen ol!</p>';
-  return '<ol class="lbl">'+L.map(function(r){ return '<li class="'+(r.user_id===me?'me':'')+'"><span class="lbs">'+r.sira+'</span><span class="lbe">'+lbEmb(r.emblem)+'</span><span class="lbn"><b>'+lbEsc(r.callsign||'Pilot')+'</b><small style="color:'+(LB_RENK[r.unit]||'#ccc')+'">'+lbEsc(lbUnit(r.unit))+'</small></span><span class="lbv">'+val(r)+'</span></li>'; }).join('')+'</ol>'; }
+  return '<ol class="lbl">'+L.map(function(r){ return '<li class="'+(r.user_id===me?'me':'')+'"><span class="lbs">'+r.sira+'</span><span class="lbe">'+lbEmb(r.emblem)+'</span><span class="lbn"><b>'+(r.etiket?'<span class="fltag">'+lbEsc(r.etiket)+'</span>':'')+lbEsc(r.callsign||'Pilot')+'</b><small style="color:'+(LB_RENK[r.unit]||'#ccc')+'">'+lbEsc(lbUnit(r.unit))+'</small></span><span class="lbv">'+val(r)+'</span></li>'; }).join('')+'</ol>'; }
 function lbTp(n){ return (Math.round(n)||0).toLocaleString('tr-TR')+' TP'; }
 function lbMeLine(){ if(!lbOn()) return '<p class="lbme">Sıralamada görünmek için giriş yap: kazandığın TP ve yarış sürelerin buraya işlenir.</p>';
   const m=LB.me; if(!m) return '';
@@ -80,6 +81,7 @@ function lbRender(){ const el=$('lbBody'); if(!el) return; const tab=LB.tab;
   else { const k=tab==='yaris'?'yaris:'+LB.race:tab, D=LB.data[k];
     if(D===undefined) h+='<p class="lbempty">Yükleniyor…</p>';
     else if(tab==='birlik') h+=lbBirlik(D);
+    else if(tab==='filo') h+='<p class="mgn">Filoların bu haftaki toplam TP\'si · '+lbLeft()+' kaldı</p>'+(D.length?'<ol class="lbl">'+D.map(function(f){ const mine=typeof FL!=='undefined'&&FL.me&&FL.me.filo_id===f.id; return '<li class="'+(mine?'me':'')+'"><span class="lbs">'+f.sira+'</span><span class="lbe">'+lbEmb(f.amblem)+'</span><span class="lbn"><b><span class="fltag">'+lbEsc(f.etiket)+'</span>'+lbEsc(f.ad)+'</b><small>'+f.uye+' pilot</small></span><span class="lbv">'+lbTp(f.tp)+'</span></li>'; }).join('')+'</ol>':'<p class="lbempty">Henüz filo yok. Kariyer → Filo\'dan kurabilirsin.</p>');
     else { if(tab==='hafta') h+='<p class="mgn">Pazartesiden beri kazanılan TP · '+lbLeft()+' kaldı</p>';
       h+=lbRows(D,tab==='yaris'?function(r){ return typeof fmtT==='function'?fmtT(r.ms/1000):(r.ms/1000).toFixed(1)+' sn'; }:function(r){ return lbTp(r.tp); }); } }
   h+=lbMeLine(); el.innerHTML=h; }

@@ -76,3 +76,12 @@ Kariyer → Sıralama: haftalık ve toplam TP, yarış rekorları, birliklerin h
 2. `supabase/siralama.sql` dosyasının tamamını yapıştır → **Run**.
 
 Oyuncu tablolara doğrudan yazamaz; TP ve yarış süresi yalnız sınırlı işlevlerle eklenir (çağrı başına en çok 1 500 TP, haftada en çok 100 000; yarışta 5 sn – 1 saat). Hafta Pazartesi 00:00'da (Türkiye saati) başlar. Hesap silinince kayıtlar da silinir.
+
+## 9. Filolar (V2.70)
+
+Kariyer → Filo: oyuncuların kurduğu en çok 30 kişilik gruplar, haftalık filo hedefi ve sıralamada filo etiketi.
+
+1. Önce 8. adım (`supabase/siralama.sql`) kurulmuş olmalı.
+2. Supabase → **SQL Editor** → **New query** → `supabase/filo.sql` dosyasının tamamını yapıştır → **Run**.
+
+Kurallar sunucuda: filo kurmak için Teğmen rütbesi, ad 3–24 / etiket 2–4 karakter, en çok 3 açık başvuru. Komutan ayrılınca komutanlık devredilir, son kişi ayrılınca filo kapanır. Yönetici uygunsuz bir filoyu oyun içinden silebilir (yönetim kaydına yazılır). Hesap silinince oyuncu önce filodan ayrılır.

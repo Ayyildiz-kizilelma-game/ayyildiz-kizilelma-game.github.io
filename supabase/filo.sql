@@ -222,25 +222,22 @@ language sql stable security invoker set search_path = public as $$
   select b.user_id, p.callsign, p.unit, p.emblem, p.rank, b.at from filo_basvuru b join profiles p on p.id = b.user_id
   where b.filo_id = (select filo_id from filo_uyeler where user_id = auth.uid() and rol in ('komutan','yardimci')) order by b.at $$;
 
--- sıralama listelerine filo etiketi
-drop function if exists public.lb_hafta_liste(date,integer);
-create function public.lb_hafta_liste(h date default null, lim integer default 50)
+-- sıralama listeleri filo etiketiyle (yeni adlar; eski uygulamalar eski işlevleri kullanmaya devam eder)
+create or replace function public.lb_hafta_liste2(h date default null, lim integer default 50)
 returns table (sira bigint, user_id uuid, callsign text, unit text, emblem text, rank integer, tp integer, etiket text)
 language sql stable security invoker set search_path = public as $$
   select rank() over (order by l.tp desc), l.user_id, p.callsign, l.unit, p.emblem, p.rank, l.tp, f.etiket
   from lb_hafta l join profiles p on p.id = l.user_id left join filo_uyeler u on u.user_id = l.user_id left join filolar f on f.id = u.filo_id
   where l.hafta = coalesce(h, hafta_basi()) and not p.banned and l.tp > 0
   order by l.tp desc limit least(coalesce(lim,50),100) $$;
-drop function if exists public.lb_genel_liste(integer);
-create function public.lb_genel_liste(lim integer default 50)
+create or replace function public.lb_genel_liste2(lim integer default 50)
 returns table (sira bigint, user_id uuid, callsign text, unit text, emblem text, rank integer, tp integer, etiket text)
 language sql stable security invoker set search_path = public as $$
   select rank() over (order by p.xp desc), p.id, p.callsign, p.unit, p.emblem, p.rank, p.xp, f.etiket
   from profiles p left join filo_uyeler u on u.user_id = p.id left join filolar f on f.id = u.filo_id
   where not p.banned and coalesce(p.xp,0) > 0
   order by p.xp desc limit least(coalesce(lim,50),100) $$;
-drop function if exists public.lb_yaris_liste(text,integer);
-create function public.lb_yaris_liste(y text, lim integer default 20)
+create or replace function public.lb_yaris_liste2(y text, lim integer default 20)
 returns table (sira bigint, user_id uuid, callsign text, unit text, emblem text, ms integer, ucak text, etiket text)
 language sql stable security invoker set search_path = public as $$
   select rank() over (order by l.ms), l.user_id, p.callsign, p.unit, p.emblem, l.ms, l.ucak, f.etiket
@@ -248,8 +245,8 @@ language sql stable security invoker set search_path = public as $$
   where l.yaris = y and not p.banned
   order by l.ms limit least(coalesce(lim,20),100) $$;
 
-grant execute on function public.filo_liste(text,integer,date), public.filo_uyeleri(uuid), public.lb_hafta_liste(date,integer),
-  public.lb_genel_liste(integer), public.lb_yaris_liste(text,integer) to anon, authenticated;
+grant execute on function public.filo_liste(text,integer,date), public.filo_uyeleri(uuid), public.lb_hafta_liste2(date,integer),
+  public.lb_genel_liste2(integer), public.lb_yaris_liste2(text,integer) to anon, authenticated;
 grant execute on function public.filo_kur(text,text,text,text,boolean), public.filo_katil(uuid), public.filo_basvuru_geri(uuid), public.filo_ayril(),
   public.filo_basvuru_karar(uuid,boolean), public.filo_cikar(uuid), public.filo_rol(uuid,text), public.filo_duzenle(text,text,boolean,text),
   public.filo_sil(uuid), public.filo_basvurular() to authenticated;

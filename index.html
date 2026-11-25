@@ -3,7 +3,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="game-version" content="V2.69">
+<meta name="game-version" content="V2.70">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Ay Yıldız: Hedef Kızıl Elma</title>
 <meta name="theme-color" content="#a10d1c">
@@ -1203,8 +1203,25 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .godays b{ font-size:16px; } .godays em{ font-style:normal; opacity:.6; font-size:10px; } .godays .got{ opacity:.45; } .godays .now{ border-color:#ffd27a; background:rgba(255,210,122,.12); }
 .gocard .btn.gold{ border-color:#ffc24a; color:#ffd27a; }
 .szbody>*, .lbbody>*{ flex-shrink:0; }   /* a scrolling flex column must not squash its rows (the level bar vanished) */
+/* V2.70 fleets */
+.flcard{ max-width:680px; }
+.fltag{ display:inline-block; margin-right:6px; padding:0 5px; border-radius:4px; background:rgba(255,210,122,.16); color:#ffd27a; font-size:.82em; font-weight:700; letter-spacing:.04em; }
+.flsearch{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; } .flsearch input{ flex:1; min-width:150px; }
+.fllist .lbn{ cursor:pointer; } .fllist li .btn.sm{ padding:3px 10px; font-size:12px; white-space:nowrap; }
+.flform{ display:grid; grid-template-columns:1fr 90px 90px; gap:8px; padding:10px; border-radius:10px; border:1px solid rgba(255,210,122,.35); background:rgba(8,15,28,.5); }
+.flform label, .flset label{ display:flex; flex-direction:column; gap:3px; font-size:12px; opacity:.9; } .flform label.w, .flform label.chk, .flform .stack{ grid-column:1/-1; }
+.flform label.chk, .flset label.chk{ flex-direction:row; align-items:center; gap:8px; }
+.flhead{ display:flex; gap:12px; align-items:center; } .flhead h3{ margin:0; font-size:19px; } .flhead>div{ flex:1; min-width:0; } .flem{ font-size:34px; }
+.flac{ margin:0; font-size:13px; opacity:.85; } .fldu{ margin:0; padding:8px 10px; border-radius:8px; background:rgba(184,236,255,.08); border-left:3px solid #b8ecff; font-size:13px; }
+.flgoal{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; } .flgoal small{ font-size:11px; opacity:.8; } .flgoal .on small{ color:#7dffb0; opacity:1; }
+.flrol{ font-style:normal; font-size:10.5px; font-weight:600; color:#ffd27a; margin-left:4px; letter-spacing:.04em; }
+.flact{ display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; } .flact .btn.sm{ padding:3px 8px; font-size:11.5px; }
+.flset{ padding:8px 10px; border-radius:10px; background:rgba(8,15,28,.5); } .flset summary{ cursor:pointer; font-weight:600; } .flset[open]{ display:flex; flex-direction:column; gap:8px; }
+.flcard .btn.danger{ border-color:rgba(255,107,107,.6); color:#ff9a9a; }
+.flcard input:not([type=checkbox]), .flcard select{ font:inherit; font-size:14px; color:var(--ink); background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:6px; padding:7px 10px; min-width:0; }
+.flcard select option{ background:#0d1626; color:#fff; }
 </style>
-<link rel="preload" href="oyun.js?v=V2.69" as="script">
+<link rel="preload" href="oyun.js?v=V2.70" as="script">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1772,6 +1789,6 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
   <p class="vr" id="prepVr"></p>
 </div>
 <script src="vendor/three-r187/three.min.js"></script>
-<script src="oyun.js?v=V2.69"></script>
+<script src="oyun.js?v=V2.70"></script>
 </body>
 </html>

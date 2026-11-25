@@ -1,6 +1,13 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.70 — 2026-11-25 · Filolar
+- **Filolar** (Kariyer → Filo): en çok 30 pilotluk gruplar. Teğmen rütbesinden itibaren filo kurabilirsin (ad, 2–4 harflik etiket, arma, açıklama); açık filolara doğrudan katılırsın, kapalı filolara başvurursun (aynı anda en çok 3 başvuru).
+- Roller: komutan, yardımcı, pilot. Komutan ve yardımcılar başvuruları onaylar, filo duyurusunu ve açıklamasını yazar; komutan rolleri verir ve komutanlığı devredebilir. Komutan ayrılırsa komutanlık en eski yardımcıya (yoksa en eski pilota) geçer.
+- **Haftalık filo hedefi:** filodayken kazandığın TP filonun haftalık toplamına da yazılır. Filo 10, 25 ya da 50 bin TP'ye ulaşırsa o hafta katkı veren herkes sonraki hafta 50, 100 ya da 200 TP alır.
+- Filo etiketin sıralamada adının yanında görünür; Sıralama'ya **Filolar** sekmesi eklendi.
+- Uygunsuz filo adlarına karşı bir süzgeç var; yönetici uygunsuz bir filoyu oyunun içinden silebilir. Gizlilik politikası filolarla güncellendi.
+
 ## V2.69 — 2026-11-24 · Sezonlar ve Harekât Kartı
 - **Sezonlar ve Harekât Kartı** (Kariyer → Harekât Kartı): sezonlar millî günlerde başlar: 18 Mart, 19 Mayıs, 30 Ağustos, 29 Ekim. İlk sezon "Çanakkale Geçilmez" 18 Mart 2027'de başlıyor; o güne kadar 10 seviyelik **Hazırlık Dönemi** açık.
 - Kariyerde kazandığın her TP sezon puanı da sayılır; millî günün kendisinde 2 katı. Her hafta 3 sezon görevi (+500 SP). 1000 SP bir seviye.

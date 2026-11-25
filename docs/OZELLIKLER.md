@@ -4,19 +4,20 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 74 özellik · ✅ iyi 67 · 🧪 denenmeli 3 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 75 özellik · ✅ iyi 67 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
 Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu gibi kalır.
 
-1. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
-2. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
-3. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
-4. **Google Play paketi** (🔧 iyileştirilmeli) — Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün). Google ile girişin gerçek telefonda denenmesi.
-5. **Reklamlar** (🔧 iyileştirilmeli) — Şimdilik Google deneme reklamları (gelir yok). Gerçek reklam için AdMob hesabı ve kimlikleri gerekiyor.
-6. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.74 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
-7. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
+1. **Filo** (🧪 denenmeli) — Birden çok gerçek hesapla denenmeli (başvuru, onay, devir).
+2. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
+3. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
+4. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
+5. **Google Play paketi** (🔧 iyileştirilmeli) — Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün). Google ile girişin gerçek telefonda denenmesi.
+6. **Reklamlar** (🔧 iyileştirilmeli) — Şimdilik Google deneme reklamları (gelir yok). Gerçek reklam için AdMob hesabı ve kimlikleri gerekiyor.
+7. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.74 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
+8. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
 
 ## Uçuş
 
@@ -91,6 +92,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Uçuş okulu** | Adım adım dersler: kalkış, iniş, rüzgârlı iniş, helikopter, askı yükü, silah, gemiye iniş. | Kariyer → Eğitim | — | V1.78 | school | ✅ iyi |
 | **Sezonlar ve Harekât Kartı** | Sezonlar millî günlerde başlar (18 Mart, 19 Mayıs, 30 Ağustos, 29 Ekim; ilk sezon 18 Mart 2027, o güne kadar Hazırlık Dönemi). Kariyerde kazanılan her TP sezon puanı da sayılır (millî günde 2 kat); haftalık 3 sezon görevi. Ücretsiz yolda TP, sezon amblemi ve kaplaması; Harekât Kartı yolunda yalnız sezon kaplamaları ve amblemler. Alınmamış ödüller sezon bitince verilir. | Kariyer → Harekât Kartı | — | V2.69 | v269 | ✅ iyi |
 | **Günlük ödül** | Her gün ilk girişte günlük ödül: 7 gün üst üste 50 → 150 TP, bir gün kaçarsa baştan. İstenirse ödüllü reklamla 2 kat (Reklamsız ürününde reklamsız). | Ana menü (günde bir kez) | — | V2.69 | v269 | ✅ iyi |
+| **Filo** | Oyuncuların kurduğu en çok 30 pilotluk gruplar: Teğmen rütbesinden filo kur (ad, etiket, arma, açıklama) ya da açık filoya katıl, kapalıya başvur. Komutan, yardımcı ve pilot rolleri; duyuru, başvuru onayı, pilot çıkarma, komutanlık devri. Filoda kazanılan TP filonun haftalık toplamına yazılır; 10/25/50 bin TP hedefine ulaşan filonun katkı verenleri 50/100/200 TP alır. Filo etiketi sıralamada görünür, Sıralama'da Filolar sekmesi. | Kariyer → Filo | — | V2.70 | v270 | 🧪 denenmeli |
 | **Sıralama ve birlik yarışı** | Bulut sıralaması: bu haftanın ve tüm zamanların en çok TP kazanan pilotları, her yarışın en iyi süreleri. Birlik yarışı: haftanın TP'si birliklere (Hilal Kanatlar, Mavi Kanatlar, Bozkurtlar) toplanır; kazanan birlikte o hafta TP kazanan herkes 150 TP alır. Hafta Pazartesi 00:00'da (Türkiye saati) başlar. Misafir okuyabilir, giriş yapan listeye girer. | Kariyer → Sıralama | — | V2.68 | v268 | ✅ iyi |
 | **Ehliyet ve sertifikalar** | İHA pilotu, pilot, tank sürücüsü, araç sürücüsü, kaptan belgeleri ve sınavları; belgesiz kullanım engeli. | Kariyer → Ehliyet ve Sertifikalar | — | V1.92 | licenses | ✅ iyi |
 | **Başarımlar, madalyalar, istatistikler** | Başarımlar, madalyalar, uçuş istatistikleri, rekorlar. | Kariyer · üstteki kupa düğmesi | — | V1.79 | progress | ✅ iyi |
