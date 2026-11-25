@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 76 özellik · ✅ iyi 68 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 77 özellik · ✅ iyi 69 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -26,6 +26,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Uçak seçimi ve hangar** | On Türk uçağı ve İHA arasından seçim; hangarda 3B inceleme, boya, performans çubukları ve karşılaştırma. | Hızlı Oyun → Serbest Uçuş / Sürüş · Kariyer → Hangar | — | V1.24 | picker, menu3 | ✅ iyi |
 | **Uçuş modeli** | Gaz, art yakıcı, fren, iniş takımı; uçağa göre gerçek hız, tırmanma ve servis tavanı. | Her uçuşta | W/S/A/D · Q/E · R/F · Shift · B · G | V1.02 | features, realperf | ✅ iyi |
 | **Taksi ve kalkış** | Hangardan piste taksi, otomatik taksi ve taksiyi atlama; kule izni. | Başlangıç yeri: Hangardan | T otomatik taksi · L taksiyi atla | V1.00 | taxi, hangar_taxi, airport | ✅ iyi |
+| **Gerçekçi uçuş modeli** | Ayarlar → Uçuş → Uçuş modeli: Gerçekçi seçilince uçağın gerçek bir hız vektörü olur: hücum açısına bağlı taşıma ve stol (15°), sürükleme ve sert dönüşte enerji kaybı, tam yerçekimi, gerçek G sınırları (savaş uçağı 9, Hürjet 8, Hürkuş 7, İHA'lar 3–4,5). Kumanda G ister; KAAN, Kızılelma, Hürjet ve İHA'larda hücum açısı sınırlayıcı var, Hürkuş stola girebilir. İnsanlı uçaklarda 6,5 G üstünde görüş kararır (G-LOC). Göstergede α, G ve STALL uyarısı. | Ayarlar → Uçuş → Uçuş modeli | — | V2.72 | v272 | ✅ iyi |
 | **İniş yardımı** | Piste yaklaşırken süzülüş ve merkez hattı göstergesi, istenirse otomatik iniş. | Ayarlar → Uçuş → Uçuş yardımı | — | V1.96 | assist | ✅ iyi |
 | **Uçuş konforu** | Otomatik denge, türbülans ayarı, kare süresi yumuşatma. | Ayarlar → Uçuş | — | V1.84 | comfort | ✅ iyi |
 | **3B kokpit** | Çalışan çok işlevli ekranlar, kafa hareketi. | Uçuşta kamera değiştir | C | V1.89 | cockpit | ✅ iyi |

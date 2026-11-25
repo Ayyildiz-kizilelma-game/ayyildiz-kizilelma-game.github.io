@@ -53,6 +53,8 @@ function update(dt){
   prevPos.copy(S.pos);
 
   if(!S.onGround){
+    if(typeof fmReal==='function'&&fmReal()) fmStep(dt,thrust,kD,sp);   /* V2.72: realistic flight model */
+    else {
     const auth=clamp(sp/CUR.authV,0.2,1)*(0.3+0.7*stallS);
     const gcap=CUR.gLim*9.81/Math.max(sp,CUR.minV);
     const pr=S.pitchIn*Math.min(CUR.pitchMax,gcap)*auth-(1-stallS)*CUR.stallNose;
@@ -63,7 +65,7 @@ function update(dt){
     S.sink+=9.81*(1-stallS)*dt; S.sink*=Math.exp(-3*stallS*dt); S.sink=Math.min(S.sink,120);
     fwdOf(S.q,vF);
     vel.copy(vF).multiplyScalar(S.speed); vel.y-=S.sink; S.vy=vel.y;
-    S.pos.addScaledVector(vel,dt);
+    S.pos.addScaledVector(vel,dt); }
 
     // terrain / ground contact
     const gh=terrainH(S.pos.x,S.pos.z), gl=Math.max(gh,0);

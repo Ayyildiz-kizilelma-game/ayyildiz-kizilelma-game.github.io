@@ -191,3 +191,6 @@ Ayrıntı: [ANDROID.md](ANDROID.md). `android-app/` (Capacitor 8 + AdMob, App, B
 
 ## Gece Görev Paketi (V2.71)
 `gorev/gece-paketi` (`GP`, `GP_CH`): Harekât ile aynı düzen (dinamik görev motoru `DYN`, `campAc` ile araç seçimi, aynı ekran sınıfları). Sahiplik mağaza ürünü `gece` (`entOwns`), ilk görev `free`. `setupMission` sarmalayıcısı paket görevinde `SETTINGS.tod='night'` ve `WX.vis='nvg'` yapar, oyuncunun ayarını `GP.keep`'te saklar; başka görev, `misGo`, `quickPlay` ya da menüye dönüş (`refreshTitle`) geri yükler. İlerleme `stats.gece`, madalya `gecekartali`.
+
+## Gerçekçi uçuş modeli (V2.72)
+`ucus/gercekci-ucus` (`FM`): `SETTINGS.fm==='real'` iken `update()` (ucus/inis-alanlari) havadaki dalda `fmStep(dt,thrust,kD,sp)` çağırır; yer teması, iniş ve çarpma denetimi iki modelde ortak. Model: dünya hız vektörü `FM.vw`; α ve kayma açısı (β); taşıma ivmesi `9.81·(v/Vs)²·CL(α)` (Vs = `stall[0]·1,05`, CL tepe 15°), sürükleme `kD·v²` + indüklenmiş `0,1·|L·CL|`, tam yerçekimi, itki burun yönünde. Kumanda yük katsayısı ister (`FM_G` gerçek G sınırları, `FM_LIM` hücum açısı sınırlayıcıları); burun α'yı istenen değere taşıyacak hızla döner, β burnu hıza çevirir. Dışarıdan hız değişince (kalkış, sıfırlama, ışınlanma) hız vektörü burun yönünde yeniden kurulur. G-LOC `FM.gEn` (insanlı uçaklar). Otomatik denge (`stabOn`) bu modda kapalı. Arcade yol değişmedi.

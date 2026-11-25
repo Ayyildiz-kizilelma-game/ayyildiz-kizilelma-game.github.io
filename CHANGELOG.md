@@ -1,6 +1,14 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.72 — 2026-11-25 · Gerçekçi uçuş modu
+- **Gerçekçi uçuş modu** (Ayarlar → Uçuş → Uçuş modeli → Gerçekçi): uçak artık burnunun gösterdiği yere değil, gerçek hız vektörüyle uçar.
+- **Hücum açısı ve stol:** kanat 15° hücum açısına kadar taşır, üstünde stola girer (taşıma düşer, sarsıntı, burun düşer). Yavaşladıkça düz uçmak için burnu daha çok kaldırman gerekir.
+- **Enerji:** sert dönüş hız kaybettirir, tırmanış hızı yer, dalış hız kazandırır; yerçekimi tam etki eder.
+- **Gerçek G sınırları:** savaş uçağı 9 G, Hürjet 8, Hürkuş 7, İHA'lar 3–4,5 G. Kumanda G ister; KAAN, Kızılelma, Hürjet ve İHA'ların uçuş bilgisayarı stolu önler, **Hürkuş'ta sınırlayıcı yok**.
+- **Pilotta G etkisi:** insanlı uçaklarda uzun süre 6,5 G üstünde görüş daralıp kararır, kumanda zayıflar (G-LOC); G azalınca düzelir.
+- Göstergede hücum açısı (α), G ve STALL uyarısı. Bu modda otomatik denge kapalı. Arcade model hiç değişmedi ve varsayılan olarak kalıyor.
+
 ## V2.71 — 2026-11-25 · Gece Görev Paketi
 - **Gece Görev Paketi** (Kariyer ya da Hızlı Oyun → Gece Görev Paketi): beş gece görevi. Karanlık Devriye (İHA ile gece keşfi), Gece Avcısı (altı kamikaze İHA'yı düşür), Ay Işığında Taarruz (ışıksız ikmal konvoyu ve mevzi), Sessiz Liman (gece deniz devriyesi, üç gemiyi tanımla) ve Şafak Öncesi (nakliyeye gece refakati).
 - Görev başında gece ve **gece görüş (NVG)** açılır; ` tuşu ya da 👁 düğmesiyle termal görüşe geçebilirsin. Görev bitince kendi saat ve görüş ayarın geri gelir.

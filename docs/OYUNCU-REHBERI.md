@@ -33,6 +33,7 @@ Bu rehber `python3 tools/ozellikler.py` ile oyundaki **Rehber** ekranıyla aynı
 - **Uçak seçimi ve hangar:** On Türk uçağı ve İHA arasından seçim; hangarda 3B inceleme, boya, performans çubukları ve karşılaştırma. *Nereden:* Hızlı Oyun → Serbest Uçuş / Sürüş · Kariyer → Hangar.
 - **Uçuş modeli:** Gaz, art yakıcı, fren, iniş takımı; uçağa göre gerçek hız, tırmanma ve servis tavanı. *Nereden:* Her uçuşta. *Tuş:* W/S/A/D · Q/E · R/F · Shift · B · G.
 - **Taksi ve kalkış:** Hangardan piste taksi, otomatik taksi ve taksiyi atlama; kule izni. *Nereden:* Başlangıç yeri: Hangardan. *Tuş:* T otomatik taksi · L taksiyi atla.
+- **Gerçekçi uçuş modeli:** Ayarlar → Uçuş → Uçuş modeli: Gerçekçi seçilince uçağın gerçek bir hız vektörü olur: hücum açısına bağlı taşıma ve stol (15°), sürükleme ve sert dönüşte enerji kaybı, tam yerçekimi, gerçek G sınırları (savaş uçağı 9, Hürjet 8, Hürkuş 7, İHA'lar 3–4,5). Kumanda G ister; KAAN, Kızılelma, Hürjet ve İHA'larda hücum açısı sınırlayıcı var, Hürkuş stola girebilir. İnsanlı uçaklarda 6,5 G üstünde görüş kararır (G-LOC). Göstergede α, G ve STALL uyarısı. *Nereden:* Ayarlar → Uçuş → Uçuş modeli.
 - **İniş yardımı:** Piste yaklaşırken süzülüş ve merkez hattı göstergesi, istenirse otomatik iniş. *Nereden:* Ayarlar → Uçuş → Uçuş yardımı.
 - **Uçuş konforu:** Otomatik denge, türbülans ayarı, kare süresi yumuşatma. *Nereden:* Ayarlar → Uçuş.
 - **3B kokpit:** Çalışan çok işlevli ekranlar, kafa hareketi. *Nereden:* Uçuşta kamera değiştir. *Tuş:* C.

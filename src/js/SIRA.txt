@@ -109,6 +109,7 @@ veri/envanter-veri.js
 ekran/envanter.js
 ekran/tekrar.js
 ucus/gercek-performans.js
+ucus/gercekci-ucus.js
 ucus/kokpit.js
 kontrol/telefon.js
 ekran/menu-duzeltmeleri.js

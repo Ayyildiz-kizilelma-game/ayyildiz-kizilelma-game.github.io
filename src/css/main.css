@@ -1205,3 +1205,8 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 /* V2.71 night mission pack */
 .gpui .camphd h2{ color:#9fd7ff; letter-spacing:.2em; } .gpui .cbar i{ background:linear-gradient(90deg,#3e7bb8,#9fd7ff); }
 .gpbuy{ padding:10px 12px; border-radius:10px; border:1px dashed rgba(159,215,255,.55); background:rgba(20,40,70,.35); } .gpbuy p{ margin:0 0 8px; }
+/* V2.72 realistic flight: G grey-out / black-out and α/G readout */
+.fmgloc{ position:fixed; inset:0; pointer-events:none; z-index:30; opacity:0; transition:opacity .15s linear; background:radial-gradient(circle at 50% 50%, transparent var(--r,70%), rgba(0,0,0,.96) calc(var(--r,70%) + 22%)); }
+.fmhud{ position:fixed; left:50%; top:calc(env(safe-area-inset-top,0px) + 74px); transform:translateX(-50%); z-index:29; pointer-events:none; font:600 12px/1 var(--mono,ui-monospace,monospace); color:#7dffb0; text-shadow:0 0 4px rgba(0,0,0,.8); letter-spacing:.05em; }
+.fmhud b{ color:#ff5a5a; margin-left:6px; animation:fmblink .5s steps(2) infinite; } .fmhud i{ color:#ffc24a; font-style:normal; margin-left:4px; } .fmhud.hidden{ display:none; }
+@keyframes fmblink{ 50%{ opacity:.2; } }
