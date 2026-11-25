@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ clickable cockpit (V2.73)
-   In the 3D cockpit of KAAN, HÜRJET and HÜRKUŞ two side panels sit left and right of the instrument panel; click or tap
+   In the 3D cockpit of KAAN, HÜRJET and HÜRKUŞ (each its own cockpit since V2.74) two side panels sit left and right of the instrument panel; click or tap
    them (a tap without dragging; dragging still looks around):
    • Left panel: İNİŞ TAKIMI lever (lights green when down), MASTER ARM switch (SAFE blocks every weapon: gun, missiles,
      bombs; ARM again for each flight), FIRLAT handle (two pulls, like J twice).
@@ -13,11 +13,11 @@ const CKB_RNG=[6000,12000,24000];
 const CKB_DEF={
   L:[{id:'gear',x:20,y:16,w:216,h:150,n:'İNİŞ TAKIMI',k:'G'},{id:'arm',x:20,y:182,w:216,h:86,n:'MASTER ARM',k:'—'},{id:'eject',x:20,y:284,w:216,h:84,n:'FIRLATMA KOLU',k:'J ×2'}],
   R:[{id:'flare',x:20,y:16,w:216,h:110,n:'FLARE',k:'Z'},{id:'wpn',x:20,y:142,w:216,h:110,n:'SİLAH SEÇİMİ',k:'N'},{id:'vis',x:20,y:268,w:216,h:100,n:'GECE GÖRÜŞ / TERMAL',k:'`'}]};
-function ckbBuild(S2){ if(S2.ckb||S2.kind==='t129') return S2.ckb; const kaan=S2.kind==='kaan', P={};
+function ckbBuild(S2){ if(S2.ckb||ckpIsHeli(S2.kind)) return S2.ckb; const kaan=S2.kind==='kaan', P={};
   [['L',-1],['R',1]].forEach(function(a){ const s=a[1], scr=ckpScreen(S2.g,0.16,0.24,s*0.57,-0.31,-0.6,-0.3,256); scr.m.rotation.set(-0.3,-s*0.62,0,'YXZ');
     scr.m.userData.ckb=a[0]; const back=ckpBox(S2.g,ckpMat(kaan?0x23292f:0x2a3036),s*0.575,-0.31,-0.608,0.18,0.26,0.012); back.rotation.set(-0.3,-s*0.62,0,'YXZ');
     P[a[0]]=scr; });
-  S2.ckb=P; S2.ckbMap=S2.scr[kaan?0:1]; return P; }
+  S2.ckb=P; S2.ckbMap=S2.scr.find(function(x){ return x.role==='wide'||x.role==='map'; })||null; return P; }
 /* ---- drawing */
 function ckbLamp(x,cx,cy,r,on,col){ x.beginPath(); x.arc(cx,cy,r,0,Math.PI*2); x.fillStyle=on?col:'#1b2228'; x.fill(); if(on){ x.shadowColor=col; x.shadowBlur=12; x.fill(); x.shadowBlur=0; } x.strokeStyle='#05080a'; x.lineWidth=2; x.stroke(); }
 function ckbBox(x,b,lit){ x.fillStyle=lit?'#3a4652':'#1d242b'; x.strokeStyle=CKB.hover===b.id?'#ffd27a':'#53606c'; x.lineWidth=CKB.hover===b.id?4:2;
@@ -58,7 +58,7 @@ function ckbPick(cx,cy){ const S2=CKP.cur; if(!S2||!S2.ckb||!CKP.cam) return nul
   CKB.ndc.set(cx/window.innerWidth*2-1,-(cy/window.innerHeight)*2+1); CKB.ray.setFromCamera(CKB.ndc,CKP.cam);
   const objs=[S2.ckb.L.m,S2.ckb.R.m]; if(S2.ckbMap) objs.push(S2.ckbMap.m);
   const h=CKB.ray.intersectObjects(objs,false)[0]; if(!h||!h.uv) return null;
-  if(S2.ckbMap&&h.object===S2.ckbMap.m){ if(S2.kind!=='kaan') return 'map'; return h.uv.x>1/3&&h.uv.x<2/3?'map':null; }
+  if(S2.ckbMap&&h.object===S2.ckbMap.m){ if(S2.ckbMap.role!=='wide') return 'map'; return h.uv.x>1/3&&h.uv.x<2/3?'map':null; }
   const side=h.object.userData.ckb, px=h.uv.x*256, py=(1-h.uv.y)*384;
   const b=CKB_DEF[side].find(function(d){ return px>=d.x&&px<=d.x+d.w&&py>=d.y&&py<=d.y+d.h; }); return b?b.id:null; }
 function ckbActive(){ return state==='play'&&camMode===1&&!S.crashed&&!!CKP_FOR[activeId]&&!!(CKP.cur&&CKP.cur.ckb); }
@@ -76,5 +76,5 @@ fireWeapon=HOOK.wrap('fireWeapon','ucus/kokpit-dugmeler#_ckbWpn',function(next){
 function ckbSafeTip(){ const n=performance.now(); if(n-(CKB.tipT||0)<2500) return; CKB.tipT=n; toast('Silahlar emniyette: kokpitte MASTER ARM','#ffc24a'); }
 resetFlight=HOOK.wrap('resetFlight','ucus/kokpit-dugmeler#_ckbReset',function(next){ return function(){ CKB.arm=true; CKB.sig=''; return next.apply(this,arguments); }; },resetFlight);
 /* ---- per frame: build once per cockpit, redraw when something on the panels changed */
-cameraUpdate=HOOK.wrap('cameraUpdate','ucus/kokpit-dugmeler#_ckbCam',function(next){ return function(dt){ next(dt); if(!CKP.on||!CKP.cur||CKP.cur.kind==='t129') return;
+cameraUpdate=HOOK.wrap('cameraUpdate','ucus/kokpit-dugmeler#_ckbCam',function(next){ return function(dt){ next(dt); if(!CKP.on||!CKP.cur||ckpIsHeli(CKP.cur.kind)) return;
   const P=ckbBuild(CKP.cur); if(!P) return; const sg=ckbSig(); if(sg!==CKB.sig){ CKB.sig=sg; try{ ckbDraw(P); }catch(e){} } }; },cameraUpdate);

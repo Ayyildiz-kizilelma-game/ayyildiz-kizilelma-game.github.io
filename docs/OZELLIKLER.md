@@ -4,20 +4,21 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 78 özellik · ✅ iyi 70 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 79 özellik · ✅ iyi 70 · 🧪 denenmeli 5 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
 Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu gibi kalır.
 
-1. **Filo** (🧪 denenmeli) — Birden çok gerçek hesapla denenmeli (başvuru, onay, devir).
-2. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
-3. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
-4. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
-5. **Google Play paketi** (🔧 iyileştirilmeli) — Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün). Google ile girişin gerçek telefonda denenmesi.
-6. **Reklamlar** (🔧 iyileştirilmeli) — Şimdilik Google deneme reklamları (gelir yok). Gerçek reklam için AdMob hesabı ve kimlikleri gerekiyor.
-7. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.74 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
-8. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
+1. **İHA görünümleri** (🧪 denenmeli) — VR gerçek telefon ve gözlükle denenmeli.
+2. **Filo** (🧪 denenmeli) — Birden çok gerçek hesapla denenmeli (başvuru, onay, devir).
+3. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
+4. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
+5. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
+6. **Google Play paketi** (🔧 iyileştirilmeli) — Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün). Google ile girişin gerçek telefonda denenmesi.
+7. **Reklamlar** (🔧 iyileştirilmeli) — Şimdilik Google deneme reklamları (gelir yok). Gerçek reklam için AdMob hesabı ve kimlikleri gerekiyor.
+8. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.75 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
+9. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
 
 ## Uçuş
 
@@ -29,7 +30,8 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Gerçekçi uçuş modeli** | Ayarlar → Uçuş → Uçuş modeli: Gerçekçi seçilince uçağın gerçek bir hız vektörü olur: hücum açısına bağlı taşıma ve stol (15°), sürükleme ve sert dönüşte enerji kaybı, tam yerçekimi, gerçek G sınırları (savaş uçağı 9, Hürjet 8, Hürkuş 7, İHA'lar 3–4,5). Kumanda G ister; KAAN, Kızılelma, Hürjet ve İHA'larda hücum açısı sınırlayıcı var, Hürkuş stola girebilir. İnsanlı uçaklarda 6,5 G üstünde görüş kararır (G-LOC). Göstergede α, G ve STALL uyarısı. | Ayarlar → Uçuş → Uçuş modeli | — | V2.72 | v272 | ✅ iyi |
 | **İniş yardımı** | Piste yaklaşırken süzülüş ve merkez hattı göstergesi, istenirse otomatik iniş. | Ayarlar → Uçuş → Uçuş yardımı | — | V1.96 | assist | ✅ iyi |
 | **Uçuş konforu** | Otomatik denge, türbülans ayarı, kare süresi yumuşatma. | Ayarlar → Uçuş | — | V1.84 | comfort | ✅ iyi |
-| **3B kokpit** | Çalışan çok işlevli ekranlar, kafa hareketi. | Uçuşta kamera değiştir | C | V1.89 | cockpit | ✅ iyi |
+| **3B kokpit** | Her insanlı uçağın kendi kokpiti (V2.74): KAAN tek geniş ekran ve yan kumanda kolu, neredeyse çerçevesiz kanopi; Hürjet üç çok işlevli ekran, ön kontrol paneli ve aynalar; Hürkuş iki ekran, yuvarlak yedek göstergeler ve önde dönen pervane. Helikopterlerin ayrı kokpiti: T129 ATAK dar, çok parçalı kanopili tandem kabin; T625 Gökbey yan yana iki koltuk, dört ekran, orta konsol, tavan paneli, ayak pencereleri. Çalışan ekranlar, kafa hareketi. | Uçuşta kamera değiştir · helikopterde kamera | C | V1.89 | cockpit, v274 | ✅ iyi |
+| **İHA görünümleri** | İHA'da kokpit kamerası yerine üç görünüm (Ayarlar → Uçuş → İHA görünümü ya da uçuşta 📺 düğmesi): Sensör (burun EO/IR kamerası), Yer kontrol istasyonu (operatör konsolu: bağlantı, telemetri, taktik harita, faydalı yük, masa) ve VR (telefon VR gözlüğü için çift görüntü, telefonun hareketiyle bakış). | İHA ile uçarken kamera (C) → 📺 | C | V2.74 | v274 | 🧪 denenmeli |
 | **Tıklanabilir kokpit** | KAAN, Hürjet ve Hürkuş kokpitinde iki yan panel: iniş takımı kolu (yeşil lambalar), MASTER ARM (SAFE iken top, füze ve bomba ateşlenmez; her uçuşta yeniden ARM), fırlatma kolu (iki kez çek), flare (sayısıyla), silah seçimi (seçili silah ve sayısı), gece görüş / termal. Taktik harita ekranına dokununca ölçek 6 · 12 · 24 km. Farede üzerine gelince adı ve tuşu görünür. | Uçuşta kokpit kamerası (C) → panellere tıkla / dokun | C kamera | V2.73 | v273 | ✅ iyi |
 | **Akrobasi** | Akrobasi dumanı, figür tanıyıcı ve akrobasi gösterisi görevi. | Görevler · uçuşta duman | F6 duman | V2.07 | acro | ✅ iyi |
 | **Hasar, yakıt ve fırlatma koltuğu** | Parça hasarı, yakıt tüketimi, ikmal-onarım, fırlatma koltuğu. | Her uçuşta | J (iki kez) fırlatma | V1.73 | damage, service | ✅ iyi |

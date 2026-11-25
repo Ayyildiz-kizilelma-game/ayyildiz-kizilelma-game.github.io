@@ -6,22 +6,23 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 
 ## Şu an
 
-- **Oyun:** 78 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 70'i iyi durumda, 4'ü iyileştirilmeli, 4'ü gerçek cihazda denenmeli.
+- **Oyun:** 79 özellik ([docs/OZELLIKLER.md](docs/OZELLIKLER.md)): 70'i iyi durumda, 4'ü iyileştirilmeli, 5'i gerçek cihazda denenmeli.
 - **Platformlar:** web (GitHub Pages) ve Android uygulaması (Capacitor, V2.62). Uygulama yeni sürümleri kendi içinden
   indirir (hızlı güncelleme, V2.63); her sürüm önce Android emülatöründe denenir.
 - **Grafik motoru:** three.js r187 (V2.64), r128 görünümüyle; birleştirilmiş şehir hücreleri toplu çiziliyor (V2.65).
 - **Telefon (Samsung Xclipse 920, Ultra; V2.35 ölçümü):** bütün sahnelerde P90 60 FPS, takılma yok, açılış 7 saniye.
   Kalabalık savaşta P90 30 FPS. V2.66 telefon raporu (Ultra): alçak şehir uçuşu ve kalabalık savaş P90 30, işlemci 17–19 ms; Orta'da her sahne 60 FPS. V2.67: telefonda ters derinlik tamponu, iki katmanlı derinlik kalktı (Ultra alçak uçuş 305 → 257, savaş 232 → 188 çizim, bilgisayarda öykünme); yeni telefon raporu bekleniyor.
-- **Testler:** 124 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
+- **Testler:** 125 test yaklaşık 2 dakikada çalışıyor. Bütçe kapısı (çizim, üçgen, doku, stres; sabit rastgele dizi) ve
   metin denetimi ([docs/TERIMLER.md](docs/TERIMLER.md)) her yayında koşuyor.
 - **Gelir:** mağaza ve deneme reklamları hazır; gerçek ödeme ve gerçek reklam Play Console ve AdMob hesaplarını bekliyor.
 - **Sıralama (V2.68):** Kariyer → Sıralama: haftalık ve toplam TP, yarış rekorları, birlik yarışı (bulutta, Pazartesi başlayan haftalar).
 - **Sezonlar (V2.69):** Kariyer → Harekât Kartı; ilk sezon "Çanakkale Geçilmez" 18 Mart 2027'de, o güne kadar Hazırlık Dönemi. Günlük ödül ve Harekât'ta kaldığın yerden devam.
 - **Filolar (V2.70):** Kariyer → Filo; en çok 30 pilot, haftalık filo hedefi, sıralamada etiket.
-- **Gece Görev Paketi (V2.71):** beş gece görevi, ilk görev ücretsiz; satın alma V2.74'te.
+- **Gece Görev Paketi (V2.71):** beş gece görevi, ilk görev ücretsiz; satın alma V2.75'te.
 - **Gerçekçi uçuş (V2.72):** Ayarlar → Uçuş → Uçuş modeli: Arcade / Gerçekçi.
 - **Tıklanabilir kokpit (V2.73):** KAAN, Hürjet, Hürkuş kokpitinde iniş takımı, MASTER ARM, fırlatma kolu, flare, silah seçimi, gece görüş; harita ölçeği.
-- **Bekleyen denemeler:** birden çok gerçek hesapla filo (başvuru, onay, devir); iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
+- **Kokpitler 2.0 (V2.74):** her insanlı uçak ve helikopterin kendi kokpiti; İHA'larda sensör, yer kontrol istasyonu ve VR görünümü.
+- **Bekleyen denemeler:** VR görünümü gerçek telefon ve gözlükle; birden çok gerçek hesapla filo (başvuru, onay, devir); iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler
 
@@ -61,7 +62,8 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.71 | Gece Görev Paketi (NVG ile; satılık görev paketi) | ✅ |
 | V2.72 | Gerçekçi uçuş modu: hücum açısı ve stol, enerji, tam yerçekimi, gerçek G sınırları, pilotta G etkisi | ✅ |
 | V2.73 | Tıklanabilir kokpit | ✅ |
-| V2.74 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
+| V2.74 | Kokpitler 2.0: her insanlı uçağa kendi kokpiti (KAAN, Hürjet, Hürkuş), helikopterlere ayrı kokpit (T129 ATAK, T625 Gökbey); İHA'larda yer kontrol istasyonu ve VR görünümü (oyuncu isteği, 25 Kasım) | |
+| V2.75 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
 
 **Model serisinin kuralları:**
 - Her model, Defence Turk sayfasındaki fotoğraflara bakılarak ve gerçek ölçülerle yeniden yapılır. Fotoğraflar oyuna konmaz, yalnız görsel kaynak olarak kullanılır; sayısal veriler atıfla kullanılır.

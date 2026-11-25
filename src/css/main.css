@@ -1212,3 +1212,22 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 @keyframes fmblink{ 50%{ opacity:.2; } }
 /* V2.73 clickable cockpit */
 .ckbtip{ position:fixed; z-index:40; pointer-events:none; padding:4px 8px; border-radius:6px; background:rgba(8,15,28,.9); border:1px solid rgba(255,210,122,.6); color:#ffd27a; font:600 12px/1.2 var(--mono,ui-monospace,monospace); white-space:nowrap; } .ckbtip.hidden{ display:none; }
+/* V2.74 UAV views: ground control station frame and VR lens mask */
+.uvbtn{ position:fixed; left:calc(env(safe-area-inset-left,0px) + 12px); top:calc(env(safe-area-inset-top,0px) + 124px); z-index:25; padding:6px 10px; border-radius:8px; border:1px solid rgba(184,236,255,.45); background:rgba(8,15,28,.72); color:#b8ecff; font:700 12px/1 "Chakra Petch",monospace; letter-spacing:.04em; }
+.gcs{ position:fixed; inset:0; pointer-events:none; font-family:"Chakra Petch",monospace; color:#b8ecff; }
+.gcstop{ position:absolute; left:0; right:0; top:0; height:26px; display:flex; gap:18px; align-items:center; padding:0 14px; background:linear-gradient(#0b1420,#0a111b); border-bottom:1px solid #22384c; font-size:11.5px; letter-spacing:.08em; }
+.gcstop b{ color:#ffd27a; } .gcstop span{ opacity:.85; } .gcstop span:last-child{ margin-left:auto; }
+.gcsL,.gcsR{ position:absolute; top:26px; bottom:15vh; width:14vw; min-width:120px; background:linear-gradient(90deg,#0c141d,#101b26); padding:8px; box-sizing:border-box; overflow:hidden; }
+.gcsL{ left:0; border-right:2px solid #22384c; padding-top:max(22vh,160px); } .gcsR{ right:0; border-left:2px solid #22384c; padding-top:20vh; }
+.gcsL p,.gcsR p{ margin:0 0 6px; display:flex; justify-content:space-between; gap:6px; font-size:12px; border-bottom:1px solid rgba(184,236,255,.08); padding-bottom:3px; }
+.gcsL small,.gcsR small{ opacity:.6; font-size:10px; letter-spacing:.08em; } .gcsL b,.gcsR b{ color:#7dffb0; font-weight:700; }
+.gcsR canvas{ position:static; width:100%; height:auto; display:block; border:1px solid #22384c; border-radius:4px; margin-bottom:8px; }
+.gcsScr{ position:absolute; top:26px; bottom:15vh; left:max(14vw,120px); right:max(14vw,120px); box-shadow:inset 0 0 0 3px #1a2a38, inset 0 0 40px rgba(0,0,0,.55); background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px); }
+.gcsScr i{ position:absolute; width:22px; height:22px; border:2px solid rgba(184,236,255,.6); } .gcsScr .c1{ left:10px; top:10px; border-right:0; border-bottom:0; } .gcsScr .c2{ right:10px; top:10px; border-left:0; border-bottom:0; } .gcsScr .c3{ left:10px; bottom:10px; border-right:0; border-top:0; } .gcsScr .c4{ right:10px; bottom:10px; border-left:0; border-top:0; }
+.gcsScr span{ position:absolute; left:40px; bottom:12px; font-size:11px; color:#e6fff0; text-shadow:0 0 3px #000; letter-spacing:.05em; }
+.gcsB{ position:absolute; left:0; right:0; bottom:0; height:15vh; display:flex; align-items:center; justify-content:center; gap:4vw; background:linear-gradient(#1a2129,#0d1116); border-top:2px solid #2b3a48; }
+.gk{ display:flex; flex-direction:column; align-items:center; gap:4px; font-size:9.5px; opacity:.75; letter-spacing:.1em; } .gk i{ width:9vh; height:5vh; border-radius:50% 50% 8px 8px; background:radial-gradient(circle at 50% 30%,#3a4652,#151b21); border:1px solid #3a4a5a; }
+.gkb{ display:grid; grid-template-columns:repeat(7,3.2vh); gap:.6vh; } .gkb i{ height:2.6vh; border-radius:3px; background:#232c35; border:1px solid #34414d; }
+@media (max-height:520px){ .gcsL,.gcsR{ width:13vw; min-width:96px; padding:4px; } .gcsL{ padding-top:160px; } .gcsR{ padding-top:12vh; } .gcsL p,.gcsR p{ font-size:10.5px; margin-bottom:3px; } .gcsB{ height:9vh; } .gcsL,.gcsR,.gcsScr{ bottom:9vh; } .gcsScr{ left:max(13vw,96px); right:max(13vw,96px); } .gk span{ display:none; } }
+.vrmask{ position:fixed; inset:0; pointer-events:none; z-index:20; } .vrmask i{ position:absolute; top:0; bottom:0; width:50%; background:radial-gradient(ellipse 46% 50% at 50% 50%, transparent 82%, #000 100%); } .vrmask i:first-child{ left:0; } .vrmask i:nth-child(2){ right:0; }
+.vrmask b{ position:absolute; left:50%; top:0; bottom:0; width:2px; margin-left:-1px; background:#000; }

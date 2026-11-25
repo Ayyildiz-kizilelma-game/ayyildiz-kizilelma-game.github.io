@@ -144,7 +144,7 @@ Açık teknik borç:
   - Ana menü: Hızlı Oyun · Kariyer · Çok Oyunculu.
   - Hızlı Savaş (`QB_MODES`): yapay zekâ ayarı yalnız o savaş için `aiCfg` kancasıyla değişir.
 - **Rehber ve envanter** (`ekran/rehber`, `veri/rehber-veri`): `tools/ozellikler.py`'den üretilir. `docs/OZELLIKLER.md` ve `docs/OYUNCU-REHBERI.md` de aynı listeden çıkar.
-- **Mağaza** (`ekran/magaza`): ürün listesi `STORE`, paket kaplamaları `PSCHEMES` içinde `p:'<ürün>'` ile; sahiplik `ENT` (Supabase `entitlements`, oyuncu yalnız okur — `supabase/magaza.sql`). Gerçek ödeme V2.74'te Google Play ile.
+- **Mağaza** (`ekran/magaza`): ürün listesi `STORE`, paket kaplamaları `PSCHEMES` içinde `p:'<ürün>'` ile; sahiplik `ENT` (Supabase `entitlements`, oyuncu yalnız okur — `supabase/magaza.sql`). Gerçek ödeme V2.75'te Google Play ile.
 - **Sorun giderme** (`ekran/sorun-giderme`): Performans testi, Görüntü testi ve Tanılama tek ekranda.
   - Kapatma kuralı: tam ekranlarda sol üstte "← Geri", açılır kartlarda sağ üstte ✕.
   - Görev editörü Görevler ekranındaki "＋ Görev editörü" düğmesiyle açılır.
@@ -197,3 +197,7 @@ Ayrıntı: [ANDROID.md](ANDROID.md). `android-app/` (Capacitor 8 + AdMob, App, B
 
 ## Tıklanabilir kokpit (V2.73)
 `ucus/kokpit-dugmeler` (`CKB`, `CKB_DEF`): kokpit kümesine (ucus/kokpit, `CKP.cur`) iki tuval ekran eklenir (`ckbBuild`); düğme bölgeleri tuval pikseliyle tanımlı. `clickPick` (kontrol/fare-klavye, sürüklemesiz dokunuş/tıklama) sarmalanır: kokpit açıksa `CKP.cam` ile ışın, isabetin uv'si → bölge → `ckbDo` (mevcut işlevler: `toggleGear`, `ejArm`, `dropFlares`, `cycleWeapon`, `visCycle`; MASTER ARM `CKB.arm`, harita ölçeği `CKB.rng` → `mfdMap`). MASTER ARM `fire` ve `fireWeapon`'ı durdurur, `resetFlight` yeniden ARM yapar. Paneller durum imzası (`ckbSig`) değişince yeniden çizilir.
+
+## Kokpitler 2.0 ve İHA görünümleri (V2.74)
+`ucus/kokpit`: `CKP_FOR` (kaan, hurjet, hurkus) ve `CKP_HELI` (t129, t625) her araca kendi kokpit türünü verir; `ckpBuild(kind)` türe göre panel, ekranlar, kumanda kolları ve çerçeveyi kurar. Ekranların rolü var (`wide`, `adi`, `map`, `sys`, `gauge` yuvarlak göstergeler, `ufcp` ön kontrol paneli); `ckpMFD` role göre çizer. Helikopterde kolektif kolu (`S2.coll`) döner; Hürkuş'ta pervane diski (`S2.prop`) gazla belirginleşir. `ucus/kokpit-dugmeler` yan panelleri yalnız sabit kanatlılara ekler.
+`ucus/iha-gorunum` (`UV`): İHA'da kamera 1 için `SETTINGS.uavView` (`sensor` | `gcs` | `vr`). Yer kontrol istasyonu bir DOM çerçevesi (`.gcs`, HUD tuvalinin altına eklenir, 5 Hz güncellenir; harita `mfdMap`). VR `renderFrame` sarmalayıcısında `THREE.StereoCamera` ile iki yarıya çizer (efekt geçişleri atlanır, HUD gizlenir), baş takibi `deviceorientation` → `CAMU` (eğerek uçuş açıkken kapalı).

@@ -123,7 +123,7 @@ function drawHUD(){
     hx.fillStyle=gr; hx.fillRect(0,h*0.9,w,h*0.1); hx.restore();
   }
 
-  if(camMode===1 && CUR.uav){
+  if(camMode===1 && CUR.uav && (typeof uavView!=='function'||uavView()==='sensor')){
     hx.save(); hx.shadowBlur=0; hx.strokeStyle='rgba(184,236,255,0.55)'; hx.lineWidth=2*sc;
     const mg=36*sc, Ln=28*sc;
     [[mg,mg,1,1],[w-mg,mg,-1,1],[mg,h-mg,1,-1],[w-mg,h-mg,-1,-1]].forEach(function(c4){ hx.beginPath(); hx.moveTo(c4[0],c4[1]+c4[3]*Ln); hx.lineTo(c4[0],c4[1]); hx.lineTo(c4[0]+c4[2]*Ln,c4[1]); hx.stroke(); });

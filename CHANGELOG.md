@@ -1,6 +1,15 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.74 — 2026-11-25 · Kokpitler 2.0 ve İHA görünümleri
+- **Her insanlı uçağın kendi kokpiti:** KAAN'da tek geniş ekran, sağ konsolda yan kumanda kolu ve neredeyse çerçevesiz kanopi; Hürjet'te üç çok işlevli ekran, HUD altında ön kontrol paneli ve kanopi aynaları; Hürkuş'ta iki ekran arasında yuvarlak yedek göstergeler (hız, ufuk, irtifa, tork), daha kalın çerçeve ve önde dönen pervane.
+- **Helikopterlerin ayrı kokpiti:** T129 ATAK'ta dar tandem kabin, çok parçalı kanopi, iki ekran, cyclic ve kolektif kolu; T625 Gökbey'de yan yana iki koltuk (pilot sağda), dört ekran, orta konsol, tavan paneli, ayak pencereleri ve kapı çerçeveleri.
+- **İHA görünümleri** (İHA ile kamera C; Ayarlar → Uçuş → İHA görünümü ya da uçuşta sol üstteki 📺 düğmesi):
+  - **Sensör:** burun EO/IR kamerası (eskisi gibi).
+  - **Yer kontrol istasyonu:** operatör konsolu: üstte bağlantı (LOS/SATCOM), saat ve uçak; solda telemetri (irtifa, hız, baş, dikey hız, yakıt, motor, gaz, dayanım); sağda taktik harita ve faydalı yük (silah, sensör, lazer); altta masa; ortadaki görüntüde zaman damgası ve tarama çizgileri.
+  - **VR:** telefon VR gözlüğü için yan yana çift görüntü; başını çevirdikçe bakış döner. Telefonda daha ağır olduğu için bu görünümde efektler duruyor.
+- Mağaza ve paketlerdeki Google Play satın alma yazıları V2.75 oldu (yol haritasının sonu).
+
 ## V2.73 — 2026-11-25 · Tıklanabilir kokpit
 - **Tıklanabilir kokpit:** KAAN, Hürjet ve Hürkuş'un kokpit görünümünde (C) iki yan panel var; tıkla ya da dokun (sürüklemek yine etrafa bakar).
 - Sol panel: **İniş takımı kolu** (inince üç yeşil lamba), **MASTER ARM** (SAFE iken top, füze ve bomba ateşlenmez; her yeni uçuşta yeniden ARM), **fırlatma kolu** (iki kez çek).

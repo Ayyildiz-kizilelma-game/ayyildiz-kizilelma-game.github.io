@@ -6,7 +6,7 @@
    • Two reward tracks: free (TP, a season emblem, a season paint) and the Harekât Kartı (season paints and emblems
      only: money never buys power). Rewards are claimed in the Harekât Kartı screen; whatever was reached but not
      claimed is handed out automatically when the season ends. Season paints and emblems stay forever.
-   • The Harekât Kartı is a store product per season ('kart_<season>'); buying comes with Google Play (V2.74), until then
+   • The Harekât Kartı is a store product per season ('kart_<season>'); buying comes with Google Play (V2.75), until then
      an admin can grant it to test. Progress lives in the profile (stats.sezon, cloud for accounts). */
 const SZ_DAY=864e5;
 function szT(s){ const p=s.split('-'); return Date.UTC(+p[0],+p[1]-1,+p[2])-3*3600e3; }   /* 00:00 in Türkiye */
