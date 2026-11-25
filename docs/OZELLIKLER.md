@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 75 özellik · ✅ iyi 67 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 76 özellik · ✅ iyi 68 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -75,6 +75,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 
 | Özellik | Ne yapar | Nereden | Tuş | Sürüm | Test | Durum |
 |---|---|---|---|---|---|---|
+| **Gece Görev Paketi** | Beş gece görevi (keşif, İHA avı, gece taarruzu, deniz devriyesi, refakat); gece görüş görev başında açılır, termal görüşe geçilebilir. İlk görev ücretsiz, diğerleri mağazadaki Gece Görev Paketi ile açılır. İlk tamamlamada TP bonusu, beşinde Gece Kartalı madalyası. Gece ve gece görüş yalnız bu görevler için, sonra oyuncunun ayarı geri gelir. | Kariyer → Gece Görev Paketi · Hızlı Oyun → Gece Görev Paketi | ` gece görüş / termal | V2.71 | v271 | ✅ iyi |
 | **Hızlı Oyun** | Kariyerden bağımsız: hemen başla, serbest uçuş/sürüş, hızlı görev, üssü gez. Her şey açık, puan kazandırmaz. | Ana menü → Hızlı Oyun | — | V1.82 | menu2, menu3, v229 | ✅ iyi |
 | **Hızlı Savaş** | Botlara karşı havada başlayan dört mod: İt Dalaşı, Serbest Çatışma, Yer Taarruzu, Hava Hedefleri. | Ana menü → Hızlı Oyun → Hızlı Savaş | — | V2.29 | v229 | ✅ iyi |
 | **Görev panosu** | Bütün görevler tek ekranda: uçak, helikopter, kara, deniz, yarış; brifing, hedef takibi, görev günlüğü, görev sonu raporu. | Kariyer → Görevler · Hızlı Oyun → Hızlı Görev | F2 görev günlüğü | V1.76 | board, misui | ✅ iyi |

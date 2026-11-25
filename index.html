@@ -3,7 +3,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="game-version" content="V2.70">
+<meta name="game-version" content="V2.71">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Ay Yıldız: Hedef Kızıl Elma</title>
 <meta name="theme-color" content="#a10d1c">
@@ -1220,8 +1220,11 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .flcard .btn.danger{ border-color:rgba(255,107,107,.6); color:#ff9a9a; }
 .flcard input:not([type=checkbox]), .flcard select{ font:inherit; font-size:14px; color:var(--ink); background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:6px; padding:7px 10px; min-width:0; }
 .flcard select option{ background:#0d1626; color:#fff; }
+/* V2.71 night mission pack */
+.gpui .camphd h2{ color:#9fd7ff; letter-spacing:.2em; } .gpui .cbar i{ background:linear-gradient(90deg,#3e7bb8,#9fd7ff); }
+.gpbuy{ padding:10px 12px; border-radius:10px; border:1px dashed rgba(159,215,255,.55); background:rgba(20,40,70,.35); } .gpbuy p{ margin:0 0 8px; }
 </style>
-<link rel="preload" href="oyun.js?v=V2.70" as="script">
+<link rel="preload" href="oyun.js?v=V2.71" as="script">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1789,6 +1792,6 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
   <p class="vr" id="prepVr"></p>
 </div>
 <script src="vendor/three-r187/three.min.js"></script>
-<script src="oyun.js?v=V2.70"></script>
+<script src="oyun.js?v=V2.71"></script>
 </body>
 </html>

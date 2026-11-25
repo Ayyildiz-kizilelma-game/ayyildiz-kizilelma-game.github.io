@@ -1,6 +1,11 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.71 — 2026-11-25 · Gece Görev Paketi
+- **Gece Görev Paketi** (Kariyer ya da Hızlı Oyun → Gece Görev Paketi): beş gece görevi. Karanlık Devriye (İHA ile gece keşfi), Gece Avcısı (altı kamikaze İHA'yı düşür), Ay Işığında Taarruz (ışıksız ikmal konvoyu ve mevzi), Sessiz Liman (gece deniz devriyesi, üç gemiyi tanımla) ve Şafak Öncesi (nakliyeye gece refakati).
+- Görev başında gece ve **gece görüş (NVG)** açılır; ` tuşu ya da 👁 düğmesiyle termal görüşe geçebilirsin. Görev bitince kendi saat ve görüş ayarın geri gelir.
+- İlk görev ücretsiz; diğerleri mağazadaki **Gece Görev Paketi** ile açılır (satın alma Google Play ile V2.74'te gelecek). İlk tamamlamada TP bonusu, beşini bitirene **Gece Kartalı** madalyası.
+
 ## V2.70 — 2026-11-25 · Filolar
 - **Filolar** (Kariyer → Filo): en çok 30 pilotluk gruplar. Teğmen rütbesinden itibaren filo kurabilirsin (ad, 2–4 harflik etiket, arma, açıklama); açık filolara doğrudan katılırsın, kapalı filolara başvurursun (aynı anda en çok 3 başvuru).
 - Roller: komutan, yardımcı, pilot. Komutan ve yardımcılar başvuruları onaylar, filo duyurusunu ve açıklamasını yazar; komutan rolleri verir ve komutanlığı devredebilir. Komutan ayrılırsa komutanlık en eski yardımcıya (yoksa en eski pilota) geçer.

@@ -188,3 +188,6 @@ Ayrıntı: [ANDROID.md](ANDROID.md). `android-app/` (Capacitor 8 + AdMob, App, B
 
 ## Filolar (V2.70)
 `ag/filo` (`FL`): üyelik `filo_uyeler` (bir oyuncu bir filo), filo `filolar`, başvurular `filo_basvuru` (yalnız başvuran ve filonun komutan/yardımcıları okur), haftalık katkı `lb_filo_hafta` (`lb_tp_ekle` TP'yi o anki filoya da yazar). Bütün yazmalar sunucu işlevleriyle (`filo_kur`, `filo_katil`, `filo_ayril`, `filo_basvuru_karar`, `filo_cikar`, `filo_rol`, `filo_duzenle`, yönetici `filo_sil`); kurallar sunucuda, ekran yalnız rolün yapabileceğini gösterir. Sıralama V2.70'ten beri `lb_*_liste2` işlevlerini kullanır (filo etiketiyle; eski uygulamalar için eski adlar duruyor). Haftalık filo ödülü (`flOdul`) girişten sonra menüde bir kez denetlenir. Metin süzgeci `flTemiz` (kısa kelime listesi). SQL: `supabase/filo.sql`.
+
+## Gece Görev Paketi (V2.71)
+`gorev/gece-paketi` (`GP`, `GP_CH`): Harekât ile aynı düzen (dinamik görev motoru `DYN`, `campAc` ile araç seçimi, aynı ekran sınıfları). Sahiplik mağaza ürünü `gece` (`entOwns`), ilk görev `free`. `setupMission` sarmalayıcısı paket görevinde `SETTINGS.tod='night'` ve `WX.vis='nvg'` yapar, oyuncunun ayarını `GP.keep`'te saklar; başka görev, `misGo`, `quickPlay` ya da menüye dönüş (`refreshTitle`) geri yükler. İlerleme `stats.gece`, madalya `gecekartali`.

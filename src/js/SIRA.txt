@@ -144,6 +144,7 @@ ag/siralama.js
 ag/sezon.js
 ag/gunluk-odul.js
 ag/filo.js
+gorev/gece-paketi.js
 ekran/sorun-giderme.js
 gorev/tp-dengesi.js
 performans/performans-testi.js

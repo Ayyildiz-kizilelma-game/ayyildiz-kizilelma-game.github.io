@@ -72,6 +72,7 @@ Bu rehber `python3 tools/ozellikler.py` ile oyundaki **Rehber** ekranıyla aynı
 
 ## Görevler ve modlar
 
+- **Gece Görev Paketi:** Beş gece görevi (keşif, İHA avı, gece taarruzu, deniz devriyesi, refakat); gece görüş görev başında açılır, termal görüşe geçilebilir. İlk görev ücretsiz, diğerleri mağazadaki Gece Görev Paketi ile açılır. İlk tamamlamada TP bonusu, beşinde Gece Kartalı madalyası. Gece ve gece görüş yalnız bu görevler için, sonra oyuncunun ayarı geri gelir. *Nereden:* Kariyer → Gece Görev Paketi · Hızlı Oyun → Gece Görev Paketi. *Tuş:* ` gece görüş / termal.
 - **Hızlı Oyun:** Kariyerden bağımsız: hemen başla, serbest uçuş/sürüş, hızlı görev, üssü gez. Her şey açık, puan kazandırmaz. *Nereden:* Ana menü → Hızlı Oyun.
 - **Hızlı Savaş:** Botlara karşı havada başlayan dört mod: İt Dalaşı, Serbest Çatışma, Yer Taarruzu, Hava Hedefleri. *Nereden:* Ana menü → Hızlı Oyun → Hızlı Savaş.
 - **Görev panosu:** Bütün görevler tek ekranda: uçak, helikopter, kara, deniz, yarış; brifing, hedef takibi, görev günlüğü, görev sonu raporu. *Nereden:* Kariyer → Görevler · Hızlı Oyun → Hızlı Görev. *Tuş:* F2 görev günlüğü.
