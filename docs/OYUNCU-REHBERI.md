@@ -37,6 +37,7 @@ Bu rehber `python3 tools/ozellikler.py` ile oyundaki **Rehber** ekranıyla aynı
 - **İniş yardımı:** Piste yaklaşırken süzülüş ve merkez hattı göstergesi, istenirse otomatik iniş. *Nereden:* Ayarlar → Uçuş → Uçuş yardımı.
 - **Uçuş konforu:** Otomatik denge, türbülans ayarı, kare süresi yumuşatma. *Nereden:* Ayarlar → Uçuş.
 - **3B kokpit:** Çalışan çok işlevli ekranlar, kafa hareketi. *Nereden:* Uçuşta kamera değiştir. *Tuş:* C.
+- **Tıklanabilir kokpit:** KAAN, Hürjet ve Hürkuş kokpitinde iki yan panel: iniş takımı kolu (yeşil lambalar), MASTER ARM (SAFE iken top, füze ve bomba ateşlenmez; her uçuşta yeniden ARM), fırlatma kolu (iki kez çek), flare (sayısıyla), silah seçimi (seçili silah ve sayısı), gece görüş / termal. Taktik harita ekranına dokununca ölçek 6 · 12 · 24 km. Farede üzerine gelince adı ve tuşu görünür. *Nereden:* Uçuşta kokpit kamerası (C) → panellere tıkla / dokun. *Tuş:* C kamera.
 - **Akrobasi:** Akrobasi dumanı, figür tanıyıcı ve akrobasi gösterisi görevi. *Nereden:* Görevler · uçuşta duman. *Tuş:* F6 duman.
 - **Hasar, yakıt ve fırlatma koltuğu:** Parça hasarı, yakıt tüketimi, ikmal-onarım, fırlatma koltuğu. *Nereden:* Her uçuşta. *Tuş:* J (iki kez) fırlatma.
 - **Bakım hangarı:** Yerde bakım hangarına girince silah yükleme ve onarım. *Nereden:* Üste bakım hangarı.

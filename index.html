@@ -3,7 +3,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="game-version" content="V2.72">
+<meta name="game-version" content="V2.73">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Ay Yıldız: Hedef Kızıl Elma</title>
 <meta name="theme-color" content="#a10d1c">
@@ -1228,8 +1228,10 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .fmhud{ position:fixed; left:50%; top:calc(env(safe-area-inset-top,0px) + 74px); transform:translateX(-50%); z-index:29; pointer-events:none; font:600 12px/1 var(--mono,ui-monospace,monospace); color:#7dffb0; text-shadow:0 0 4px rgba(0,0,0,.8); letter-spacing:.05em; }
 .fmhud b{ color:#ff5a5a; margin-left:6px; animation:fmblink .5s steps(2) infinite; } .fmhud i{ color:#ffc24a; font-style:normal; margin-left:4px; } .fmhud.hidden{ display:none; }
 @keyframes fmblink{ 50%{ opacity:.2; } }
+/* V2.73 clickable cockpit */
+.ckbtip{ position:fixed; z-index:40; pointer-events:none; padding:4px 8px; border-radius:6px; background:rgba(8,15,28,.9); border:1px solid rgba(255,210,122,.6); color:#ffd27a; font:600 12px/1.2 var(--mono,ui-monospace,monospace); white-space:nowrap; } .ckbtip.hidden{ display:none; }
 </style>
-<link rel="preload" href="oyun.js?v=V2.72" as="script">
+<link rel="preload" href="oyun.js?v=V2.73" as="script">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1797,6 +1799,6 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
   <p class="vr" id="prepVr"></p>
 </div>
 <script src="vendor/three-r187/three.min.js"></script>
-<script src="oyun.js?v=V2.72"></script>
+<script src="oyun.js?v=V2.73"></script>
 </body>
 </html>

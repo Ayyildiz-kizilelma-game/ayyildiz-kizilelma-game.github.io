@@ -72,7 +72,7 @@ function mfdADI(x,X0,Y0,W,H,heli){ mfdFrame(x,X0,Y0,W,H,'PFD'); const cx=X0+W/2,
   x.textAlign='left'; x.fillText(Math.round(spd)+'', X0+10, cy); x.fillStyle=CKC.d; x.font='700 '+Math.round(f*0.6)+'px monospace'; x.fillText('KM/SA',X0+10,cy+f*0.8);
   x.textAlign='right'; x.fillStyle=CKC.g; x.font='700 '+f+'px "Chakra Petch",monospace'; x.fillText(Math.round(alt)+'',X0+W-10,cy); x.fillStyle=CKC.d; x.font='700 '+Math.round(f*0.6)+'px monospace'; x.fillText('M',X0+W-10,cy+f*0.8);
   x.textAlign='center'; x.fillStyle=CKC.w; x.font='700 '+Math.round(f*0.85)+'px "Chakra Petch",monospace'; x.fillText(String(Math.round(hdg)).padStart(3,'0')+'°',cx,Y0+H-f*0.8); }
-function mfdMap(x,X0,Y0,W,H,heli){ mfdFrame(x,X0,Y0,W,H,'TAKTİK'); const cx=X0+W/2, cy=Y0+H*0.62, R=Math.min(W,H)*0.42, rng=heli?4000:12000;
+function mfdMap(x,X0,Y0,W,H,heli){ mfdFrame(x,X0,Y0,W,H,'TAKTİK'); const cx=X0+W/2, cy=Y0+H*0.62, R=Math.min(W,H)*0.42, rng=heli?4000:(typeof CKB!=='undefined'?CKB.rng:12000);
   let px,pz,hd; if(heli){ px=HELI.cur.x; pz=HELI.cur.z; hd=HELI.cur.h; } else { fwdOf(S.q,vF); px=S.pos.x; pz=S.pos.z; hd=Math.atan2(-vF.x,-vF.z); }
   x.strokeStyle=CKC.d; x.lineWidth=1.2; [0.33,0.66,1].forEach(function(k){ x.beginPath(); x.arc(cx,cy,R*k,Math.PI,2*Math.PI); x.stroke(); });
   x.font='700 '+Math.round(H*0.045)+'px monospace'; x.fillStyle=CKC.d; x.textAlign='left'; x.fillText(Math.round(rng/1000)+' km',cx+4,cy-R-2);

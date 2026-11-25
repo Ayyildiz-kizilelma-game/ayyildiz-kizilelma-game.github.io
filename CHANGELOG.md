@@ -1,6 +1,13 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.73 — 2026-11-25 · Tıklanabilir kokpit
+- **Tıklanabilir kokpit:** KAAN, Hürjet ve Hürkuş'un kokpit görünümünde (C) iki yan panel var; tıkla ya da dokun (sürüklemek yine etrafa bakar).
+- Sol panel: **İniş takımı kolu** (inince üç yeşil lamba), **MASTER ARM** (SAFE iken top, füze ve bomba ateşlenmez; her yeni uçuşta yeniden ARM), **fırlatma kolu** (iki kez çek).
+- Sağ panel: **FLARE** (kalan sayısıyla), **silah seçimi** (seçili silah ve sayısı; dokununca sıradaki), **gece görüş / termal**.
+- **Taktik harita ekranına** dokununca ölçek değişir: 6 · 12 · 24 km.
+- Farede bir düğmenin üstüne gelince adı ve klavye tuşu görünür; basılan düğme kısa bir an parlar.
+
 ## V2.72 — 2026-11-25 · Gerçekçi uçuş modu
 - **Gerçekçi uçuş modu** (Ayarlar → Uçuş → Uçuş modeli → Gerçekçi): uçak artık burnunun gösterdiği yere değil, gerçek hız vektörüyle uçar.
 - **Hücum açısı ve stol:** kanat 15° hücum açısına kadar taşır, üstünde stola girer (taşıma düşer, sarsıntı, burun düşer). Yavaşladıkça düz uçmak için burnu daha çok kaldırman gerekir.

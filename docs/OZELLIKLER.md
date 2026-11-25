@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 77 özellik · ✅ iyi 69 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 78 özellik · ✅ iyi 70 · 🧪 denenmeli 4 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -30,6 +30,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **İniş yardımı** | Piste yaklaşırken süzülüş ve merkez hattı göstergesi, istenirse otomatik iniş. | Ayarlar → Uçuş → Uçuş yardımı | — | V1.96 | assist | ✅ iyi |
 | **Uçuş konforu** | Otomatik denge, türbülans ayarı, kare süresi yumuşatma. | Ayarlar → Uçuş | — | V1.84 | comfort | ✅ iyi |
 | **3B kokpit** | Çalışan çok işlevli ekranlar, kafa hareketi. | Uçuşta kamera değiştir | C | V1.89 | cockpit | ✅ iyi |
+| **Tıklanabilir kokpit** | KAAN, Hürjet ve Hürkuş kokpitinde iki yan panel: iniş takımı kolu (yeşil lambalar), MASTER ARM (SAFE iken top, füze ve bomba ateşlenmez; her uçuşta yeniden ARM), fırlatma kolu (iki kez çek), flare (sayısıyla), silah seçimi (seçili silah ve sayısı), gece görüş / termal. Taktik harita ekranına dokununca ölçek 6 · 12 · 24 km. Farede üzerine gelince adı ve tuşu görünür. | Uçuşta kokpit kamerası (C) → panellere tıkla / dokun | C kamera | V2.73 | v273 | ✅ iyi |
 | **Akrobasi** | Akrobasi dumanı, figür tanıyıcı ve akrobasi gösterisi görevi. | Görevler · uçuşta duman | F6 duman | V2.07 | acro | ✅ iyi |
 | **Hasar, yakıt ve fırlatma koltuğu** | Parça hasarı, yakıt tüketimi, ikmal-onarım, fırlatma koltuğu. | Her uçuşta | J (iki kez) fırlatma | V1.73 | damage, service | ✅ iyi |
 | **Bakım hangarı** | Yerde bakım hangarına girince silah yükleme ve onarım. | Üste bakım hangarı | — | V1.00 | service | ✅ iyi |
