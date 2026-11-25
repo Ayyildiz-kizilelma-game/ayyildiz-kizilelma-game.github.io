@@ -77,4 +77,4 @@ function ckbSafeTip(){ const n=performance.now(); if(n-(CKB.tipT||0)<2500) retur
 resetFlight=HOOK.wrap('resetFlight','ucus/kokpit-dugmeler#_ckbReset',function(next){ return function(){ CKB.arm=true; CKB.sig=''; return next.apply(this,arguments); }; },resetFlight);
 /* ---- per frame: build once per cockpit, redraw when something on the panels changed */
 cameraUpdate=HOOK.wrap('cameraUpdate','ucus/kokpit-dugmeler#_ckbCam',function(next){ return function(dt){ next(dt); if(!CKP.on||!CKP.cur||ckpIsHeli(CKP.cur.kind)) return;
-  const P=ckbBuild(CKP.cur); if(!P) return; const sg=ckbSig(); if(sg!==CKB.sig){ CKB.sig=sg; try{ ckbDraw(P); }catch(e){} } }; },cameraUpdate);
+  const P=ckbBuild(CKP.cur); if(!P) return; const sg=ckbSig(); if(sg!==CKB.sig||CKB.for!==CKP.cur){ CKB.sig=sg; CKB.for=CKP.cur; try{ ckbDraw(P); }catch(e){} }  /* V2.75: redraw when the cockpit layout changes */ }; },cameraUpdate);

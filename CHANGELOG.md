@@ -1,6 +1,16 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.75 — 2026-11-25 · Kokpitler 3.0
+- **Her uçağa üç kokpit (A, B, C):** uçuşta kokpit görünümündeki 🛩 düğmesiyle sırayla değişir ya da Ayarlar → Uçuş → Kokpit düzeni'nden seçilir. Seçim her uçak için ayrı hatırlanır.
+  - **KAAN:** A geniş ekran + HUD · B kask ekranı (HUD camı yok, ekranın üstünde ön kontrol paneli) · C gece kokpiti (amber ekranlar, kırmızı kabin ışığı).
+  - **Hürjet:** A geniş ekran (KAAN ailesi) · B üç ekran + ön panel · C arka koltuk: eğitmen yerinden bakış, önde öğrencinin koltuğu ve kaskı, HUD tekrar ekranı, eğitmen sayfası.
+  - **Hürkuş:** A askerî (HUD + üç ekran) · B eğitim (iki ekran, yuvarlak yedek göstergeler) · C sade: tek büyük ekranda iri yazılar, iki yanda büyük düğmeler.
+  - **T129 ATAK:** A pilot (arka koltuk, önde nişancının kabini ve kaskı) · B nişancı (ön koltuk; ortadaki nişan ekranında burnun altından canlı, yakınlaştırılmış kamera görüntüsü, artı işareti ve lazer mesafesi) · C gece görüş gözlüğü.
+  - **T625 Gökbey:** A iki geniş ekran + iki dokunmatik konsol · B dört ekran · C kapı topçusu: arka kabinden açık yan kapıya bakış, kapıda makineli tüfek.
+- Kokpitler daha ayrıntılı: her ekran düğmeli bir çerçeve içinde; kumanda kolunda düğmeler, gaz kolu rayı, koltuk kenarları, pedallar ve yan konsollarda düğmeler var.
+- **VR görünümü kaldırıldı.** İHA'lar için kastedilen İHA'nın kendi kameralarıydı; bunlar sonraki sürümlerde geliyor: V2.76 kamera açıları, V2.77 gidilebilir yer kontrol istasyonu. Google Play satın alımları V2.79'a kaydı.
+
 ## V2.74 — 2026-11-25 · Kokpitler 2.0 ve İHA görünümleri
 - **Her insanlı uçağın kendi kokpiti:** KAAN'da tek geniş ekran, sağ konsolda yan kumanda kolu ve neredeyse çerçevesiz kanopi; Hürjet'te üç çok işlevli ekran, HUD altında ön kontrol paneli ve kanopi aynaları; Hürkuş'ta iki ekran arasında yuvarlak yedek göstergeler (hız, ufuk, irtifa, tork), daha kalın çerçeve ve önde dönen pervane.
 - **Helikopterlerin ayrı kokpiti:** T129 ATAK'ta dar tandem kabin, çok parçalı kanopi, iki ekran, cyclic ve kolektif kolu; T625 Gökbey'de yan yana iki koltuk (pilot sağda), dört ekran, orta konsol, tavan paneli, ayak pencereleri ve kapı çerçeveleri.

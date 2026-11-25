@@ -4,20 +4,20 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 79 özellik · ✅ iyi 70 · 🧪 denenmeli 5 · 🔧 iyileştirilmeli 4 · testi olmayan: 0
+**Özet:** 79 özellik · ✅ iyi 70 · 🔧 iyileştirilmeli 5 · 🧪 denenmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
 Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu gibi kalır.
 
-1. **İHA görünümleri** (🧪 denenmeli) — VR gerçek telefon ve gözlükle denenmeli.
+1. **İHA görünümleri** (🔧 iyileştirilmeli) — Kamera açıları V2.76, gidilebilir yer istasyonu ve yeni EO/IR kamera V2.77 ile gelecek.
 2. **Filo** (🧪 denenmeli) — Birden çok gerçek hesapla denenmeli (başvuru, onay, devir).
 3. **Çevrimiçi oda** (🧪 denenmeli) — 29 Ekim denemesi: aynı bilgisayarda iki ayrı oyun sayfası (telefon boyutu) oda kurdu, katıldı, maç başladı, konumlar eşleşti (fark < 5 m), yazılı sohbet iki yönde çalıştı, hata yok. Bağlantı katmanı burada taklit edildi (PeerJS sunucusuna bu ortamdan erişilemiyor); internet üzerinden iki gerçek cihaz hâlâ denenmeli.
 4. **Karma çok oyunculu ve üs ele geçirme** (🧪 denenmeli) — Oda ve sohbet katmanı 29 Ekim'de iki sayfayla doğrulandı; karma mod ve üs ele geçirme iki gerçek cihazla denenmeli.
 5. **Sesli ve yazılı sohbet** (🧪 denenmeli) — Yazılı sohbet 29 Ekim'de doğrulandı. Sesli sohbet mikrofon ve gerçek bağlantı istiyor; yalnız iki gerçek cihazla denenebilir.
 6. **Google Play paketi** (🔧 iyileştirilmeli) — Kalan: Play Console hesabı ve kapalı test (12 kişi, 14 gün). Google ile girişin gerçek telefonda denenmesi.
 7. **Reklamlar** (🔧 iyileştirilmeli) — Şimdilik Google deneme reklamları (gelir yok). Gerçek reklam için AdMob hesabı ve kimlikleri gerekiyor.
-8. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.75 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
+8. **Mağaza** (🔧 iyileştirilmeli) — Gerçek ödeme yok: satın alma V2.79 (Google Play) ile gelecek. Yönetici kendine deneme için ürün tanımlayabilir.
 9. **Uçak, helikopter, araç ve gemi modelleri** (🔧 iyileştirilmeli) — Gerçeğe benzerlik zayıf; ANKA-3 +%37, Kızılelma +%18, Hürjet +%17 ölçü sapması. KARAR: model serisi V2.41'den itibaren, her model onaya sunulur.
 
 ## Uçuş
@@ -30,8 +30,8 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **Gerçekçi uçuş modeli** | Ayarlar → Uçuş → Uçuş modeli: Gerçekçi seçilince uçağın gerçek bir hız vektörü olur: hücum açısına bağlı taşıma ve stol (15°), sürükleme ve sert dönüşte enerji kaybı, tam yerçekimi, gerçek G sınırları (savaş uçağı 9, Hürjet 8, Hürkuş 7, İHA'lar 3–4,5). Kumanda G ister; KAAN, Kızılelma, Hürjet ve İHA'larda hücum açısı sınırlayıcı var, Hürkuş stola girebilir. İnsanlı uçaklarda 6,5 G üstünde görüş kararır (G-LOC). Göstergede α, G ve STALL uyarısı. | Ayarlar → Uçuş → Uçuş modeli | — | V2.72 | v272 | ✅ iyi |
 | **İniş yardımı** | Piste yaklaşırken süzülüş ve merkez hattı göstergesi, istenirse otomatik iniş. | Ayarlar → Uçuş → Uçuş yardımı | — | V1.96 | assist | ✅ iyi |
 | **Uçuş konforu** | Otomatik denge, türbülans ayarı, kare süresi yumuşatma. | Ayarlar → Uçuş | — | V1.84 | comfort | ✅ iyi |
-| **3B kokpit** | Her insanlı uçağın kendi kokpiti (V2.74): KAAN tek geniş ekran ve yan kumanda kolu, neredeyse çerçevesiz kanopi; Hürjet üç çok işlevli ekran, ön kontrol paneli ve aynalar; Hürkuş iki ekran, yuvarlak yedek göstergeler ve önde dönen pervane. Helikopterlerin ayrı kokpiti: T129 ATAK dar, çok parçalı kanopili tandem kabin; T625 Gökbey yan yana iki koltuk, dört ekran, orta konsol, tavan paneli, ayak pencereleri. Çalışan ekranlar, kafa hareketi. | Uçuşta kamera değiştir · helikopterde kamera | C | V1.89 | cockpit, v274 | ✅ iyi |
-| **İHA görünümleri** | İHA'da kokpit kamerası yerine üç görünüm (Ayarlar → Uçuş → İHA görünümü ya da uçuşta 📺 düğmesi): Sensör (burun EO/IR kamerası), Yer kontrol istasyonu (operatör konsolu: bağlantı, telemetri, taktik harita, faydalı yük, masa) ve VR (telefon VR gözlüğü için çift görüntü, telefonun hareketiyle bakış). | İHA ile uçarken kamera (C) → 📺 | C | V2.74 | v274 | 🧪 denenmeli |
+| **3B kokpit** | Her uçak ve helikopterin üç kokpit düzeni var (V2.75), uçuşta 🛩 düğmesiyle ya da Ayarlar → Uçuş → Kokpit düzeni ile seçilir ve uçak başına hatırlanır. KAAN: A geniş ekran + HUD, B kask ekranı (HUD yok, ön panel), C gece kokpiti (amber ekranlar, kırmızı kabin ışığı). Hürjet: A geniş ekran, B üç ekran + ön panel, C arka koltuk (önde öğrencinin kaskı, HUD tekrar ekranı, eğitmen sayfası). Hürkuş: A askerî (HUD + üç ekran), B eğitim (yedek göstergeler), C sade (tek büyük ekran, büyük düğmeler). T129: A pilot (arka koltuk, önde nişancı), B nişancı (ön koltuk, canlı yakınlaştırılmış nişan kamerası), C gece görüş gözlüğü. T625: A iki geniş ekran + dokunmatik konsol, B dört ekran, C kapı topçusu (açık kapıdan dışarı bakış). Ekranlar düğmeli çerçeve içinde ve canlı; kafa hareketi. | Uçuşta kamera değiştir · helikopterde kamera · 🛩 düğmesi | C | V1.89 | cockpit, v274, v275 | ✅ iyi |
+| **İHA görünümleri** | İHA'da kokpit kamerası yerine iki görünüm (Ayarlar → Uçuş → İHA görünümü ya da uçuşta 📺 düğmesi): Sensör (burun EO/IR kamerası) ve Yer kontrol istasyonu (operatör konsolu: bağlantı, telemetri, taktik harita, faydalı yük, masa). VR görünümü V2.75'te kaldırıldı. | İHA ile uçarken kamera (C) → 📺 | C | V2.74 | v274, v275 | 🔧 iyileştirilmeli |
 | **Tıklanabilir kokpit** | KAAN, Hürjet ve Hürkuş kokpitinde iki yan panel: iniş takımı kolu (yeşil lambalar), MASTER ARM (SAFE iken top, füze ve bomba ateşlenmez; her uçuşta yeniden ARM), fırlatma kolu (iki kez çek), flare (sayısıyla), silah seçimi (seçili silah ve sayısı), gece görüş / termal. Taktik harita ekranına dokununca ölçek 6 · 12 · 24 km. Farede üzerine gelince adı ve tuşu görünür. | Uçuşta kokpit kamerası (C) → panellere tıkla / dokun | C kamera | V2.73 | v273 | ✅ iyi |
 | **Akrobasi** | Akrobasi dumanı, figür tanıyıcı ve akrobasi gösterisi görevi. | Görevler · uçuşta duman | F6 duman | V2.07 | acro | ✅ iyi |
 | **Hasar, yakıt ve fırlatma koltuğu** | Parça hasarı, yakıt tüketimi, ikmal-onarım, fırlatma koltuğu. | Her uçuşta | J (iki kez) fırlatma | V1.73 | damage, service | ✅ iyi |

@@ -144,7 +144,7 @@ Açık teknik borç:
   - Ana menü: Hızlı Oyun · Kariyer · Çok Oyunculu.
   - Hızlı Savaş (`QB_MODES`): yapay zekâ ayarı yalnız o savaş için `aiCfg` kancasıyla değişir.
 - **Rehber ve envanter** (`ekran/rehber`, `veri/rehber-veri`): `tools/ozellikler.py`'den üretilir. `docs/OZELLIKLER.md` ve `docs/OYUNCU-REHBERI.md` de aynı listeden çıkar.
-- **Mağaza** (`ekran/magaza`): ürün listesi `STORE`, paket kaplamaları `PSCHEMES` içinde `p:'<ürün>'` ile; sahiplik `ENT` (Supabase `entitlements`, oyuncu yalnız okur — `supabase/magaza.sql`). Gerçek ödeme V2.75'te Google Play ile.
+- **Mağaza** (`ekran/magaza`): ürün listesi `STORE`, paket kaplamaları `PSCHEMES` içinde `p:'<ürün>'` ile; sahiplik `ENT` (Supabase `entitlements`, oyuncu yalnız okur — `supabase/magaza.sql`). Gerçek ödeme V2.79'te Google Play ile.
 - **Sorun giderme** (`ekran/sorun-giderme`): Performans testi, Görüntü testi ve Tanılama tek ekranda.
   - Kapatma kuralı: tam ekranlarda sol üstte "← Geri", açılır kartlarda sağ üstte ✕.
   - Görev editörü Görevler ekranındaki "＋ Görev editörü" düğmesiyle açılır.
