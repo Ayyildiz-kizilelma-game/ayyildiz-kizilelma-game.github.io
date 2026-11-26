@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.75 · son güncelleme: 25 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.76 · son güncelleme: 26 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -65,7 +65,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.73 | Tıklanabilir kokpit | ✅ |
 | V2.74 | Kokpitler 2.0: her insanlı uçağa kendi kokpiti (KAAN, Hürjet, Hürkuş), helikopterlere ayrı kokpit (T129 ATAK, T625 Gökbey); İHA'larda yer kontrol istasyonu ve VR görünümü (oyuncu isteği, 25 Kasım) | ✅ |
 | V2.75 | Kokpitler 3.0: her uçak ve helikopterde üç kokpit düzeni (KAAN gece, Hürjet arka koltuk, Hürkuş sade, T129 nişancı ve gece görüş, T625 kapı topçusu dahil); VR kaldırıldı (oyuncu tasarım seçimi, 26 Kasım) | ✅ |
-| V2.76 | Kokpit gövdesi: boşluksuz, altı dolu kokpitler (taban, yan duvarlar, kanopi kenarı, panel altı, koltuk, pilotun bacakları ve elleri; helikopterde ayak pencereleri) (oyuncu bildirimi, 26 Kasım) | |
+| V2.76 | Kokpit gövdesi: boşluksuz, altı dolu kokpitler (taban, yan duvarlar, kanopi kenarı, panel altı, koltuk, pilotun bacakları ve elleri; helikopterde ayak pencereleri) (oyuncu bildirimi, 26 Kasım) | ✅ |
 | V2.77 | Kamera açıları: uçaklarda kokpit, takip, burun, kuyruk, gövde altı, sinematik; İHA'larda burun, kuyruk, gövde altı EO/IR, kanat altı, takip, taktik harita; tek kamera düğmesi (oyuncu isteği, 26 Kasım) | |
 | V2.78 | Gidilebilir yer kontrol istasyonu: üste konteyner, harekât merkezi, mobil kamyon; yeni EO/IR kamera görünümü (oyuncu isteği, 26 Kasım) | |
 | V2.79 | Öneriler: lazer işaretleme, ekip modu (pilot + operatör), fotoğraf modu, camda yağmur, kask ekranı, İHA kalkışı, kapı topçusu ateşi (oyuncu isteği, 26 Kasım) | |
