@@ -6,7 +6,7 @@
 
 Uygulama bir **Capacitor** uygulamasıdır: oyun dosyaları APK'nın içindedir ve sistemin WebView'ında çalışır (V2.52–V2.61
 arasında Chrome'u açan bir TWA kabuğuydu). Geçişin nedeni gelir yolu: AdMob reklamları (V2.62) ve Google Play satın
-alımları (V2.79) yerel eklenti ister. Alan adı gerekmez.
+alımları (V2.80) yerel eklenti ister. Alan adı gerekmez.
 
 | Parça | Nerede |
 |---|---|

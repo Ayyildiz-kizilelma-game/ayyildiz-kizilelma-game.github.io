@@ -5,7 +5,7 @@
    • Yer kontrol istasyonu: the view becomes the operator's console: a top bar (link, time, aircraft), telemetry on the
      left (altitude, speed, heading, climb, fuel, engine, G), the tactical map and the payload on the right, the desk at
      the bottom; the video in the middle carries a time stamp and scan lines. The flight HUD stays on top.
-   • V2.75: the VR stereo view is gone (what was meant was the UAV's own cameras; those come with V2.76–V2.77).
+   • V2.75: the VR stereo view is gone (what was meant was the UAV's own cameras; those come with V2.77–V2.78).
    Manned aircraft and helicopters have their own 3D cockpits (ucus/kokpit). */
 const UV={btn:null, gcs:null, map:null, mx:null, t:0};
 const UV_NAMES={sensor:'Sensör', gcs:'Yer kontrol istasyonu'};

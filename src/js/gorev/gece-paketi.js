@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------ Gece Görev Paketi (V2.71): a mission pack for sale
    Five night missions on the dynamic-mission engine (DYN), each at night with night vision (NVG) switched on at the
    start; the player can cycle to thermal with ` or the 👁 button. The first mission is free to try; the rest need the
-   'gece' product from the store (Google Play purchase comes in V2.79; until then an admin can grant it to test).
+   'gece' product from the store (Google Play purchase comes in V2.80; until then an admin can grant it to test).
    Content, not power: the pack gives missions, stars, a first-completion TP bonus like Harekât and the "Gece Kartalı"
    medal. Night and NVG are only for the pack mission: the player's own time of day and view come back afterwards.
    Kariyer → Gece Görev Paketi; Hızlı Oyun → Gece Görev Paketi (no TP there, stars still saved). */

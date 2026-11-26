@@ -1,6 +1,17 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.76 — 2026-11-26 · Kokpit gövdesi
+- **Kokpitler artık kapalı ve dolu (oyuncu bildirimi: "çok boşluklu, altları boş").** Bütün 15 kokpitte panelin altından ve yanlarından artık yer görünmüyor:
+  - Kokpit bir gövde: kavisli taban, yan duvarlar, kalın kanopi kenarları, arkada bölme duvarı ve koltuk (oturak, sırt, başlık, emniyet kemerleri).
+  - Gösterge paneli tabana kadar iniyor (ayak boşluğu arkasında); panelin iki yanında duvara kadar uzanan yan kanatlar, üstte tam genişlikte siperlik.
+  - Yan konsollar yerden yükseliyor, iniş takımı ve silah panelleri yan kanatlara oturuyor.
+  - Pilotun bacakları, dizleri ve botları, pedallar; eldivenli eller kumanda ve gaz kolunda.
+  - Hürjet arka koltuk: öğrencinin koltuğu ön kokpitin içinde, iki kokpit tek gövdede.
+  - Helikopterler: T129'da dar tandem kabin, T625'te iki kişilik geniş kabin, boş yardımcı pilot koltuğu ve her pilotun ayağının altında küçük pencere (gerçeğindeki gibi); arası dolu.
+- **T129 gece görüşü:** görüntü artık gece görüş gözlüğü gibi kenarları kararan bir oval; gökyüzü bembeyaz parlamıyor.
+- Yol haritası bir sıra kaydı: kamera açıları V2.77, yer kontrol istasyonu V2.78, öneriler V2.79, Google Play satın alımları V2.80.
+
 ## V2.75 — 2026-11-25 · Kokpitler 3.0
 - **Her uçağa üç kokpit (A, B, C):** uçuşta kokpit görünümündeki 🛩 düğmesiyle sırayla değişir ya da Ayarlar → Uçuş → Kokpit düzeni'nden seçilir. Seçim her uçak için ayrı hatırlanır.
   - **KAAN:** A geniş ekran + HUD · B kask ekranı (HUD camı yok, ekranın üstünde ön kontrol paneli) · C gece kokpiti (amber ekranlar, kırmızı kabin ışığı).

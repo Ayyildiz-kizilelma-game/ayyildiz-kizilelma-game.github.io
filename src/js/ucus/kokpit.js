@@ -56,7 +56,7 @@ function ckpThrottle(S2,g,M,x,y,z){ const base=new THREE.Group(); base.position.
 function ckpCollective(S2,g,M,x,y,z){ const c=new THREE.Group(); c.position.set(x,y,z); ckpBar(c,M.metal,[0,0,0.18],[0,0.05,-0.12],0.014);
   ckpBox(c,M.grip,0,0.06,-0.15,0.05,0.05,0.07); ckpBox(c,M.yel,0.02,0.08,-0.17,0.012,0.012,0.012); ckpBox(c,M.red,-0.02,0.08,-0.17,0.012,0.012,0.012); g.add(c); S2.thr=c; S2.coll=true; return c; }
 function ckpPedals(g,M,cx,y,z){ [-0.11,0.11].forEach(function(x){ ckpBox(g,M.dark,cx+x,y,z,0.08,0.025,0.15,-0.5); ckpBox(g,M.metal,cx+x,y-0.04,z+0.05,0.012,0.08,0.012); }); }
-function ckpConsoles(g,M,w,len,y){ y=y==null?-0.48:y; [-1,1].forEach(function(s){ ckpBox(g,M.panel,s*w,y,-0.15,0.16,0.07,len); ckpBox(g,M.dark,s*w,y+0.04,-0.15,0.13,0.012,len*0.85);
+function ckpConsoles(g,M,w,len,y,fl){ y=y==null?-0.48:y; fl=fl==null?-1.05:fl; [-1,1].forEach(function(s){ ckpBox(g,M.panel,s*w,y,-0.15,0.16,0.07,len); ckpBox(g,M.tub,s*w,(y+fl)/2,-0.15,0.16,y-fl,len-0.02); ckpBox(g,M.dark,s*w,y+0.04,-0.15,0.13,0.012,len*0.85);
   for(let i=0;i<6;i++){ const z=-0.45+i*0.1; ckpBox(g,M.bez,s*w,y+0.048,z,0.12,0.004,0.07); ckpCyl(g,i%3?M.metal:M.yel,s*w+(i%2?0.03:-0.03),y+0.058,z,0.008,0.014); ckpBox(g,M.osb,s*w+(i%2?-0.03:0.03),y+0.055,z,0.012,0.01,0.022); } }); }
 function ckpSeatSides(g,M,w,y){ [-1,1].forEach(function(s){ ckpBox(g,M.seat,s*w,y,0.18,0.05,0.42,0.12); ckpBox(g,M.yel,s*w,y+0.18,0.12,0.012,0.08,0.012); }); }
 function ckpGlare(g,M,w,py,pz,d){ ckpBox(g,M.glare,0,py+0.18,pz+0.05,w,0.03,d||0.22); const lip=ckpBox(g,M.glare,0,py+0.165,pz+0.16,w*0.98,0.02,0.02); return lip; }
@@ -66,9 +66,9 @@ function ckpHUD(g,M,py,pz,S2){ const gm=new THREE.MeshBasicMaterial({color:0x6ff
   if(S2) S2.hud=true; }
 function ckpUFCP(S2,g,M,py,pz,w){ w=w||0.22; ckpBox(g,M.panel,0,py+0.13,pz+0.09,w+0.04,0.1,0.05,-0.55); ckpScr(S2,g,'ufcp',w,0.055,0,py+0.15,pz+0.12,-0.55,256,M,false);
   for(let i=0;i<6;i++) ckpBox(g,M.osb,-w/2+0.02+i*(w-0.04)/5,py+0.105,pz+0.105,0.026,0.016,0.012,-0.55); }
-function ckpBubble(g,M,len){ [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.5,-0.3,-0.66],[s*0.5,-0.3,len],0.02); ckpBar(g,M.frame,[s*0.47,-0.27,-0.66],[s*0.3,0.05,-0.6],0.008); });
-  ckpBar(g,M.frame,[-0.42,0.2,0.32],[0.42,0.2,0.32],0.02); [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.42,0.2,0.32],[s*0.5,-0.3,0.38],0.02); }); }
-function ckpFramedScreen(g,M,heavy){ const r=heavy?0.026:0.018; [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.47,-0.23,-0.66],[s*0.36,0.16,-0.18],r); ckpBar(g,M.frame,[s*0.36,0.16,-0.18],[s*0.2,0.33,0.25],r*0.9); ckpBar(g,M.frame,[s*0.5,-0.3,-0.66],[s*0.5,-0.3,0.4],r*1.2); });
+function ckpBubble(g,M,len){ [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.58,-0.25,-0.7],[s*0.34,0.08,-0.62],0.01); });
+  ckpBar(g,M.frame,[-0.46,0.22,0.3],[0.46,0.22,0.3],0.025); [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.46,0.22,0.3],[s*0.6,-0.24,0.36],0.025); }); }
+function ckpFramedScreen(g,M,heavy){ const r=heavy?0.026:0.018; [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.58,-0.24,-0.7],[s*0.38,0.16,-0.2],r); ckpBar(g,M.frame,[s*0.38,0.16,-0.2],[s*0.2,0.33,0.25],r*0.9); });
   ckpBar(g,M.frame,[-0.2,0.33,0.25],[0.2,0.33,0.25],r*0.9); }
 function ckpMirrors(g,M){ [-1,1].forEach(function(s){ const mi=ckpBox(g,M.mirror,s*0.33,0.15,-0.2,0.07,0.03,0.01); mi.rotation.y=-s*0.5; }); }
 function ckpProp(S2,g){ const pc2=document.createElement('canvas'); pc2.width=pc2.height=128; const px2=pc2.getContext('2d'); const gr2=px2.createRadialGradient(64,64,10,64,64,64);
@@ -76,6 +76,39 @@ function ckpProp(S2,g){ const pc2=document.createElement('canvas'); pc2.width=pc
   px2.fillStyle=gr2; px2.fillRect(0,0,128,128); const pt=new THREE.CanvasTexture(pc2);
   const prop=new THREE.Mesh(new THREE.CircleGeometry(1.15,32),new THREE.MeshBasicMaterial({map:pt,transparent:true,depthWrite:false})); prop.position.set(0,-0.32,-2.6); g.add(prop); S2.prop=prop; }
 function ckpHelmet(g,M,x,y,z,s){ s=s||1; ckpBall(g,M.helm,x,y,z,0.13*s,1.05); const v=ckpBall(g,M.visor,x,y-0.02*s,z-0.06*s,0.1*s,0.7); v.scale.z=0.6; ckpBox(g,M.red,x,y+0.12*s,z+0.01,0.03*s,0.04*s,0.08*s); }
+/* ---- V2.76 closed cockpit: tub (floor, walls, sills), panel body down to the floor, side wings, seat, the pilot's legs and hands.
+   Nothing is hollow any more: below and beside the panel the view meets the cockpit, not the ground. */
+function ckpSlab(g,m,x,w,a,b,t){ /* a box of width w at x, spanning from point a=[y,z] to b=[y,z] in the side view, thickness t */
+  const dy=b[0]-a[0], dz=b[1]-a[1], L=Math.hypot(dy,dz); const k=ckpBox(g,m,x,(a[0]+b[0])/2,(a[1]+b[1])/2,w,L,t||0.03); k.rotation.x=Math.atan2(dz,dy)*-1; return k; }
+function ckpTub(g,M,o){ const w=o.w, fl=o.floor, si=o.sill, zf=o.zf, zb=o.zb, cx=o.cx||0, r=Math.min(0.14,w*0.3), t=0.035;
+  const sh=new THREE.Shape(); sh.moveTo(-w,si); sh.lineTo(-w,fl+r); sh.quadraticCurveTo(-w,fl,-w+r,fl); sh.lineTo(w-r,fl); sh.quadraticCurveTo(w,fl,w,fl+r); sh.lineTo(w,si);
+  sh.lineTo(w-t,si); sh.lineTo(w-t,fl+r); sh.quadraticCurveTo(w-t,fl+t,w-r,fl+t); sh.lineTo(-w+r,fl+t); sh.quadraticCurveTo(-w+t,fl+t,-w+t,fl+r); sh.lineTo(-w+t,si); sh.lineTo(-w,si);
+  const geo=new THREE.ExtrudeGeometry(sh,{depth:zb-zf, bevelEnabled:false, curveSegments:6}); const mat=M.tub.clone(); mat.side=THREE.DoubleSide;
+  const tub=new THREE.Mesh(geo,mat); tub.position.set(cx,0,zf); tub.userData.tub=1; g.add(tub);
+  [-1,1].forEach(function(s){ ckpBar(g,M.frame,[cx+s*(w-0.01),si+0.015,zf],[cx+s*(w-0.01),si+0.015,zb],0.035);           /* canopy sills */
+    for(let i=0;i<4;i++){ const z=zf+0.25+i*(zb-zf-0.4)/3; ckpBox(g,M.dark,cx+s*(w-t-0.004),(si+fl)/2+0.1,z,0.008,0.18,0.12); } });   /* wall side panels */
+  ckpBox(g,M.tub,cx,(fl+si)/2+0.05,zb,2*w,si-fl+0.1,0.04);   /* rear bulkhead */
+  ckpBox(g,M.dark,cx,fl+0.02,(zf+zb)/2,2*w-0.1,0.01,zb-zf-0.1);   /* floor mat */
+  if(o.py!=null){ const py=o.py, pz=o.pz, rx=o.rx||-0.25, ph=o.ph||0.33, pw=o.pw, by=py-ph/2*Math.cos(rx), bz=pz-ph/2*Math.sin(rx)*-1;
+    /* panel body: lower face from the panel's bottom edge down to the floor (the footwell sits behind it), and side wings to the walls */
+    if(o.glass){ const gm=new THREE.MeshBasicMaterial({color:0x9ec4dc,transparent:true,opacity:0.18,depthWrite:false,side:THREE.DoubleSide}), my=(by+fl)/2+0.05, mz=pz-0.1;
+      ckpSlab(g,M.panel,cx,2*pw,[by,bz+0.03],[my,mz],0.04);   /* chin windows below the panel, one under each pilot's feet, solid between */
+      const ch=o.chin||[], hw=0.17; let x0=cx-pw; const seg=function(a,b,m){ if(b-a>0.005) ckpSlab(g,m,(a+b)/2,b-a,[my,mz],[fl+0.04,pz-0.2],m===gm?0.006:0.04); };
+      ch.slice().sort(function(a,b){ return a-b; }).forEach(function(px){ seg(x0,px-hw,M.panel); seg(px-hw,px+hw,gm); ckpBar(g,M.frame,[px-hw,my,mz],[px-hw,fl+0.04,pz-0.2],0.02); ckpBar(g,M.frame,[px+hw,my,mz],[px+hw,fl+0.04,pz-0.2],0.02); x0=px+hw; });
+      seg(x0,cx+pw,M.panel); ckpBar(g,M.frame,[cx-pw,my,mz],[cx+pw,my,mz],0.022); }
+    else { ckpSlab(g,M.panel,cx,2*pw,[by,bz+0.03],[fl+0.04,pz-0.12],0.04); ckpBox(g,M.dark,cx,(by+fl)/2,pz-0.05,2*pw-0.2,(by-fl)*0.7,0.02); }
+    [-1,1].forEach(function(s){ const ww=w-pw; if(ww<0.02) return; const x=cx+s*(pw+ww/2);
+      const wing=ckpBox(g,M.panel,x,py,pz+0.02,ww+0.01,ph,0.05); wing.rotation.set(rx,-s*0.35,0,'YXZ');
+      ckpSlab(g,M.panel,x,ww+0.01,[by,bz+0.03],[fl+0.04,pz-0.1],0.04); });
+    ckpBox(g,M.glare,cx,py+ph/2+0.03,pz-0.02,2*w,0.03,0.34); }
+  if(o.seat!==false){ const sx=cx+(o.seatX||0); ckpBox(g,M.seat,sx,fl+0.2,0.12,0.46,0.12,0.5); ckpBox(g,M.seat,sx,-0.2,0.36,0.5,0.95,0.12);
+    ckpBox(g,M.seat,sx,0.18,0.33,0.3,0.24,0.14); [-1,1].forEach(function(q){ ckpBar(g,M.yel,[sx+q*0.12,0.2,0.27],[sx+q*0.09,-0.45,0.05],0.012); }); }   /* seat pan, back, headrest, harness */
+}
+/* the pilot's legs (thighs from the seat to the knees, shins down to the pedals) and boots; hands on the stick and the throttle */
+function ckpLegs(g,M,cx,fl,kz,spread){ cx=cx||0; spread=spread||0.13; [-1,1].forEach(function(s){ const x=cx+s*spread, hip=[x,fl+0.33,0.12], knee=[x+s*0.02,fl+0.42,kz], ank=[x+s*0.02,fl+0.1,kz-0.2];
+  ckpBar(g,M.suit,hip,knee,0.075); ckpBall(g,M.suit,knee[0],knee[1],knee[2],0.075); ckpBar(g,M.suit,knee,ank,0.06);
+  const b=ckpBox(g,M.boot,ank[0],fl+0.07,kz-0.25,0.1,0.1,0.22); b.rotation.x=-0.35; ckpBox(g,M.dark,ank[0],fl+0.03,kz-0.3,0.12,0.02,0.24,-0.4); }); }
+function ckpHand(g,M,x,y,z){ ckpBox(g,M.glove,x,y,z,0.07,0.06,0.09); ckpBar(g,M.suit,[x,y-0.01,z+0.05],[x+(x<0?-0.04:0.04),y-0.12,z+0.3],0.04); }
 /* ---- the cockpits */
 function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g, scr:[], kind:kind, v:v};
   const night=kind==='kaan'&&v==='C';
@@ -83,15 +116,16 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
   const M={panel:ckpMat(pc), dark:ckpMat(0x15191d), bez:ckpMat(0x0d1013), osb:ckpMat(night?0x1c2024:0x2a3036, night?0x120400:0), glare:ckpMat(night?0x0a0c0e:0x1a1e22),
     frame:ckpMat(kind==='t129'?0x3a4232:0x3a4148), grip:ckpMat(0x101214), boot:ckpMat(0x1a1c1e), yel:ckpMat(0xc9a227, night?0x201800:0), red:ckpMat(0xc8102e, night?0x300000:0),
     metal:ckpMat(0x7c858d), seat:ckpMat(0x262a2e), helm:ckpMat(0xe9edf0), visor:ckpMat(0x1a2028, 0x05080a), mirror:ckpMat(0x8fa3b3,0x101820),
-    blue:ckpMat(0x1f3d5c,0x0a1a2a), touch:ckpMat(0x0a1622,0x040a12)};
+    blue:ckpMat(0x1f3d5c,0x0a1a2a), touch:ckpMat(0x0a1622,0x040a12), tub:ckpMat(night?0x101317:(kind==='t129'?0x262b22:0x1d2126)), suit:ckpMat(kind==='t129'||kind==='t625'?0x4a5236:0x55603f), glove:ckpMat(0x141210)};
   S2.night=night;
   if(kind==='kaan'){
     /* 5th generation: low panel, one panoramic display, side-stick on the right console, nearly frameless bubble canopy */
     const pz=-0.74, py=-0.44; ckpBox(g,M.panel,0,py,pz,0.94,0.33,0.06,-0.25); ckpGlare(g,M,0.96,py,pz);
     if(v==='B'){ ckpScr(S2,g,'wide2',0.84,0.24,0,py-0.01,pz+0.034,-0.25,1024,M); ckpUFCP(S2,g,M,py,pz,0.26); S2.hmd=true; }
     else { ckpScr(S2,g,'wide',0.84,0.24,0,py-0.01,pz+0.034,-0.25,1024,M); ckpHUD(g,M,py,pz,S2); }
-    ckpConsoles(g,M,0.37,0.75); ckpSeatSides(g,M,0.3,-0.36);
-    ckpStick(S2,g,M,0.37,-0.44,-0.26,0.12,true); ckpThrottle(S2,g,M,-0.36,-0.44,-0.05); ckpBubble(g,M,0.4);
+    ckpTub(g,M,{w:0.62,floor:-1.05,sill:-0.27,zf:-0.95,zb:0.48,py:py,pz:pz,pw:0.47}); ckpConsoles(g,M,0.48,0.75,-0.46); ckpSeatSides(g,M,0.3,-0.36);
+    ckpStick(S2,g,M,0.48,-0.42,-0.26,0.12,true); ckpThrottle(S2,g,M,-0.48,-0.42,-0.05); ckpBubble(g,M,0.4);
+    ckpLegs(g,M,0,-1.05,-0.42); ckpPedals(g,M,0,-0.92,-0.7); ckpHand(g,M,0.48,-0.27,-0.23); ckpHand(g,M,-0.48,-0.33,-0.08);
     ckpBox(g,M.red,-0.05,py-0.2,pz+0.12,0.05,0.035,0.02); ckpBox(g,M.yel,0.05,py-0.2,pz+0.12,0.05,0.035,0.02);   /* master caution / gear handle area */
   } else if(kind==='hurjet'){
     const rear=v==='C', pz=rear?-0.66:-0.74, py=rear?-0.5:-0.42;
@@ -102,10 +136,11 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
     else { /* rear seat: instructor. The student's seat back and helmet fill the middle of the view; a repeater of the front HUD sits on the glareshield */
       [-0.26,0.26].forEach(function(x,i){ ckpScr(S2,g,['inst','map'][i],0.22,0.2,x,py-0.01,pz+0.034,-0.25,384,M); });
       ckpScr(S2,g,'hudrep',0.17,0.07,0,py+0.24,pz+0.1,-0.35,256,M,false);
-      ckpBox(g,M.seat,0,-0.26,-1.02,0.4,0.5,0.12); ckpBox(g,M.dark,0,0.02,-1.03,0.26,0.1,0.13); ckpBox(g,M.yel,-0.15,-0.05,-0.955,0.02,0.1,0.02); ckpBox(g,M.yel,0.15,-0.05,-0.955,0.02,0.1,0.02);
+      ckpBox(g,M.seat,0,-0.5,-1.02,0.4,0.98,0.12); ckpBox(g,M.glare,0,-0.3,-1.3,1.2,0.04,0.5); ckpBox(g,M.dark,0,0.02,-1.03,0.26,0.1,0.13); ckpBox(g,M.yel,-0.15,-0.05,-0.955,0.02,0.1,0.02); ckpBox(g,M.yel,0.15,-0.05,-0.955,0.02,0.1,0.02);
       ckpBox(g,M.seat,-0.2,-0.2,-1.12,0.08,0.18,0.1); ckpBox(g,M.seat,0.2,-0.2,-1.12,0.08,0.18,0.1); ckpHelmet(g,M,0,0.15,-1.12,1); S2.rear=true; }
-    ckpConsoles(g,M,0.37,0.75); ckpSeatSides(g,M,0.3,-0.36);
-    ckpStick(S2,g,M,0,-0.72,-0.32,0.32); ckpThrottle(S2,g,M,-0.36,-0.45,-0.05);
+    ckpTub(g,M,{w:0.62,floor:-1.05,sill:-0.27,zf:rear?-1.75:-0.95,zb:0.48,py:py,pz:pz,pw:0.46}); ckpConsoles(g,M,0.48,0.75,-0.47); ckpSeatSides(g,M,0.3,-0.36);
+    ckpStick(S2,g,M,0,-0.72,-0.32,0.32); ckpThrottle(S2,g,M,-0.48,-0.43,-0.05);
+    ckpLegs(g,M,0,-1.05,-0.4,0.15); ckpPedals(g,M,0,-0.92,-0.68); ckpHand(g,M,0,-0.34,-0.3); ckpHand(g,M,-0.48,-0.34,-0.08);
     if(v==='A') ckpBubble(g,M,0.4); else { ckpFramedScreen(g,M,false); if(!rear) ckpMirrors(g,M); }
     if(rear){ [-1,1].forEach(function(s){ ckpBar(g,M.frame,[s*0.48,0.22,-1.3],[s*0.48,0.22,0.3],0.02); }); ckpBar(g,M.frame,[-0.46,0.3,-0.6],[0.46,0.3,-0.6],0.022); }
   } else if(kind==='hurkus'){
@@ -116,9 +151,10 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
       ckpScr(S2,g,'gauge',0.25,0.25,0,py-0.005,pz+0.04,-0.22,384,M,false); }
     else { ckpScr(S2,g,'big',0.44,0.2,0,py-0.01,pz+0.04,-0.22,768,M,false);
       [[-0.36,0.04,M.blue],[-0.36,-0.06,M.blue],[0.36,0.04,M.red],[0.36,-0.06,M.blue]].forEach(function(b){ const k=ckpBox(g,b[2],b[0],py+b[1],pz+0.05,0.13,0.07,0.03,-0.22); k.userData.big=1; }); S2.simple=true; }
-    ckpBox(g,M.panel,0,py-0.30,pz+0.12,0.26,0.30,0.10); ckpConsoles(g,M,0.36,0.7); ckpSeatSides(g,M,0.3,-0.36);
-    ckpStick(S2,g,M,0,-0.72,-0.32,0.32); ckpThrottle(S2,g,M,-0.35,-0.45,-0.05);
-    ckpFramedScreen(g,M,v!=='C'); ckpBar(g,M.frame,[-0.47,-0.2,-0.64],[0.47,-0.2,-0.64],0.02); ckpProp(S2,g);
+    ckpTub(g,M,{w:0.6,floor:-1.05,sill:-0.25,zf:-0.92,zb:0.48,py:py,pz:pz,pw:0.45,rx:-0.22,ph:0.36}); ckpConsoles(g,M,0.47,0.7,-0.46); ckpSeatSides(g,M,0.3,-0.36);
+    ckpStick(S2,g,M,0,-0.72,-0.32,0.32); ckpThrottle(S2,g,M,-0.47,-0.42,-0.05);
+    ckpFramedScreen(g,M,v!=='C'); ckpBar(g,M.frame,[-0.58,-0.22,-0.68],[0.58,-0.22,-0.68],0.022); ckpProp(S2,g);
+    ckpLegs(g,M,0,-1.05,-0.4,0.15); ckpPedals(g,M,0,-0.92,-0.68); ckpHand(g,M,0,-0.34,-0.3); ckpHand(g,M,-0.47,-0.33,-0.08);
   } else if(kind==='t129'){
     if(v==='B'){ /* gunner, front seat: lowest and furthest forward, the widest view; the sight in the middle, the sensor turret below the nose */
       const pz=-0.7, py=-0.46; ckpBox(g,M.panel,0,py,pz,0.62,0.28,0.06,-0.3); ckpBox(g,M.dark,0,py+0.15,pz+0.04,0.6,0.025,0.14);
@@ -129,7 +165,8 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
       [-1,1].forEach(function(s){ ckpBox(g,M.grip,s*0.24,-0.56,-0.32,0.05,0.09,0.06); ckpBox(g,M.yel,s*0.24,-0.5,-0.34,0.012,0.012,0.012);
         ckpBar(g,M.frame,[s*0.36,-0.4,-0.82],[s*0.32,0.25,-0.45],0.02); ckpBar(g,M.frame,[s*0.32,0.25,-0.45],[s*0.28,0.4,0.1],0.02); ckpBar(g,M.frame,[s*0.36,-0.4,-0.82],[s*0.4,-0.36,0.3],0.02); });
       ckpBar(g,M.frame,[-0.32,0.25,-0.45],[0.32,0.25,-0.45],0.018); ckpBar(g,M.frame,[0,0.25,-0.45],[0,0.4,0.1],0.014);
-      ckpCollective(S2,g,M,-0.3,-0.52,-0.05); S2.stick=new THREE.Group(); g.add(S2.stick); S2.front=true;
+      ckpTub(g,M,{w:0.42,floor:-1.0,sill:-0.4,zf:-0.85,zb:0.45,py:py,pz:pz,pw:0.31,rx:-0.3,ph:0.28}); ckpLegs(g,M,0,-1.0,-0.38,0.13); ckpHand(g,M,-0.24,-0.55,-0.3); ckpHand(g,M,0.24,-0.55,-0.3);
+      ckpCollective(S2,g,M,-0.34,-0.52,-0.05); S2.stick=new THREE.Group(); g.add(S2.stick); S2.front=true;
     } else { /* pilot, rear seat (also the night-vision variant): raised, the gunner's cabin and helmet ahead and below */
       const pz=-0.72, py=-0.46; ckpBox(g,M.panel,0,py,pz,0.66,0.26,0.06,-0.28); ckpBox(g,M.dark,0,py+0.14,pz+0.04,0.66,0.025,0.15);
       ckpScr(S2,g,'adi',0.2,0.19,-0.16,py-0.01,pz+0.034,-0.28,384,M); ckpScr(S2,g,'map',0.2,0.19,0.16,py-0.01,pz+0.034,-0.28,384,M);
@@ -139,7 +176,8 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
         ckpBar(g,M.frame,[s*0.38,-0.25,-0.8],[s*0.36,0.2,-0.5],0.02); ckpBar(g,M.frame,[s*0.36,0.2,-0.5],[s*0.3,0.42,0.05],0.02); ckpBar(g,M.frame,[s*0.38,-0.25,-0.8],[s*0.42,-0.3,0.3],0.02);
         ckpBar(g,M.frame,[s*0.37,0.0,-0.65],[s*0.4,-0.05,0.2],0.012); });
       ckpBar(g,M.frame,[-0.36,0.2,-0.5],[0.36,0.2,-0.5],0.018); ckpBar(g,M.frame,[0,0.2,-0.5],[0,0.42,0.05],0.014); ckpBar(g,M.frame,[-0.3,0.42,0.05],[0.3,0.42,0.05],0.02);
-      ckpStick(S2,g,M,0,-0.72,-0.32,0.3); ckpCollective(S2,g,M,-0.3,-0.5,-0.05); S2.rear=true; if(v==='C') S2.nvg=true; }
+      ckpTub(g,M,{w:0.44,floor:-1.0,sill:-0.4,zf:-0.85,zb:0.45,py:py,pz:pz,pw:0.33,rx:-0.28,ph:0.26});
+      ckpStick(S2,g,M,0,-0.72,-0.32,0.3); ckpCollective(S2,g,M,-0.34,-0.5,-0.05); ckpLegs(g,M,0,-1.0,-0.4,0.14); ckpHand(g,M,0,-0.36,-0.3); ckpHand(g,M,-0.34,-0.41,-0.2); S2.rear=true; if(v==='C') S2.nvg=true; }
     ckpPedals(g,M,0,-0.9,-0.55);
   } else if(kind==='t625'){
     if(v==='C'){ /* cabin, at the open left door: the view turns 90° left to look out; frame, seats, the door gun */
@@ -163,8 +201,10 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
       [[0.62],[-1.52]].forEach(function(a){ const x=a[0]; ckpBar(g,M.frame,[x,-0.8,-0.9],[x,0.55,-0.55],0.03); ckpBar(g,M.frame,[x,0.55,-0.55],[x,0.6,0.4],0.03); ckpBar(g,M.frame,[x,-0.1,0.3],[x,0.6,0.3],0.025); });
       ckpBar(g,M.frame,[-1.52,0.55,-0.55],[0.62,0.55,-0.55],0.03); ckpBar(g,M.frame,[cx,0.55,-0.55],[cx,-0.25,-0.9],0.03);
       ckpBar(g,M.frame,[0.05,-0.75,-0.95],[0.45,-0.75,-0.95],0.02); ckpBar(g,M.frame,[0.05,-0.75,-0.95],[0.05,-0.95,-0.6],0.02); ckpBar(g,M.frame,[0.45,-0.75,-0.95],[0.45,-0.95,-0.6],0.02);
-      ckpPedals(g,M,0.15,-0.92,-0.62); ckpSeatSides(g,M,0.3,-0.36);
-      ckpStick(S2,g,M,0,-0.75,-0.3,0.34); ckpCollective(S2,g,M,-0.22,-0.55,-0.02); }
+      ckpTub(g,M,{w:1.08,cx:cx,floor:-1.05,sill:-0.55,zf:-1.0,zb:0.5,py:py,pz:pz,pw:0.98,rx:-0.2,ph:0.3,glass:true,chin:[0.15,-0.9],seatX:0.45});
+      ckpBox(g,M.seat,cx-0.45,-0.85,0.12,0.46,0.12,0.5); ckpBox(g,M.seat,cx-0.45,-0.2,0.36,0.5,0.95,0.12);   /* co-pilot seat (empty) */
+      ckpPedals(g,M,0,-0.92,-0.62); ckpPedals(g,M,-0.9,-0.92,-0.62); ckpSeatSides(g,M,0.3,-0.36);
+      ckpStick(S2,g,M,0,-0.75,-0.3,0.34); ckpCollective(S2,g,M,-0.24,-0.55,-0.02); ckpLegs(g,M,0,-1.05,-0.4,0.13); ckpHand(g,M,0,-0.36,-0.27); ckpHand(g,M,-0.24,-0.47,-0.19); }
   }
   g.traverse(function(o){ o.frustumCulled=false; }); return S2; }
 function ckpInit(){ if(CKP.scene) return; const sc=new THREE.Scene(); CKP.scene=sc; CKP.cam=new THREE.PerspectiveCamera(78,1,0.02,6);
@@ -278,8 +318,9 @@ function ckpSight(S2,dt){ if(!S2.sight||typeof renderer==='undefined'||!renderer
     const Hh=HELI.cur; CKP.rtCam.position.set(Hh.x-Math.sin(Hh.h)*3, Hh.y+0.6, Hh.z-Math.cos(Hh.h)*3); CKP.rtCam.quaternion.setFromEuler(ckSE.set(-0.22+(WALK.pitch||0)*0.5,Hh.h+(WALK.cy||0)*0.5,0)); CKP.rtCam.updateMatrixWorld();
     renderer.setRenderTarget(CKP.rt); renderer.render(scene,CKP.rtCam); renderer.setRenderTarget(null); }catch(e){} }
 /* T129 C: night-vision goggles over the whole view (below the HUD) */
-function ckpNvg(on){ if(!CKP.nvg){ if(!on||!document.createElement) return; CKP.nvg=document.createElement('div'); CKP.nvg.className='ckpnvg hidden'; const hud=$('hud'); if(hud&&hud.parentNode) hud.parentNode.insertBefore(CKP.nvg,hud); else document.body.appendChild(CKP.nvg); }
-  CKP.nvg.classList.toggle('hidden',!on); }
+function ckpNvg(on){ if(!CKP.nvg){ if(!on||!document.createElement) return; CKP.nvg=document.createElement('div'); CKP.nvg.className='ckpnvg hidden'; CKP.nvgV=document.createElement('div'); CKP.nvgV.className='ckpnvgv hidden';
+    const gl=$('gl'); if(gl&&gl.parentNode){ gl.parentNode.insertBefore(CKP.nvgV,gl.nextSibling); gl.parentNode.insertBefore(CKP.nvg,gl.nextSibling); }   /* right above the 3D view */ else { document.body.appendChild(CKP.nvg); document.body.appendChild(CKP.nvgV); } }
+  CKP.nvg.classList.toggle('hidden',!on); CKP.nvgV.classList.toggle('hidden',!on); }
 /* in-flight button: 🛩 Kokpit A · name › (cycles A → B → C) */
 function ckpBtn(kind){ if(!CKP.btn){ if(!kind||!document.createElement) return; const b=document.createElement('button'); b.type='button'; b.className='ckbtn hidden'; b.addEventListener('click',function(e){ e.stopPropagation(); ckpCycle(); }); document.body.appendChild(b); CKP.btn=b; }
   const on=!!kind&&(state==='play'||state==='walk'); CKP.btn.classList.toggle('hidden',!on); if(on){ const v=ckpVar(kind), t='🛩 Kokpit '+v+' · '+CKP_VARS[kind][v]+' ›'; if(CKP.btn.textContent!==t) CKP.btn.textContent=t; } }
