@@ -1,6 +1,13 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.77 — 2026-11-26 · Kamera açıları
+- **Kamera açıları:** tek kamera düğmesi (C tuşu, dokunmatikte 📷 ya da ekrandaki 🎥 çipi) aracın bütün görünümlerini sırayla getirir. Çipe uzun basınca (ya da sağ tıklayınca) liste açılır, istediğin açıyı seçersin.
+  - **Uçaklar:** Kokpit · Takip · Burun kamerası · Kuyruk kamerası (dikey kuyruğun üstünden ileri) · Gövde altı (yere bakış, bomba atarken) · Sinematik (yoldan geçişi izleyen sabit kamera, mesafeye göre yakınlaşır).
+  - **İHA'lar:** Sensör / yer istasyonu · Takip · Burun (FPV) · Kuyruk (kanatlar ve pervane görünür) · Gövde altı EO/IR (yakınlaştırılmış kamera, artı işareti, yön, açı ve lazer mesafesi) · Kanat altı (mühimmat ve bırakılışı) · Taktik (üstten, yön yukarıda).
+  - **Helikopterler:** Kokpit · Takip · Burun altı · Kuyruk · Gövde altı (kanca; askı yükü taşırken) · Sinematik.
+- Her kamera modelin gerçek yüzeyine oturur: model bir kez ölçülür (burun, sırt, karın ve kanat yüzeyi). Her görünümde sürükleyerek etrafa bakılır.
+
 ## V2.76 — 2026-11-26 · Kokpit gövdesi
 - **Kokpitler artık kapalı ve dolu (oyuncu bildirimi: "çok boşluklu, altları boş").** Bütün 15 kokpitte panelin altından ve yanlarından artık yer görünmüyor:
   - Kokpit bir gövde: kavisli taban, yan duvarlar, kalın kanopi kenarları, arkada bölme duvarı ve koltuk (oturak, sırt, başlık, emniyet kemerleri).

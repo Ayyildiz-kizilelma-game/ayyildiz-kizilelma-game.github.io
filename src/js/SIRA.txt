@@ -148,6 +148,7 @@ ag/filo.js
 gorev/gece-paketi.js
 ucus/kokpit-dugmeler.js
 ucus/iha-gorunum.js
+ucus/kamera-acilari.js
 ekran/sorun-giderme.js
 gorev/tp-dengesi.js
 performans/performans-testi.js

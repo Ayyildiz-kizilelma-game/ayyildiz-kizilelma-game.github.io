@@ -193,7 +193,7 @@ function walkKey(e){
   if(isKey(e,'gen','pause')||e.code==='Escape'){ walkLeave(); pauseGame(); return; }
   if(WALK.mode==='heli'){
     if(isKey(e,'heli','exit')){ heliExit(); return; }
-    if(isKey(e,'gen','camera')){ HELI.fp=!HELI.fp; WALK.pitch=0; WALK.cy=0; return; }
+    if(isKey(e,'gen','camera')){ if(typeof heliCamCycle==='function') heliCamCycle(); else { HELI.fp=!HELI.fp; WALK.pitch=0; WALK.cy=0; } return; }
     if(isKey(e,'gen','map')) openMap(); if(isKey(e,'gen','mute')) toggleMute();
     if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.code)>=0) e.preventDefault(); return; }
   const foot=WALK.mode==='foot';
@@ -225,7 +225,7 @@ function updateWalkTouch(){
   function sEnd(e){ if(e.pointerId!==sid) return; sid=null; WALK.sx=WALK.sy=0; }
   stick.addEventListener('pointerup',sEnd); stick.addEventListener('pointercancel',sEnd);
   function tap(id,fn){ const el=$(id); el.addEventListener('pointerdown',function(e){ e.preventDefault(); fn(); el.classList.add('on'); setTimeout(function(){ el.classList.remove('on'); },130); }); }
-  tap('wAct',walkInteract); tap('wPause',function(){ walkLeave(); pauseGame(); }); tap('wCam',function(){ if(WALK.mode==='heli') HELI.fp=!HELI.fp; else WALK.fp=!WALK.fp; WALK.pitch=0; }); tap('wRun',function(){ WALK.run=!WALK.run; }); tap('wJump',function(){ WALK.jumpQ=true; }); tap('wWarp',function(){ openMap(); }); tap('wSwap',carSwap);
+  tap('wAct',walkInteract); tap('wPause',function(){ walkLeave(); pauseGame(); }); tap('wCam',function(){ if(WALK.mode==='heli'){ if(typeof heliCamCycle==='function'){ heliCamCycle(); return; } HELI.fp=!HELI.fp; } else WALK.fp=!WALK.fp; WALK.pitch=0; }); tap('wRun',function(){ WALK.run=!WALK.run; }); tap('wJump',function(){ WALK.jumpQ=true; }); tap('wWarp',function(){ openMap(); }); tap('wSwap',carSwap);
   function hold(id,set){ const el=$(id); const on=function(e){ e.preventDefault(); set(1); el.classList.add('on'); }, off=function(){ set(0); el.classList.remove('on'); };
     el.addEventListener('pointerdown',on); el.addEventListener('pointerup',off); el.addEventListener('pointercancel',off); el.addEventListener('pointerleave',off); }
   hold('hUp',function(v){ WALK.tcoll=v; }); hold('hDn',function(v){ WALK.tcoll=-v; }); hold('hYL',function(v){ WALK.tyaw=-v; }); hold('hYR',function(v){ WALK.tyaw=v; });

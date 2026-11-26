@@ -58,7 +58,7 @@ function pollPad(){
   if(state==='play'){ if(E.weapon) fireWeapon(); if(E.flares) dropFlares(); if(E.pause) pauseGame(); if(E.gear) toggleGear(); if(E.cam) toggleCam(); if(E.skip&&S.onGround&&S.taxi&&!S.clearance) skipTaxi(); if(E.inv) toggleInvert();
     if(E.next) cycleWeapon(1); if(E.lock) toggleLock(); if(E.tgt) cycleLock(); if(E.auto) toggleAutoTaxi(); if(E.photo) enterPhoto(); if(E.mute) toggleMute(); if(E.view){ CAMU.yaw=0; CAMU.pitch=0; CAMU.zoom=1; } if(E.map&&typeof openMap==='function') openMap(); }
   else if(state==='walk'){ if(E.pause){ walkLeave(); pauseGame(); }
-    if(WALK.mode==='heli'){ if(E.hexit) heliExit(); if(E.cam){ HELI.fp=!HELI.fp; WALK.pitch=0; } if(E.map) openMap(); }
+    if(WALK.mode==='heli'){ if(E.hexit) heliExit(); if(E.cam){ if(typeof heliCamCycle==='function') heliCamCycle(); else { HELI.fp=!HELI.fp; WALK.pitch=0; } } if(E.map) openMap(); }
     else if(WALK.mode==='foot'){ if(E.call&&typeof callOpen==='function') callOpen(); if(E.use) walkInteract(); if(E.jump) WALK.jumpQ=true; if(E.runT) WALK.run=!WALK.run; }
     else { if(E.exit) walkInteract(); if(E.ccam){ WALK.fp=!WALK.fp; WALK.pitch=0; } if(E.swap) carSwap(); if(E.vfire) vehFire(); }
     const lx=pad('foot','lookR')-pad('foot','lookL'), ly=pad('foot','lookD')-pad('foot','lookU'); if(lx||ly) walkLook(lx*9,ly*7); }
