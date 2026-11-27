@@ -1,6 +1,6 @@
 # Yol haritası — Ay Yıldız: Hedef Kızıl Elma
 
-Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.77 · son güncelleme: 26 Kasım 2026
+Tek yol haritası (V2.40'ta birleştirildi). Yayındaki sürüm: V2.78 · son güncelleme: 27 Kasım 2026
 
 Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurallar, bütün dönemlerin özeti ve düzen döneminin (V2.12–V2.40) her sürümünün hedefi ile sonucu. Eski planların tam metni [docs/arsiv](docs/arsiv/) klasöründe duruyor. Her sürümün ayrıntısı [CHANGELOG.md](CHANGELOG.md) dosyasında, dönemlere ayrılmış özeti [docs/SURUM-GECMISI.md](docs/SURUM-GECMISI.md) dosyasında.
 
@@ -24,6 +24,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 - **Kokpitler 2.0 (V2.74):** her insanlı uçak ve helikopterin kendi kokpiti; İHA'larda sensör ve yer kontrol istasyonu görünümü.
 - **Kokpitler 3.0 (V2.75):** her uçak ve helikopterde üç kokpit düzeni (A/B/C), uçuşta 🛩 ile seçilir; VR kaldırıldı. V2.76'da kokpitler kapalı gövde oldu (taban, duvarlar, panel altı, pilotun bacakları).
 - **Kamera açıları (V2.77):** tek kamera düğmesiyle uçakta 6, İHA'da 7, helikopterde 6 görünüm.
+- **Yer kontrol istasyonları (V2.78):** YKİ-1 konteyner, İHA Harekât Merkezi ve mobil kamyon; yürüyerek girilip İHA uçurulur. Yeni EO/IR kamera.
 - **Bekleyen denemeler:** VR görünümü gerçek telefon ve gözlükle; birden çok gerçek hesapla filo (başvuru, onay, devir); iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler
@@ -68,7 +69,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 | V2.75 | Kokpitler 3.0: her uçak ve helikopterde üç kokpit düzeni (KAAN gece, Hürjet arka koltuk, Hürkuş sade, T129 nişancı ve gece görüş, T625 kapı topçusu dahil); VR kaldırıldı (oyuncu tasarım seçimi, 26 Kasım) | ✅ |
 | V2.76 | Kokpit gövdesi: boşluksuz, altı dolu kokpitler (taban, yan duvarlar, kanopi kenarı, panel altı, koltuk, pilotun bacakları ve elleri; helikopterde ayak pencereleri) (oyuncu bildirimi, 26 Kasım) | ✅ |
 | V2.77 | Kamera açıları: uçaklarda kokpit, takip, burun, kuyruk, gövde altı, sinematik; İHA'larda burun, kuyruk, gövde altı EO/IR, kanat altı, takip, taktik harita; tek kamera düğmesi (oyuncu isteği, 26 Kasım) | ✅ |
-| V2.78 | Gidilebilir yer kontrol istasyonu: üste konteyner, harekât merkezi, mobil kamyon; yeni EO/IR kamera görünümü (oyuncu isteği, 26 Kasım) | |
+| V2.78 | Gidilebilir yer kontrol istasyonu: üste konteyner, harekât merkezi, mobil kamyon; yeni EO/IR kamera görünümü (oyuncu isteği, 26 Kasım) | ✅ |
 | V2.79 | Öneriler: lazer işaretleme, ekip modu (pilot + operatör), fotoğraf modu, camda yağmur, kask ekranı, İHA kalkışı, kapı topçusu ateşi (oyuncu isteği, 26 Kasım) | |
 | V2.80 | Gelir yolu 3 — Google Play satın alımları (Play Billing) ve sunucu doğrulaması; listenin en sonunda (oyuncu kararı, 24 Kasım) | |
 
