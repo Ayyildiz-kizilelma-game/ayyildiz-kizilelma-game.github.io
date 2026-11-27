@@ -24,6 +24,7 @@ Bu belge şunları bir arada tutar: şu anki durum, sıradaki sürümler, kurall
 - **Kokpitler 2.0 (V2.74):** her insanlı uçak ve helikopterin kendi kokpiti; İHA'larda sensör ve yer kontrol istasyonu görünümü.
 - **Kokpitler 3.0 (V2.75):** her uçak ve helikopterde üç kokpit düzeni (A/B/C), uçuşta 🛩 ile seçilir; VR kaldırıldı. V2.76'da kokpitler kapalı gövde oldu (taban, duvarlar, panel altı, pilotun bacakları).
 - **Kamera açıları (V2.77):** tek kamera düğmesiyle uçakta 6, İHA'da 7, helikopterde 6 görünüm.
+- **Yer kontrol istasyonları (V2.78):** YKİ-1 konteyner, İHA Harekât Merkezi ve mobil kamyon; yürüyerek girilip İHA uçurulur. Yeni EO/IR kamera.
 - **Bekleyen denemeler:** VR görünümü gerçek telefon ve gözlükle; birden çok gerçek hesapla filo (başvuru, onay, devir); iki gerçek cihazla internet üzerinden çok oyunculu oyun ve sesli sohbet; uygulamada Google ile giriş.
 
 ## Sıradaki sürümler

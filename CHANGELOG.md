@@ -1,6 +1,15 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.78 — 2026-11-27 · Yer kontrol istasyonları
+- **Yürüyerek gidilen yer kontrol istasyonları.** İHA'yı artık bir istasyonun içinden uçurabilirsin (Hızlı Oyun → Üssü Gez; haritada yeni yerler):
+  - **YKİ-1 konteyner** (İHA ve Test Merkezi, pistin yanında): antenli, uydu çanaklı, jeneratörlü konteyner. Kapıdan girersin; içeride pilot ve operatör koltuğu, devriyedeki Akıncı'nın canlı kamera görüntüsü ve canlı harekât haritası gösteren ekranlar, ışıkları yanıp sönen raflar var.
+  - **İHA Harekât Merkezi** (İHA ve Test Merkezi): duvar boyu ekranda adanın haritası, bütün İHA'lar ve canlı kamera görüntüleri; sıra sıra operatör masaları, senin masan sarıyla işaretli.
+  - **Mobil yer istasyonu** (cephe gerisinde, Kızıl Bölge yönünde bir kamyon): arka kapısı açık kabin, konsol, çatıda uydu çanağı ve anten direği.
+  - Pilot koltuğunda (kamyonda arka kapıda) **E → İHA seç**. Konteyner ve merkezden İHA pistten kalkar, kamyondan havada başlar. Uçuş yer kontrol istasyonu görünümünde açılır.
+  - Kamyonun bağlantı menzili 15 km: ekranın üstünde mesafe ve bağlantı yüzdesi; menzil dışında İHA kendiliğinden kamyona doğru döner.
+- **Yeni EO/IR kamera** (İHA'da gövde altı görünümü): gündüz (EO) ya da termal (IR, beyaz sıcak); 1× · 4× · 12× · 24× yakınlaştırma (düğmeler ya da fare tekerleği); **KİLİTLE** kamerayı yerdeki bir noktaya sabitler, İHA uçarken o nokta artı işaretinin altında kalır; **LAZER** mesafeyi, hedef koordinatını ve yüksekliğini ölçer; kuzey oku ve bakış çizgisini gösteren küçük harita. Uçuş göstergeleri bu görünümde soluk.
+
 ## V2.77 — 2026-11-26 · Kamera açıları
 - **Kamera açıları:** tek kamera düğmesi (C tuşu, dokunmatikte 📷 ya da ekrandaki 🎥 çipi) aracın bütün görünümlerini sırayla getirir. Çipe uzun basınca (ya da sağ tıklayınca) liste açılır, istediğin açıyı seçersin.
   - **Uçaklar:** Kokpit · Takip · Burun kamerası · Kuyruk kamerası (dikey kuyruğun üstünden ileri) · Gövde altı (yere bakış, bomba atarken) · Sinematik (yoldan geçişi izleyen sabit kamera, mesafeye göre yakınlaşır).

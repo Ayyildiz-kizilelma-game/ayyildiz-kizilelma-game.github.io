@@ -178,6 +178,7 @@ function drawWalkHUD(){
   if(foot&&WALK.near==='car') msg=(WALK.tvis?'BİN':'E')+' — araca bin';
   else if(foot&&WALK.near==='boat'&&WALK.nearBoat) msg=(WALK.tvis?'BİN':'E')+' — '+WALK.nearBoat.K.n+' teknesine bin';
   else if(foot&&WALK.near==='heli'&&WALK.nearHeli) msg=(WALK.tvis?'BİN':'E')+' — '+WALK.nearHeli.D.name+' helikopterine bin';
+  else if(foot&&WALK.near==='gcs'&&WALK.nearGcs) msg=(WALK.tvis?'İHA UÇUR':'E')+' — '+WALK.nearGcs.name+': İHA seç ve uçur';
   else if(foot&&WALK.near==='plane'&&WALK.nearId) msg=(WALK.tvis?'UÇAĞA BİN':'E')+' — '+AIRCRAFT[WALK.nearId].name+' ile uç';
   else if(!foot) msg=(WALK.tvis?'İN':'E')+' — araçtan in';
   if(msg){ hx.textAlign='center'; hx.font='700 '+Math.round(16*s)+'px "Chakra Petch",system-ui,sans-serif'; const tw=hx.measureText(msg).width+28*s, y=h*0.72;
@@ -213,7 +214,7 @@ function updateWalkTouch(){
   if(!vis){ WALK.sx=WALK.sy=0; return; }
   $('wKnob').style.transform='translate('+(WALK.sx*60)+'%,'+(WALK.sy*60)+'%)';
   const foot=WALK.mode==='foot', a=$('wAct');
-  const lbl=!foot?'İN':(WALK.near==='car'||WALK.near==='heli'||WALK.near==='boat'?'BİN':(WALK.near==='plane'?'UÇAĞA<br>BİN':''));
+  const lbl=!foot?'İN':(WALK.near==='car'||WALK.near==='heli'||WALK.near==='boat'?'BİN':(WALK.near==='plane'?'UÇAĞA<br>BİN':(WALK.near==='gcs'?'İHA<br>UÇUR':'')));
   a.innerHTML=lbl; a.classList.toggle('off',!lbl);
   $('wRun').classList.toggle('hidden',!foot); $('wJump').classList.toggle('hidden',!foot); $('wRun').classList.toggle('on',WALK.run); const heli=WALK.mode==='heli'; $('wCam').classList.toggle('hidden',foot); $('wSwap').classList.toggle('hidden',foot||heli); $('wheli').classList.toggle('hidden',!heli);
 }

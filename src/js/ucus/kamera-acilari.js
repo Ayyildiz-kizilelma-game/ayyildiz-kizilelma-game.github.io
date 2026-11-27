@@ -20,7 +20,7 @@ function camxName(id){ const L=camxList(), e=L.find(function(x){ return x[0]===i
 function camxSet(id,quiet){ const L=camxList(); if(!L.some(function(x){ return x[0]===id; })) id=L[1][0];
   if(camxHeliOn()){ HELI.fp=id==='fp'; HELI.view=id==='fp'?'chase':id; WALK.pitch=0; WALK.cy=0; }
   else { if(id==='cockpit') camMode=1; else if(id==='chase') camMode=0; else { camMode=2; CAMX.v=id; } camSnap=true; CAMU.yaw=0; CAMU.pitch=0; CAMU.zoom=1; }
-  CAMX.cine=null; if(!quiet&&typeof toast==='function') toast('🎥 '+camxName(id),'#b8ecff'); camxDom(); }
+  CAMX.cine=null; if(typeof EOIR!=='undefined'){ EOIR.lock=null; EOIR.lrf=null; } if(!quiet&&typeof toast==='function') toast('🎥 '+camxName(id),'#b8ecff'); camxDom(); }
 function camxNext(){ const L=camxList(), i=L.findIndex(function(x){ return x[0]===camxCur(); }); camxSet(L[(i+1)%L.length][0]); }
 function heliCamCycle(){ camxNext(); }
 toggleCam=HOOK.wrap('toggleCam','ucus/kamera-acilari#_camxToggle',function(next){ return function(){ if(state!=='play'){ next(); return; } camxNext(); }; },toggleCam);
@@ -79,12 +79,47 @@ function camxDom(){ if(!document.createElement) return;
     b.addEventListener('pointerdown',function(){ CAMX.pressT=Date.now(); }); b.addEventListener('contextmenu',function(e){ e.preventDefault(); camxListOpen(); });
     b.addEventListener('click',function(e){ e.stopPropagation(); if(Date.now()-CAMX.pressT>550) camxListOpen(); else camxNext(); }); document.body.appendChild(b); CAMX.btn=b;
     const l=document.createElement('div'); l.className='camxlist hidden'; l.addEventListener('click',function(e){ const t=e.target.closest('button[data-v]'); if(t){ camxSet(t.dataset.v); } l.classList.add('hidden'); e.stopPropagation(); }); document.body.appendChild(l); CAMX.list=l;
-    const o=document.createElement('div'); o.className='camxov hidden'; o.innerHTML='<i class="cxh"></i><i class="cxv"></i><b class="cxbox"></b><span class="cxtl"></span><span class="cxtr"></span><span class="cxbl"></span>'; const gl=$('gl'); if(gl&&gl.parentNode) gl.parentNode.insertBefore(o,gl.nextSibling); else document.body.appendChild(o); CAMX.ov=o; }
+    const o=document.createElement('div'); o.className='camxov hidden'; o.innerHTML='<i class="cxh"></i><i class="cxv"></i><b class="cxbox"></b><span class="cxtl"></span><span class="cxtr"></span><span class="cxbl"></span><span class="cxlk"></span><i class="cxn">▲<br>K</i><canvas class="cxmap" width="160" height="160"></canvas><div class="cxbtns"><button type="button" data-e="mode">EO / IR</button><button type="button" data-e="out">−</button><button type="button" data-e="in">+</button><button type="button" data-e="lock">KİLİTLE</button><button type="button" data-e="laser">LAZER</button></div>'; o.addEventListener('click',function(e){ const b=e.target.closest('button[data-e]'); if(!b) return; e.stopPropagation(); eoirBtn(b.dataset.e); }); const gl=$('gl'); if(gl&&gl.parentNode) gl.parentNode.insertBefore(o,gl.nextSibling); else document.body.appendChild(o); CAMX.ov=o; }
   const on=state==='play'||camxHeliOn(); CAMX.btn.classList.toggle('hidden',!on); if(on){ const t='🎥 '+camxName(camxCur())+' ›'; if(CAMX.btn.textContent!==t) CAMX.btn.textContent=t; } else CAMX.list.classList.add('hidden'); }
 function camxListOpen(){ camxDom(); const L=camxList(), c=camxCur(); CAMX.list.innerHTML=L.map(function(x,i){ return '<button type="button" data-v="'+x[0]+'"'+(x[0]===c?' aria-pressed="true"':'')+'>'+(i+1)+' · '+x[1]+'</button>'; }).join(''); CAMX.list.classList.remove('hidden'); }
-function camxOverlay(){ try{ camxDom(); }catch(e){} if(!CAMX.ov) return; const on=state==='play'&&camMode===2&&CAMX.v==='belly'&&!!(CUR&&CUR.uav);
-  CAMX.ov.classList.toggle('hidden',!on); if(!on) return; CAMX.ovT-=1; if(CAMX.ovT>0) return; CAMX.ovT=6;
-  const az=((Math.atan2(-camFwdX(),-camFwdZ())*57.3)%360+360)%360, el=Math.asin(clamp(cxV.set(0,0,-1).applyQuaternion(camera.quaternion).y,-1,1))*57.3, rng=el<-2?S.pos.y/Math.sin(-el/57.3):0;
-  const q=CAMX.ov.querySelectorAll('span'); if(!q||q.length<3) return; q[0].textContent='IR · '+Math.round(24/(camera.fov||24)*10)+'×'; q[1].textContent='AZ '+String(Math.round(az)).padStart(3,'0')+'°  EL '+Math.round(el)+'°';
-  q[2].textContent=rng?'LRF '+(rng/1000).toFixed(1)+' KM':'LRF —'; }
+/* ---- V2.78: the UAV EO/IR gimbal camera (belly view): day (EO) or thermal white-hot (IR), 1× · 4× · 12× · 24× zoom,
+   KİLİTLE holds the camera on a ground point while the UAV flies on, LAZER measures the range and the coordinates of the
+   point under the crosshair. North arrow and a small map with the UAV, the look line and the locked point. */
+const EOIR={mode:'ir', zi:1, Z:[[40,'1×'],[12,'4×'],[4,'12×'],[1.8,'24×']], lock:null, lrf:null, lrfT:0, filt:false};
+function eoirOn(){ return state==='play'&&camMode===2&&CAMX.v==='belly'&&!!(CUR&&CUR.uav); }
+function eoirHit(){ const o=camera.position, f=new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion); let t=0, st=15;
+  for(let i=0;i<900&&t<40000;i++){ t+=st; const y=o.y+f.y*t, g=Math.max(terrainH(o.x+f.x*t,o.z+f.z*t),0);
+    if(y<=g){ let a=t-st, b=t; for(let k=0;k<14;k++){ const m=(a+b)/2; if(o.y+f.y*m<=Math.max(terrainH(o.x+f.x*m,o.z+f.z*m),0)) b=m; else a=m; } return new THREE.Vector3(o.x+f.x*b,o.y+f.y*b,o.z+f.z*b); }
+    st=Math.min(250,st*1.04); } return null; }
+function eoirBtn(k){ if(k==='mode'){ EOIR.mode=EOIR.mode==='ir'?'eo':'ir'; toast(EOIR.mode==='ir'?'Termal kamera (IR)':'Gündüz kamerası (EO)','#b8ecff'); }
+  else if(k==='in') EOIR.zi=Math.min(3,EOIR.zi+1); else if(k==='out') EOIR.zi=Math.max(0,EOIR.zi-1);
+  else if(k==='lock'){ if(EOIR.lock){ EOIR.lock=null; toast('Kilit bırakıldı','#b8ecff'); } else { const h=eoirHit(); if(h){ EOIR.lock=h; toast('🎯 Nokta kilitlendi','#ffd27a'); } else toast('Kilit: zemin görünmüyor','#ffb25a'); } }
+  else if(k==='laser'){ const h=eoirHit(); if(h){ EOIR.lrf={d:camera.position.distanceTo(h), x:h.x, z:h.z, y:h.y}; EOIR.lrfT=10; } else { EOIR.lrf=null; toast('LAZER: menzil dışı','#ffb25a'); } }
+  CAMX.ovT=0; }
+/* aim: zoomed field of view, and the locked point stays under the crosshair */
+function eoirAim(){ if(!eoirOn()) return; const f=EOIR.Z[EOIR.zi][0]; if(EOIR.lock){ camera.lookAt(EOIR.lock); camera.updateMatrixWorld(); }
+  if(Math.abs(camera.fov-f)>0.01){ camera.fov=f; lastFov=f; camera.updateProjectionMatrix(); } }
+try{ window.addEventListener('wheel',function(e){ if(!eoirOn()) return; eoirBtn(e.deltaY<0?'in':'out'); },{passive:true}); }catch(e){}
+function eoirFilter(on){ const el=$('gl'); if(!el||!el.style) return;
+  const hud=$('hud');
+  if(on){ const f=EOIR.mode==='ir'?'grayscale(1) brightness(0.62) contrast(1.7)':'saturate(1.05) contrast(1.06)'; if(el.style.filter!==f) el.style.filter=f; EOIR.filt=true; if(hud&&hud.style&&hud.style.opacity!=='0.3') hud.style.opacity='0.3'; }
+  else if(EOIR.filt){ EOIR.filt=false; el.style.filter=''; if(hud&&hud.style) hud.style.opacity=''; if(typeof visApply==='function') visApply(); } }
+function eoirMap(cv,hd){ const x=cv.getContext&&cv.getContext('2d'); if(!x) return; const W=cv.width, H=cv.height, R=W/2, rng=6000, s=R/rng;
+  x.clearRect(0,0,W,H); x.fillStyle='rgba(6,18,12,.85)'; x.beginPath(); x.arc(R,R,R-1,0,6.283); x.fill(); x.strokeStyle='#2c8a52'; x.lineWidth=1; x.beginPath(); x.arc(R,R,R*0.5,0,6.283); x.stroke(); x.beginPath(); x.arc(R,R,R-1,0,6.283); x.stroke();
+  const P=function(wx,wz){ const dx=wx-S.pos.x, dz=wz-S.pos.z; return [R+dx*s, R+dz*s]; };   /* north up */
+  if(typeof gtargets!=='undefined') gtargets.forEach(function(t){ if(!t.alive||!t.pos) return; const q=P(t.pos.x,t.pos.z); if(Math.hypot(q[0]-R,q[1]-R)<R) { x.fillStyle='#ffb25a'; x.fillRect(q[0]-2,q[1]-2,4,4); } });
+  const h=eoirHit(); if(h){ const q=P(h.x,h.z); x.strokeStyle='#ffe14a'; x.beginPath(); x.moveTo(R,R); x.lineTo(q[0],q[1]); x.stroke(); }
+  if(EOIR.lock){ const q=P(EOIR.lock.x,EOIR.lock.z); x.strokeStyle='#ff5a4a'; x.lineWidth=2; x.strokeRect(q[0]-5,q[1]-5,10,10); }
+  x.save(); x.translate(R,R); x.rotate(-hd); x.fillStyle='#e6fff0'; x.beginPath(); x.moveTo(0,-7); x.lineTo(5,6); x.lineTo(0,3); x.lineTo(-5,6); x.closePath(); x.fill(); x.restore();
+  x.fillStyle='#5dff9a'; x.font='700 10px monospace'; x.textAlign='center'; x.fillText('6 km',R,H-6); }
+function camxOverlay(){ try{ camxDom(); }catch(e){} if(!CAMX.ov) return; const on=eoirOn();
+  CAMX.ov.classList.toggle('hidden',!on); eoirFilter(on); if(!on) return; eoirAim(); if(EOIR.lrfT>0) EOIR.lrfT-=1/30; CAMX.ovT-=1; if(CAMX.ovT>0) return; CAMX.ovT=6;
+  const fx=camFwdX(), fz=camFwdZ(), az=((Math.atan2(fx,-fz)*57.3)%360+360)%360, el=Math.asin(clamp(cxV.set(0,0,-1).applyQuaternion(camera.quaternion).y,-1,1))*57.3;
+  const q=CAMX.ov.querySelectorAll('span'); if(!q||q.length<4) return;
+  q[0].textContent=(EOIR.mode==='ir'?'IR · BEYAZ SICAK':'EO · GÜNDÜZ')+' · '+EOIR.Z[EOIR.zi][1]+' · FOV '+EOIR.Z[EOIR.zi][0]+'°';
+  q[1].textContent='AZ '+String(Math.round(az)).padStart(3,'0')+'°  EL '+Math.round(el)+'°';
+  const L=EOIR.lrf; q[2].textContent=L&&EOIR.lrfT>0?'LRF '+(L.d/1000).toFixed(2)+' KM · HEDEF X '+(L.x/1000).toFixed(2)+' · Z '+(L.z/1000).toFixed(2)+' · '+Math.round(L.y)+' M':'LAZER: mesafe ölç';
+  q[3].textContent=EOIR.lock?'● KİLİTLİ':'';
+  const n=CAMX.ov.querySelector('.cxn'); if(n&&n.style) n.style.transform='rotate('+(-az)+'deg)';
+  const cv=CAMX.ov.querySelector('.cxmap'); fwdOf(S.q,vF); if(cv) eoirMap(cv,Math.atan2(vF.x,-vF.z)); }
 function camFwdX(){ return cxV2.set(0,0,-1).applyQuaternion(camera.quaternion).x; } function camFwdZ(){ return cxV2.set(0,0,-1).applyQuaternion(camera.quaternion).z; }
