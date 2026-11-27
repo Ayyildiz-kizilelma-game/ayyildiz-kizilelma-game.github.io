@@ -46,7 +46,8 @@ function hoTargets(){ const L=[]; HTGT.forEach(function(o){ if(o.alive) L.push(o
 /* ---- T129 aiming: nose direction, the best target inside a cone gets the lock */
 function hoAimStep(dt){
   const H=HELI.cur; HO.cand=null; if(!H||H.ground&&H.rpm<0.9){ HO.lock=null; HO.lockT=0; return; }
-  if(H.id==='t625'){ const e=-0.32; HO.aimDir.set(Math.cos(H.h)*Math.cos(e),Math.sin(e),-Math.sin(H.h)*Math.cos(e)).normalize(); }
+  if(H.id==='t625'&&typeof CKP!=='undefined'&&HELI.fp&&CKP.cur&&CKP.cur.door){ HO.aimDir.set(0,0,-1).applyQuaternion(camera.quaternion).normalize(); }   /* V2.79: the door gunner aims where he looks */
+  else if(H.id==='t625'){ const e=-0.32; HO.aimDir.set(Math.cos(H.h)*Math.cos(e),Math.sin(e),-Math.sin(H.h)*Math.cos(e)).normalize(); }
   else { const e=-H.pitch*0.9-0.09-WALK.pitch*0.25; HO.aimDir.set(-Math.sin(H.h)*Math.cos(e),Math.sin(e),-Math.cos(H.h)*Math.cos(e)).normalize(); }
   HO.aim.set(H.x,H.y+0.6,H.z).addScaledVector(HO.aimDir,4);
   let best=null, ba=H.id==='t625'?0.75:0.26; const rng=H.id==='t625'?900:6000; hoTargets().forEach(function(o){ const dx=o.pos.x-H.x, dy=o.pos.y-H.y, dz=o.pos.z-H.z, d=Math.hypot(dx,dy,dz); if(d>rng||d<15) return;

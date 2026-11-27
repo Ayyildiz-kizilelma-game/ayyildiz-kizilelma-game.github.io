@@ -150,6 +150,7 @@ ucus/kokpit-dugmeler.js
 ucus/iha-gorunum.js
 ucus/kamera-acilari.js
 dunya/yer-istasyonu.js
+ucus/oneriler.js
 ekran/sorun-giderme.js
 gorev/tp-dengesi.js
 performans/performans-testi.js

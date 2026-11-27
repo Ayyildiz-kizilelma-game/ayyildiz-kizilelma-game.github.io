@@ -3,7 +3,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="game-version" content="V2.78">
+<meta name="game-version" content="V2.79">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Ay Yıldız: Hedef Kızıl Elma</title>
 <meta name="theme-color" content="#a10d1c">
@@ -1282,8 +1282,13 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
 .camxov .cxbtns button{ min-width:44px; height:36px; padding:0 12px; border-radius:8px; border:1px solid rgba(255,255,255,.6); background:rgba(0,0,0,.45); color:#fff; font:700 12px/1 "Chakra Petch",monospace; }
 .camxov .cxbtns button[data-e="lock"]{ border-color:#ff8a7a; color:#ffb2a8; }
 .camxov .cxbl{ bottom:calc(14% + 50px); }
+
+/* V2.79: rain on the canopy, UAV auto take-off, photo mode controls */
+canvas.ckrain{ pointer-events:none; }
+.atobtn{ position:fixed; left:50%; transform:translateX(-50%); bottom:calc(env(safe-area-inset-bottom,0px) + 150px); z-index:25; padding:10px 18px; border-radius:10px; border:1px solid rgba(125,255,176,.6); background:rgba(8,15,28,.8); color:#9fffc4; font:700 14px/1 "Chakra Petch",monospace; }
+.phx{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:6px; font:600 12px/1.2 Inter,sans-serif; color:#dfe9f1; } .phx input[type=range]{ vertical-align:middle; width:140px; }
 </style>
-<link rel="preload" href="oyun.js?v=V2.78" as="script">
+<link rel="preload" href="oyun.js?v=V2.79" as="script">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1851,6 +1856,6 @@ canvas.fpsgraph{ position:static; inset:auto; display:inline-block; vertical-ali
   <p class="vr" id="prepVr"></p>
 </div>
 <script src="vendor/three-r187/three.min.js"></script>
-<script src="oyun.js?v=V2.78"></script>
+<script src="oyun.js?v=V2.79"></script>
 </body>
 </html>

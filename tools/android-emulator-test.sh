@@ -58,6 +58,13 @@ if [ -z "$PID2" ] || ! adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -
   for i in $(seq 1 60); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
   adb exec-out screencap -p > "$OUT/4-yeniden.png"
 fi
+# V2.79: the test AdMob start sometimes needs a second fresh start on the slow emulator: stop the app and open it once more
+if ! adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew"; then
+  echo "::warning title=Emülatör::reklam hâlâ hazır değil — uygulama durdurulup bir kez daha açılıyor"
+  adb shell am force-stop "$PKG"; sleep 5; adb shell monkey -p "$PKG" -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
+  for i in $(seq 1 60); do sleep 3; adb logcat -d -s Capacitor/Console:* 2>/dev/null | grep -q "reklam hazır: rew" && break; done
+  adb exec-out screencap -p > "$OUT/5-ikinci-yeniden.png"
+fi
 PID2=$(adb shell pidof -s "$PKG" | tr -d '\r'); [ -n "$PID2" ] || err "uygulama açık değil"
 adb logcat -d > "$OUT/logcat.txt"; adb logcat -d -b crash > "$OUT/crash.txt"
 grep -a -i "AndroidRuntime\|FATAL\|$PKG\|Capacitor\|Ads \|UserMessaging\|ActivityManager.*ayyildiz\|ActivityTaskManager.*ayyildiz\|lowmemory\|am_kill" "$OUT/logcat.txt" | grep -v "Registering plugin" | tail -n 400 > "$OUT/kayit.txt"

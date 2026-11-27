@@ -7,7 +7,7 @@
        HÜRJET  A wide display (KAAN family) · B three MFDs + up-front panel · C rear seat (instructor): student ahead, repeater HUD
        HÜRKUŞ  A military: HUD + three displays · B trainer: two displays + round standby gauges · C simple: one big display, big buttons
        T129    A pilot (rear seat, gunner ahead) · B gunner (front seat, live sight camera) · C night vision goggles
-       T625    A two wide 8×20" displays + two touch units · B four displays · C cabin door gunner (looks out of the open door)
+       T625    A two wide 8×20" displays + two touch units · B four displays · C cabin door gunner (right door; Space fires where you look, V2.79)
    • Every display sits in a bezel with its push buttons; displays are live canvas textures (8 Hz). The T129 gunner's sight
      shows a real zoomed camera picture of the world ahead (render target, 5 Hz).
    • Head movement (setting "Kafa hareketi", default on): G-load pushes the head down, the head leans into turns,
@@ -187,6 +187,7 @@ function ckpBuild(kind,v){ v=v||ckpVar(kind); const g=new THREE.Group(), S2={g:g
       for(let i=0;i<3;i++){ const z=-0.7+i*0.7; ckpBox(g,M.seat,0.9,-0.4,z,0.3,0.06,0.5); ckpBox(g,M.seat,1.05,-0.1,z,0.06,0.55,0.5); ckpBar(g,M.yel,[1.0,0.2,z-0.2],[0.85,-0.35,z+0.15],0.008); }
       const gun=new THREE.Group(); gun.position.set(-0.6,-0.5,0.32); g.add(gun); ckpCyl(gun,M.metal,0,-0.2,0,0.02,0.4);
       ckpBox(gun,M.grip,0.12,0.04,0,0.28,0.09,0.08); ckpCyl(gun,M.grip,-0.35,0.06,0,0.012,0.6,0,Math.PI/2); ckpBox(gun,M.yel,0.0,0.1,0.06,0.08,0.06,0.04); ckpBox(gun,M.grip,0.3,0.0,0,0.06,0.12,0.04);
+      g.rotation.y=Math.PI;   /* built looking out of the left door; turned round, it is the right door with the gun (V2.79) */
       S2.gun=gun; S2.door=true; S2.stick=gun; S2.thr=new THREE.Group(); g.add(S2.thr);
     } else {
       /* utility helicopter, side by side: the pilot sits on the right */
@@ -338,11 +339,11 @@ function ckpUpdate(dt){ const kind=ckpKind(); CKP.on=!!kind; try{ ckpBtn(kind); 
   const k=1-Math.exp(-dt*4); H.y+=(ty-H.y)*k; H.p+=(tp-H.p)*k; H.dy+=(tdy-H.dy)*(1-Math.exp(-dt*6));
   let shake=0; if(on&&state==='play'&&!heli){ shake=clamp((S.speed-CUR.vTop*0.85)/(CUR.vTop*0.5),0,1)*0.004+(typeof WX!=='undefined'?Math.max(0,WX.cur.turb-0.08)*(typeof turbK==='function'?turbK():0.35)*0.006:0); }
   const sx=shake?Math.sin(T*37)*shake:0, sy=shake?Math.sin(T*29+1)*shake:0;
-  if(heli){ CKP.cam.position.set(0,0,0); ckE.set((WALK.pitch||0)-0.12,(WALK.cy||0)+(S2.door?Math.PI/2:0),0);
+  if(heli){ CKP.cam.position.set(0,0,0); ckE.set((WALK.pitch||0)-0.12,(WALK.cy||0)+(S2.door?-Math.PI/2:0),0);
     /* seat position: T129 pilot sits one metre behind and above the gunner; the T625 door gunner in the cabin, looking out of the left door */
-    const Hh=HELI.cur; let ox=0,oy=0,oz=0; if(kind==='t129'&&S2.rear){ oy=0.35; oz=1.05; } else if(S2.door){ ox=-0.95; oy=-0.25; oz=2.6; }
+    const Hh=HELI.cur; let ox=0,oy=0,oz=0; if(kind==='t129'&&S2.rear){ oy=0.35; oz=1.05; } else if(S2.door){ ox=0.95; oy=-0.25; oz=2.6; }
     if(ox||oy||oz){ ckHQ.setFromEuler(new THREE.Euler(Hh.pitch*-0.9,Hh.h,-Hh.roll*0.9,'YXZ')); camera.position.add(ckV.set(ox,oy,oz).applyQuaternion(ckHQ)); }
-    if(S2.door){ ckQ.setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI/2); camera.quaternion.multiply(ckQ); }
+    if(S2.door){ ckQ.setFromAxisAngle(new THREE.Vector3(0,1,0),-Math.PI/2); camera.quaternion.multiply(ckQ); }
     if(ox||oy||oz||S2.door) camera.updateMatrixWorld(); ckpSight(S2,dt); }
   else { CKP.cam.position.set(sx,H.dy+sy,0); ckE.set(CAMU.pitch+H.p,CAMU.yaw+H.y,0); }
   CKP.cam.quaternion.setFromEuler(ckE); CKP.cam.fov=camera.fov; CKP.cam.aspect=camera.aspect; CKP.cam.updateProjectionMatrix(); CKP.cam.updateMatrixWorld();

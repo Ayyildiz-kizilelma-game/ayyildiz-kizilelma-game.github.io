@@ -4,7 +4,7 @@
 
 **Durum:** ✅ iyi · 🔧 iyileştirilmeli · 🔀 birleştirilmeli · 🗑 kaldırılmalı · 🧪 denenmeli (gerçek cihazda doğrulanmalı)
 
-**Özet:** 81 özellik · ✅ iyi 72 · 🔧 iyileştirilmeli 5 · 🧪 denenmeli 4 · testi olmayan: 0
+**Özet:** 84 özellik · ✅ iyi 75 · 🔧 iyileştirilmeli 5 · 🧪 denenmeli 4 · testi olmayan: 0
 
 ## Karar listesi
 
@@ -34,6 +34,9 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | **İHA görünümleri** | İHA'da kokpit kamerası yerine iki görünüm (Ayarlar → Uçuş → İHA görünümü ya da uçuşta 📺 düğmesi): Sensör (burun EO/IR kamerası) ve Yer kontrol istasyonu (operatör konsolu: bağlantı, telemetri, taktik harita, faydalı yük, masa). VR görünümü V2.75'te kaldırıldı. | İHA ile uçarken kamera (C) → 📺 | C | V2.74 | v274, v275 | 🔧 iyileştirilmeli |
 | **Kamera açıları** | Tek kamera düğmesiyle (C, 📷 ya da ekrandaki 🎥 çipi) aracın bütün görünümleri sırayla gelir; çipe uzun basınca liste açılır. Uçaklarda kokpit, takip, burun, kuyruk, gövde altı ve sinematik (yandan geçiş); İHA'larda sensör / yer istasyonu, takip, burun (FPV), kuyruk, gövde altı EO/IR (yakınlaştırılmış, artı işaretli, lazer mesafeli), kanat altı (mühimmat) ve üstten taktik görünüm; helikopterlerde kokpit, takip, burun altı, kuyruk, gövde altı (kanca) ve sinematik. Kameralar modelin gerçek yüzeyine oturur; sürükleyerek her görünümde etrafa bakılır. | Uçuşta ve helikopterde | C kamera | V2.77 | v277 | ✅ iyi |
 | **Yer kontrol istasyonları** | İHA'yı yürüyerek gidilen bir istasyondan uçurma (V2.78): İHA ve Test Merkezi'nde YKİ-1 konteyneri (içeride pilot ve operatör koltuğu, canlı kamera ve harita ekranları, raflar) ve İHA Harekât Merkezi (duvar boyu harita ve canlı kamera ekranları, sıra sıra masalar, "Senin masan"); cephe gerisinde Mobil yer istasyonu kamyonu. Koltukta ya da kamyonun arkasında E → İHA seç: konteyner ve merkezde pistten kalkar, kamyonda havada başlar; kamyonun bağlantı menzili 15 km, menzil dışında İHA kendiliğinden geri döner. Gövde altı EO/IR kamerada gündüz/termal, 1–24× yakınlaştırma, KİLİTLE ve LAZER (mesafe ve koordinat), küçük harita. | Hızlı Oyun → Üssü Gez · Harita → YKİ-1 / Harekât Merkezi / Mobil yer istasyonu | E · C kamera | V2.78 | v278 | ✅ iyi |
+| **Lazer işaretleme ve operatör** | İHA'nın EO/IR kamerasında LAZER artı işaretinin altındaki (ya da kilitli) noktayı işaretli tutar; lazer güdümlü bomba ve füzeler (MAM-L, MAM-C, TEBER, L-UMTAS…) o noktaya gider. ATIŞ İSTE: Kılıç 2 (KAAN) 8 saniye sonra noktaya TEBER-82 bırakır (30 sn ara). OPERATÖR: kamerayı yapay zekâ operatöre verirsin, 6 km içindeki en yakın yer hedefini bulup lazerle işaretli tutar; sen istediğin görünümde uçup atarsın (V2.79). İki oyunculu ekip modu sonra. | İHA → gövde altı EO/IR → LAZER · ATIŞ İSTE · OPERATÖR | C kamera | V2.79 | v279 | ✅ iyi |
+| **İHA otomatik kalkış** | İHA yerdeyken ekranda 🛫 Otomatik kalkış: tam güç, pist yönünde düz, kalkış hızında burnu kaldırır, teker toplar, yerden 300 m'ye tırmanıp kumandayı verir. Kumandaya dokununca bırakır. | İHA ile pistte | — | V2.79 | v279 | ✅ iyi |
+| **Kask ekranı ve camda yağmur** | KAAN ve T129 kokpitinde kask ekranı: görüşteki hedeflerin kutusu ve mesafesi, baş HUD'dan çevrilince hız, irtifa ve yön bakışla gelir. Yağmurda kokpit camında damlalar: yavaşken aşağı akar, hızlanınca geriye savrulur (bütün kokpitler ve helikopterler). | Kokpit görünümü | C kamera | V2.79 | v279 | ✅ iyi |
 | **Tıklanabilir kokpit** | KAAN, Hürjet ve Hürkuş kokpitinde iki yan panel: iniş takımı kolu (yeşil lambalar), MASTER ARM (SAFE iken top, füze ve bomba ateşlenmez; her uçuşta yeniden ARM), fırlatma kolu (iki kez çek), flare (sayısıyla), silah seçimi (seçili silah ve sayısı), gece görüş / termal. Taktik harita ekranına dokununca ölçek 6 · 12 · 24 km. Farede üzerine gelince adı ve tuşu görünür. | Uçuşta kokpit kamerası (C) → panellere tıkla / dokun | C kamera | V2.73 | v273 | ✅ iyi |
 | **Akrobasi** | Akrobasi dumanı, figür tanıyıcı ve akrobasi gösterisi görevi. | Görevler · uçuşta duman | F6 duman | V2.07 | acro | ✅ iyi |
 | **Hasar, yakıt ve fırlatma koltuğu** | Parça hasarı, yakıt tüketimi, ikmal-onarım, fırlatma koltuğu. | Her uçuşta | J (iki kez) fırlatma | V1.73 | damage, service | ✅ iyi |
@@ -132,7 +135,7 @@ Aşağıdakiler senin kararını bekliyor. "iyi" durumundaki özellikler olduğu
 | Özellik | Ne yapar | Nereden | Tuş | Sürüm | Test | Durum |
 |---|---|---|---|---|---|---|
 | **Tekrar izleme** | Son uçuşu kameralar ve zaman çubuğuyla yeniden izleme. | Uçuşta | F3 | V1.87 | replay | ✅ iyi |
-| **Fotoğraf modu** | Arayüzsüz serbest kamera ile fotoğraf. | Uçuşta | H | V1.87 | replay | ✅ iyi |
+| **Fotoğraf modu** | Arayüzsüz serbest kamera ile fotoğraf; görüş açısı kaydırıcısı ve dört görünüm (Normal, Sinema, Siyah-beyaz, Sıcak; V2.79), seçilen görünüm fotoğrafa da işlenir. | Uçuşta | H | V1.87 | replay, v279 | ✅ iyi |
 
 ## Grafik ve performans
 

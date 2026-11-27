@@ -1,6 +1,17 @@
 # Değişiklik Günlüğü — Ay Yıldız: Hedef Kızıl Elma
 Biçim: `## Vx.xx — tarih`. Her güncellemede sürüm numarası artırılır (`bump_version.py`).
 
+## V2.79 — 2026-11-27 · Öneriler: lazer, operatör, kalkış, kask ekranı
+- **Lazer işaretleme:** İHA'nın EO/IR kamerasında **LAZER** artık noktayı işaretli tutar (tekrar basınca kapanır); artı işaretini ya da kilitli noktayı izler, ince bir ışın ve hedefte yanıp sönen bir nokta görünür. İşaret açıkken lazer güdümlü bomba ve füzeler (MAM-L, MAM-C, TEBER, L-UMTAS…) o noktaya gider.
+- **ATIŞ İSTE:** lazerle işaretlenen noktaya Kılıç 2 (KAAN) 8 saniye sonra TEBER-82 bırakır (30 saniyede bir).
+- **Ekip modu — yapay zekâ operatör:** **OPERATÖR** ile kamerayı operatöre verirsin; 6 km içindeki en yakın yer hedefini bulur, lazerle işaretli tutar ve telsizle bildirir. Sen istediğin görünümde uçar, atışı yaparsın. İki oyuncunun ağ üzerinden pilot ve operatör olduğu ekip modu daha sonra.
+- **İHA otomatik kalkış:** İHA pistteyken ekranda **🛫 Otomatik kalkış**: tam güç, pist yönünde düz, kalkış hızında burnu kaldırır, tekerleri toplar, yerden 300 m'ye tırmanıp kumandayı sana verir. Kumandaya dokununca bırakır.
+- **Kask ekranı (KAAN ve T129 kokpiti):** görüşteki hedeflerin kutusu ve mesafesi; başını HUD'dan çevirince hız, irtifa ve yön bakışınla birlikte gelir.
+- **Camda yağmur:** yağmurda bütün kokpitlerde (helikopterler dahil) camda damlalar; yavaşken aşağı akar, hızlanınca geriye savrulur.
+- **Fotoğraf modu (H):** görüş açısı kaydırıcısı ve dört görünüm (Normal, Sinema, Siyah-beyaz, Sıcak); seçilen görünüm fotoğrafa da işlenir.
+- **Kapı topçusu ateşi (T625 · Kokpit C):** kapı topçusu artık silahın olduğu sağ kapıdan bakıyor; Boşluk ile baktığın yere ateş edersin.
+- Android emülatör testi: reklam geç başlarsa uygulama bir kez daha açılıyor (son sürümlerdeki ilk denemede takılma için).
+
 ## V2.78 — 2026-11-27 · Yer kontrol istasyonları
 - **Yürüyerek gidilen yer kontrol istasyonları.** İHA'yı artık bir istasyonun içinden uçurabilirsin (Hızlı Oyun → Üssü Gez; haritada yeni yerler):
   - **YKİ-1 konteyner** (İHA ve Test Merkezi, pistin yanında): antenli, uydu çanaklı, jeneratörlü konteyner. Kapıdan girersin; içeride pilot ve operatör koltuğu, devriyedeki Akıncı'nın canlı kamera görüntüsü ve canlı harekât haritası gösteren ekranlar, ışıkları yanıp sönen raflar var.
